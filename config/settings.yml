@@ -18,4 +18,5 @@ profile:
   sign_in_url:  'http://localhost:3000/users/sign_in'
   sign_up_url:  'http://localhost:3000/users/sign_up'
   sign_out_url: 'http://localhost:3000/users/sign_out'
+  edit:         'http://localhost:3000/users/edit'
 

@@ -6,14 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'auth_client', git: 'https://github.com/openteam-tusur/auth_client'
-gem 'auth_redis_user_connector', git: 'https://github.com/openteam-tusur/auth_redis_user_connector'
+gem 'zg_auth_client', git: 'https://github.com/sergocap/zg_auth_client'
+gem 'zg_redis_user_connector', git: 'https://github.com/sergocap/zg_redis_user_connector'
 gem 'zg_header', git: 'https://github.com/sergocap/zg_header'
 gem 'awesome_print'
 gem 'redis-session-store'
 gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
-gem 'configliere'
+gem 'config'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
