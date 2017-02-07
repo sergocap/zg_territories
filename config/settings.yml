@@ -13,3 +13,9 @@ session_store:
   host:           'localhost'
   port:           6379
 
+profile:
+  url:          'http://localhost:3000'
+  sign_in_url:  'http://localhost:3000/users/sign_in'
+  sign_up_url:  'http://localhost:3000/users/sign_up'
+  sign_out_url: 'http://localhost:3000/users/sign_out'
+

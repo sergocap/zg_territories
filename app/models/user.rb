@@ -6,4 +6,8 @@ class User
   def app_name
     'org_test'
   end
+
+  def redis_info
+    get_info
+  end
 end

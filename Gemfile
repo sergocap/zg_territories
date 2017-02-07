@@ -8,6 +8,7 @@ end
 
 gem 'auth_client', git: 'https://github.com/openteam-tusur/auth_client'
 gem 'auth_redis_user_connector', git: 'https://github.com/openteam-tusur/auth_redis_user_connector'
+gem 'zg_header', git: 'https://github.com/sergocap/zg_header'
 gem 'awesome_print'
 gem 'redis-session-store'
 gem 'rails', '~> 5.0.1'
