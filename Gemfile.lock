@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/sergocap/zg_header
-  revision: 1a7d7ae180d63066ea7d5080b68a6bcbe150d014
+  revision: b3f4dac4fa474f310593e59f05b6982527fe3d26
   specs:
     zg_header (0.1.0)
       config
@@ -64,7 +64,12 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    autoprefixer-rails (6.7.2)
+      execjs
     awesome_print (1.7.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -191,6 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
   config
