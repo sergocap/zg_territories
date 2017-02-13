@@ -7,4 +7,7 @@
       $('.simple_form.new_category').remove()
       $('.js-new_root_category').css 'display', 'inline-block'
 
-
+@init_handle_hidden = ->
+  $('.js-handle_hidden').click ->
+    $(this).toggleClass('glyphicon-plus glyphicon-minus')
+    $(this).next('.js-toggable').toggle()

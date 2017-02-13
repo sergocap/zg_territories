@@ -1,6 +1,6 @@
-<ul class='root_categories'>
+<ul class='root_categories list-unstyled'>
   <% @categories.each do |category| %>
-    <li><%= category.title %></li>
+    <%= render partial: 'category_item', locals: { category: category } %>
   <% end %>
 </ul>
 <%= link_to t('categories.new'), new_manage_metadata_category_path, remote: true, class: 'btn btn-default js-new_root_category' %>

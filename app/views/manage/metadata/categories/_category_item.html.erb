@@ -1,0 +1,18 @@
+<li data-id=<%= category.id %>>
+  <span><%= category.title %></span>
+  <span class='glyphicon glyphicon-plus js-handle_hidden'></span>
+
+  <div class='js-toggable' style='display:none'>
+    <ul class='categories_children'>
+      <% category.children.each do |child| %>
+        <%= render partial: 'category_item', locals: {category: child} %>
+      <% end %>
+    </ul>
+    <%= link_to t('categories.new'), new_manage_metadata_category_path(ancestry: category.id), remote: true, class: 'js-new_subcategory' %>
+  </div>
+</li>
+
+
+
+
+
