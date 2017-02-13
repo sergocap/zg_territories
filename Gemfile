@@ -9,6 +9,8 @@ end
 gem 'zg_auth_client', git: 'https://github.com/sergocap/zg_auth_client'
 gem 'zg_redis_user_connector', git: 'https://github.com/sergocap/zg_redis_user_connector'
 gem 'zg_header', git: 'https://github.com/sergocap/zg_header'
+gem 'simple_form'
+gem 'ancestry'
 gem 'awesome_print'
 gem 'redis-session-store'
 gem 'rails', '~> 5.0.1'

@@ -1,0 +1,6 @@
+<ul class='root_categories'>
+  <% @categories.each do |category| %>
+    <li><%= category.title %></li>
+  <% end %>
+</ul>
+<%= link_to t('categories.new'), new_manage_metadata_category_path, remote: true, class: 'btn btn-default js-new_root_category' %>

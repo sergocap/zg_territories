@@ -1,0 +1,5 @@
+<%= simple_form_for @category, url: manage_metadata_categories_path, method: 'post' do |f| %>
+  <%= f.input :title %>
+  <%= f.submit 'Сохранить', class: 'btn btn-default' %>
+  <%= link_to 'Отменить', '#', remote: true, class: 'js-cancel_new_root_category btn btn-default' %>
+<% end %>
