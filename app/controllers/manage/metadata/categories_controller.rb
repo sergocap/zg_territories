@@ -5,18 +5,21 @@ class Manage::Metadata::CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    render partial: 'form' and return
+    render partial: 'form'  and return
   end
 
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to manage_metadata_categories_path
+      render partial: 'children',
+        locals: {children: @category.ancestry ?
+                 @category.parent.children :
+                 Category.roots.ordered} and return
     end
   end
 
   private
   def category_params
-    params.require(:category).permit(:title)
+    params.require(:category).permit(:title, :ancestry)
   end
 end
