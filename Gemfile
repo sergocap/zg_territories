@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'cancan'
 gem 'zg_auth_client', git: 'https://github.com/sergocap/zg_auth_client'
 gem 'zg_redis_user_connector', git: 'https://github.com/sergocap/zg_redis_user_connector'
 gem 'zg_header', git: 'https://github.com/sergocap/zg_header'
