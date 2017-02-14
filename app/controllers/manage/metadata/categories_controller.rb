@@ -1,6 +1,8 @@
 class Manage::Metadata::CategoriesController < ApplicationController
   authorize_resource
+  load_resource only: :show
   before_action :find_category, only: [:destroy, :edit, :update]
+
   def index
     @categories = Category.roots.ordered
   end
