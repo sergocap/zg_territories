@@ -10,7 +10,7 @@
       $(new_category_link).css 'display', 'inline-block'
 
     $(simple_form).on 'ajax:success', (evt, response) ->
-      $('.root_categories').html response
+      $('.tree_categories').html response
       $(simple_form).find('input[type=text]').val ''
 
 @init_new_subcategory = ->
