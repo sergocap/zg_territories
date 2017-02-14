@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 20170214075915) do
   create_table "category_properties", force: :cascade do |t|
     t.integer  "category_id"
     t.integer  "property_id"
-    t.string   "kind"
-    t.string   "title"
     t.integer  "row_order"
-    t.boolean  "necessarily"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "necessarily",    default: false
+    t.boolean  "show_on_public", default: true
+    t.string   "show_as",        default: "check_boxes"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["category_id"], name: "index_category_properties_on_category_id", using: :btree
     t.index ["property_id"], name: "index_category_properties_on_property_id", using: :btree
   end
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(version: 20170214075915) do
   create_table "properties", force: :cascade do |t|
     t.string   "kind"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "category_id"
+    t.string   "show_on_filter_as"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end

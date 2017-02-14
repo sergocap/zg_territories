@@ -1,0 +1,30 @@
+<div class='row'>
+  <div class='col-xs-6'>
+    <%= simple_nested_form_for [:manage, :metadata, @category, @property] do |f| %>
+      <%= f.input :title,
+        input_html: {disabled: !can_change_fields?(@category, @property) } %>
+      <%= f.input :kind,
+        input_html: {disabled: !can_change_fields?(@category, @property) } %>
+      <%= f.input :category_id, as: :hidden %>
+
+      <%= f.simple_fields_for @category_property do |cat_pro| %>
+        <%= cat_pro.input :category_id, as: :hidden %>
+        <%= cat_pro.input :necessarily %>
+        <% unless literal?(@property.kind) %>
+          <%= cat_pro.input :show_on_public %>
+          <%= cat_pro.input :show_as,
+            as: :select,
+            collection: [:check_boxes, :radio_buttons, :select]%>
+        <% end %>
+      <% end %>
+
+      <%= f.input :show_on_filter_as,
+        as: :select,
+        collection: collection_for_filter(@property.kind),
+        input_html: {disabled: !can_change_fields?(@category, @property)} %>
+      <%-# render :partial => "metadata/properties_fields/#{@property.kind}_fields", locals: { f: f } %>
+      <%= f.submit 'Сохранить', class: 'btn btn-default' %>
+    <% end %>
+
+  </div>
+</div>

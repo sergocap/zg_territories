@@ -12,6 +12,8 @@ gem 'zg_redis_user_connector', git: 'https://github.com/sergocap/zg_redis_user_c
 gem 'zg_header', git: 'https://github.com/sergocap/zg_header'
 gem 'simple_form'
 gem 'pg'
+gem 'nested_form'
+gem 'enumerize'
 gem 'glyphicons-rails'
 gem 'ancestry'
 gem 'awesome_print'

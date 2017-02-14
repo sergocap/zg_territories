@@ -2,7 +2,7 @@
 
 
 <% if @category.ancestors.any? %>
-  <h4>Родители</h4>
+  <h4>Родители:</h4>
   <% @category.ancestors.each do |parent| %>
     <%= link_to parent.title, manage_metadata_category_path(parent) %>
   <% end %>
@@ -11,8 +11,29 @@
 
 <h1>Категория "<%= @category.title %>"</h1>
 
+<h2>Поля:</h2>
+<% if @category.properties.any? %>
+  <% @category.properties.each do |property| %>
+    <%= property.title %>
+  <% end %>
+<% else %>
+  <span>Нет полей</span>
+<% end %>
+
+<hr>
+<div class='row'>
+  <div class='col-xs-6'>
+    <%= simple_form_for Property.new, url: new_manage_metadata_category_property_path(@category), html: {class: 'form-inline'}, method: 'get' do |f| %>
+      <%= f.submit 'Добавить поле', class: 'btn btn-default' %>
+      <%= f.input :kind, as: :select, collection: Property.kind.options, selected: true %>
+      <%= f.input :category_id, as: :hidden, input_html: {value: @category.id} %>
+    <% end %>
+  </div>
+</div>
+
 <% if @category.has_children? %>
-  <h4>Дети</h4>
+  <br><br>
+  <h4>Дети:</h4>
   <% @category.children.each do |child| %>
     <%= link_to child.title, manage_metadata_category_path(child) %>
   <% end %>
