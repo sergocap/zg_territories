@@ -1,6 +1,18 @@
 <li data-id=<%= category.id %> class='js-category_item'>
   <span><%= category.title %></span>
-  <span class='glyphicon glyphicon-plus js-handle_hidden'></span>
+  <span class='glyphicon glyphicon-chevron-down js-handle_hidden'></span>
+
+  <div class='hiddable' style='display:none'>
+    <%= link_to edit_manage_metadata_category_path(category), remote: true do %>
+      <span class='glyphicon glyphicon-pencil'></span>
+    <% end %>
+
+    <%= link_to manage_metadata_category_path(category), remote: true,
+      class: 'js-delete_category', method: :delete,
+      data: {confirm: "Удалить категорию #{category.title}. Вы уверены? Удалятся все дочерние категории!"} do %>
+      <span class='hiddable glyphicon glyphicon-trash'></span>
+    <% end %>
+  </div>
 
   <div class='js-toggable' style='display:none'>
     <ul class='categories_children'>

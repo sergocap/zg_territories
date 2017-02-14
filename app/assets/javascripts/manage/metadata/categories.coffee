@@ -35,5 +35,19 @@
 
 @init_handle_hidden = ->
   $(document).on 'click', '.js-handle_hidden', ->
-    $(this).toggleClass('glyphicon-plus glyphicon-minus')
-    $(this).next('.js-toggable').toggle()
+    $(this).toggleClass('glyphicon-chevron-down glyphicon-chevron-up')
+    $(this).nextAll('.js-toggable').toggle()
+
+@init_category_title = ->
+  $(document).on 'mouseover', '.js-category_item', ->
+    $(this).children('.hiddable').css 'display', 'inline-block'
+  $(document).on 'mouseout', '.js-category_item', ->
+    $(this).children('.hiddable').css 'display', 'none'
+
+@init_delete_category = ->
+  $(document).on 'ajax:success', '.js-delete_category', (evt, response) ->
+    console.log $(this).closest('li').remove()
+
+
+
+

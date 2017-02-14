@@ -1,4 +1,5 @@
 class Manage::Metadata::CategoriesController < ApplicationController
+  before_action :find_category, only: [:destroy]
   def index
     @categories = Category.roots.ordered
   end
@@ -18,7 +19,17 @@ class Manage::Metadata::CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @category.destroy
+    render nothing: true
+  end
+
   private
+
+  def find_category
+    @category = Category.find(params[:id])
+  end
+
   def category_params
     params.require(:category).permit(:title, :ancestry)
   end
