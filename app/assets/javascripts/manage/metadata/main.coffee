@@ -5,4 +5,5 @@ $ ->
     init_handle_hidden()
     init_category_title()
     init_delete_category()
+    init_edit_category()
   true

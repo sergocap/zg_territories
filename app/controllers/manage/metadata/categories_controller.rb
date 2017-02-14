@@ -1,5 +1,5 @@
 class Manage::Metadata::CategoriesController < ApplicationController
-  before_action :find_category, only: [:destroy]
+  before_action :find_category, only: [:destroy, :edit, :update]
   def index
     @categories = Category.roots.ordered
   end
@@ -16,6 +16,16 @@ class Manage::Metadata::CategoriesController < ApplicationController
         locals: {children: @category.ancestry ?
                  @category.parent.children :
                  Category.roots.ordered} and return
+    end
+  end
+
+  def edit
+    render partial: 'form', locals: {category: @category} and return
+  end
+
+  def update
+    if @category.update(category_params)
+      render partial: 'category_item', locals: {category: @category} and return
     end
   end
 

@@ -5,7 +5,7 @@
     $(new_category_link).css 'display', 'none'
 
     simple_form = $(new_category_link).next()
-    $('.js-cancel_new_root_category').click ->
+    $('.js-cancel_form_root_category').click ->
       $(simple_form).remove()
       $(new_category_link).css 'display', 'inline-block'
 
@@ -20,7 +20,7 @@
     simple_form = $(new_category_link).next()
     parent_id = $(new_category_link).data('parentId')
     parent = $("li[data-id=#{parent_id}] > div.js-toggable")
-    cancel = $(simple_form).find('.js-cancel_new_subcategory')
+    cancel = $(simple_form).find('.js-cancel_form_subcategory')
 
     $(new_category_link).css 'display', 'none'
 
@@ -46,7 +46,26 @@
 
 @init_delete_category = ->
   $(document).on 'ajax:success', '.js-delete_category', (evt, response) ->
-    console.log $(this).closest('li').remove()
+    $(this).closest('li').remove()
+
+@init_edit_category = ->
+  $(document).on 'ajax:success', '.js-edit_category', (evt, response) ->
+    edit_link = $(this)
+    title = $(edit_link).closest('li').children('.js-category_title')
+    $(title).replaceWith response
+    simple_form = $(edit_link).closest('li').children('.simple_form')
+    $(simple_form).css 'display', 'inline-block'
+
+    $(simple_form).find('.cancel_form').on 'ajax:success', ->
+      $(simple_form).replaceWith title
+
+    $(simple_form).on 'ajax:success', (evt, response)->
+      console.log response
+      $(this).closest('li').replaceWith response
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
-<%= simple_form_for @category, url: manage_metadata_categories_path, method: 'post',
+<%= simple_form_for [:manage, :metadata, @category],
   html: { class: 'form-inline' }, remote: true do |f| %>
   <%= f.input :title, class: 'form-control' %>
   <%= f.input :ancestry, as: :hidden, input_html: { value: params['ancestry'] } if params['ancestry']  %>
   <%= f.submit 'Сохранить', class: 'btn btn-default' %>
-  <%= link_to 'Закрыть', '#', remote: true, class: "js-cancel_new_#{params['ancestry'].nil? ? "root_" : 'sub'}category btn btn-default" %>
+  <%= link_to 'Отмена', '#', remote: true, class: "cancel_form js-cancel_form_#{params['ancestry'].nil? ? "root_" : 'sub'}category btn btn-default" %>
 <% end %>

@@ -1,9 +1,10 @@
 <li data-id=<%= category.id %> class='js-category_item'>
-  <span><%= category.title %></span>
+  <span class='js-category_title'><%= category.title %></span>
   <span class='glyphicon glyphicon-chevron-down js-handle_hidden'></span>
 
   <div class='hiddable' style='display:none'>
-    <%= link_to edit_manage_metadata_category_path(category), remote: true do %>
+    <%= link_to edit_manage_metadata_category_path(category), remote: true,
+      class: 'js-edit_category' do %>
       <span class='glyphicon glyphicon-pencil'></span>
     <% end %>
 
