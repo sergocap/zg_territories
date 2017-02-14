@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213034226) do
+ActiveRecord::Schema.define(version: 20170214075915) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -18,7 +21,20 @@ ActiveRecord::Schema.define(version: 20170213034226) do
     t.integer  "ancestry_depth", default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
+  end
+
+  create_table "category_properties", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "property_id"
+    t.string   "kind"
+    t.string   "title"
+    t.integer  "row_order"
+    t.boolean  "necessarily"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_category_properties_on_category_id", using: :btree
+    t.index ["property_id"], name: "index_category_properties_on_property_id", using: :btree
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -28,7 +44,14 @@ ActiveRecord::Schema.define(version: 20170213034226) do
     t.integer  "context_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context"
+    t.index ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", using: :btree
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string   "kind"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
