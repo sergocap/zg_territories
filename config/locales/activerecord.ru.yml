@@ -2,17 +2,23 @@ ru:
   activerecord:
     attributes:
 
+      attribute_commons: &commons
+        title: Название
+
       category:
-        title:              'Название'
+        <<: *commons
 
       property:
-        kind:               'Тип поля'
-        category_id:        'Категория'
-        title:              'Название'
-        show_on_filter_as:  'Показывать при фильтрации как'
+        kind:               Тип поля
+        category_id:        Категория
+        title:              Название
+        show_on_filter_as:  Показывать при фильтрации как
 
       category_property:
-        necessarily:        'Обязательность'
-        category_id:        'Категория'
-        show_as:            'Отображать при заполнении как'
-        show_on_public:     'Показывать ли публично'
+        necessarily:        Обязательность
+        category_id:        Категория
+        show_as:            Отображать при заполнении как
+        show_on_public:     Показывать ли публично
+
+      list_item:
+        <<: *commons

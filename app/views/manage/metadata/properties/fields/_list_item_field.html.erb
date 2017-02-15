@@ -1,0 +1,7 @@
+<h2>Справочник значений</h2>
+<%= f.simple_fields_for :list_items do |item_form| %>
+  <%= item_form.input :parent_id, input_html: { value: params[:parent_id] } %>
+  <%= item_form.input :title, label: false, input_html: { disabled: !can_change_fields?(@category, @property) } %>
+  <%= item_form.link_to_remove 'Удалить' if can_change_fields?(@category, @property) %>
+<% end %>
+<%= f.link_to_add 'Добавить значение', :list_items if can_change_fields?(@category, @property) %>

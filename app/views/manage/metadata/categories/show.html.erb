@@ -13,9 +13,18 @@
 
 <h2>Поля:</h2>
 <% if @category.properties.any? %>
+  <ul>
   <% @category.properties.each do |property| %>
-    <%= property.title %>
+    <li>
+      <%= link_to property.title,
+        edit_manage_metadata_category_property_path(@category, property) %>
+      <%= link_to manage_metadata_category_property_path(@category, property), method: 'delete', data: {confirm: 'Вы уверены?'} do %>
+        <span class='glyphicon glyphicon-trash'></span>
+      <% end %>
+    </li>
   <% end %>
+
+  </ul>
 <% else %>
   <span>Нет полей</span>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214075915) do
+ActiveRecord::Schema.define(version: 20170215041214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,34 @@ ActiveRecord::Schema.define(version: 20170214075915) do
     t.index ["property_id"], name: "index_category_properties_on_property_id", using: :btree
   end
 
+  create_table "hierarch_list_items", force: :cascade do |t|
+    t.string   "title"
+    t.string   "ancestry"
+    t.integer  "property_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["property_id"], name: "index_hierarch_list_items_on_property_id", using: :btree
+  end
+
+  create_table "list_item_values", force: :cascade do |t|
+    t.integer  "heirarch_list_item_id"
+    t.integer  "list_item_id"
+    t.integer  "value_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["heirarch_list_item_id"], name: "index_list_item_values_on_heirarch_list_item_id", using: :btree
+    t.index ["list_item_id"], name: "index_list_item_values_on_list_item_id", using: :btree
+    t.index ["value_id"], name: "index_list_item_values_on_value_id", using: :btree
+  end
+
+  create_table "list_items", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "property_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["property_id"], name: "index_list_items_on_property_id", using: :btree
+  end
+
   create_table "permissions", force: :cascade do |t|
     t.string   "user_id"
     t.string   "role"
@@ -54,6 +82,23 @@ ActiveRecord::Schema.define(version: 20170214075915) do
     t.string   "show_on_filter_as"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "values", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "property_id"
+    t.integer  "list_item_id"
+    t.integer  "hierarch_list_item_id"
+    t.string   "string_value"
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.boolean  "boolean_value"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["hierarch_list_item_id"], name: "index_values_on_hierarch_list_item_id", using: :btree
+    t.index ["list_item_id"], name: "index_values_on_list_item_id", using: :btree
+    t.index ["organization_id"], name: "index_values_on_organization_id", using: :btree
+    t.index ["property_id"], name: "index_values_on_property_id", using: :btree
   end
 
 end
