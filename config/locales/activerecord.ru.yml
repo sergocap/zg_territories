@@ -22,3 +22,6 @@ ru:
 
       list_item:
         <<: *commons
+
+      hierarch_list_item:
+        <<: *commons

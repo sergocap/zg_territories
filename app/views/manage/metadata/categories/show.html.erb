@@ -13,18 +13,23 @@
 
 <h2>Поля:</h2>
 <% if @category.properties.any? %>
-  <ul>
+  <table style='width:50%'>
   <% @category.properties.each do |property| %>
-    <li>
-      <%= link_to property.title,
+    <tr>
+      <td><%= link_to property.title,
         edit_manage_metadata_category_property_path(@category, property) %>
-      <%= link_to manage_metadata_category_property_path(@category, property), method: 'delete', data: {confirm: 'Вы уверены?'} do %>
-        <span class='glyphicon glyphicon-trash'></span>
-      <% end %>
-    </li>
+      </td>
+      <td><%= t('enumerize.property.kind.' + property.kind) %></td>
+      <td><%= @category == property.native_category ? 'Своя' : property.native_category.title %></td>
+      <td>
+        <%= link_to manage_metadata_category_property_path(@category, property), method: 'delete', data: {confirm: 'Вы уверены?'} do %>
+          <span class='glyphicon glyphicon-trash'></span>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 
-  </ul>
+  </table>
 <% else %>
   <span>Нет полей</span>
 <% end %>

@@ -30,9 +30,8 @@
       </div>
 
       <div class='col-xs-6 nested_fields'>
-        <%= render partial: "/manage/metadata/properties/fields/#{@property.kind}_fields", locals: { f: f } %>
+        <%= render partial: "manage/metadata/properties/fields/#{@property.kind}_fields", locals: { f: f } %>
       </div>
     </div>
   </div>
 <% end %>
-

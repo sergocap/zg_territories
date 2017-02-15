@@ -1,0 +1,8 @@
+<div style='margin-left: 50px'>
+  <%= parent_form.simple_fields_for :children do |child| %>
+    <%= child.input :title, label: false, input_html: {disabled: !can_change_fields?(@category, @property)} %>
+    <%= child.link_to_remove 'Удалить' if can_change_fields?(@category, @property) %>
+  <% end %>
+  <p><%= parent_form.link_to_add 'Добавить дочерний элемент', :children %></p>
+</div>
+

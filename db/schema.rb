@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170215041214) do
 
   create_table "hierarch_list_items", force: :cascade do |t|
     t.string   "title"
-    t.string   "ancestry"
+    t.string   "parent_id"
     t.integer  "property_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
