@@ -8,6 +8,10 @@ class User
   end
 
   def ==(other_user)
-    self.id == other_user.id
+    self.id == other_user.try(:id)
+  end
+
+  def organizations
+    Organization.where(:user_id => self.id)
   end
 end

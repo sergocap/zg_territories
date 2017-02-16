@@ -8,7 +8,10 @@ class Ability
       can :manage, :all if user.has_permission?(role: 'admin')
     when 'My'
       return unless user
-      can :manage, Organization
+      can :manage, Organization do |organization|
+        organization.owner?(user)
+      end
+      can :new, Organization
     end
   end
 end

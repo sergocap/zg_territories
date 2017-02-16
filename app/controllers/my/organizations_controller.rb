@@ -1,13 +1,11 @@
 class My::OrganizationsController < ApplicationController
+  load_and_authorize_resource
   inherit_resources
-  authorize_resource
 
-  def create
-    create! { organization_path(@organization) }
-  end
-
-  def update
-    update! { organization_path(@organization) }
+  def show
+     show! do |format|
+       format.html { redirect_to organization_path(@organization) }
+     end
   end
 
   private
