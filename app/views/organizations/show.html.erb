@@ -1,0 +1,4 @@
+<h2><%= @organization.title %></h2>
+<p><%= @organization.address %></p>
+<%= link_to 'Редактировать',
+  edit_my_organization_path(@organization) if @organization.owner?(current_user) %>

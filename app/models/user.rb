@@ -4,6 +4,10 @@ class User
   acts_as_auth_client_user
 
   def app_name
-    'org_test'
+    'zg_organizations'
+  end
+
+  def ==(other_user)
+    self.id == other_user.id
   end
 end

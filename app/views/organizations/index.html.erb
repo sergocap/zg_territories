@@ -1,1 +1,5 @@
+<%= link_to 'Добавить организацию', new_my_organization_path, class: 'btn btn-success' %>
 <h3>Здесь инфоормация об организациях</h3>
+<% @organizations.each do |organization| %>
+  <%= link_to organization.title, organization_path(organization) %>
+<% end %>

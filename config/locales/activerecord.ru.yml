@@ -4,6 +4,7 @@ ru:
 
       attribute_commons: &commons
         title: Название
+        address: Адрес
 
       category:
         <<: *commons
@@ -11,7 +12,6 @@ ru:
       property:
         kind:               Тип поля
         category_id:        Категория
-        title:              Название
         show_on_filter_as:  Показывать при фильтрации как
 
       category_property:
@@ -24,4 +24,7 @@ ru:
         <<: *commons
 
       hierarch_list_item:
+        <<: *commons
+
+      organization:
         <<: *commons

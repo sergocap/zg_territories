@@ -1,0 +1,11 @@
+<div class='row'>
+  <div class='col-xs-5'>
+    <%= simple_form_for [:my, @organization] do |f| %>
+      <%= f.input :title %>
+      <%= f.input :address %>
+      <%= f.input :user_id, input_html: {value: current_user.id} %>
+      <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+

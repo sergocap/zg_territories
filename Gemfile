@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'inherited_resources'
 gem 'cancan'
 gem 'ranked-model'
 gem 'zg_auth_client', git: 'https://github.com/sergocap/zg_auth_client'

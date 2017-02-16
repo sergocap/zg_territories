@@ -6,6 +6,9 @@ class Ability
     when 'Manage'
       return unless user
       can :manage, :all if user.has_permission?(role: 'admin')
+    when 'My'
+      return unless user
+      can :manage, Organization
     end
   end
 end

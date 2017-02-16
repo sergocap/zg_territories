@@ -1,4 +1,3 @@
 class OrganizationsController < ApplicationController
-  def index
-  end
+  inherit_resources
 end
