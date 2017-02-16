@@ -18,12 +18,10 @@
           <% end %>
         <% end %>
 
-        <% unless @property.kind == 'string' %>
-          <%= f.input :show_on_filter_as,
-            as: :select,
-            collection: collection_for_filter(@property.kind),
-            input_html: {disabled: !can_change_fields?(@category, @property)} %>
-        <% end %>
+        <%= f.input :show_on_filter_as,
+          as: :select,
+          collection: collection_for_filter(@property.kind),
+          input_html: {disabled: !can_change_fields?(@category, @property)} %>
 
         <%= f.submit 'Сохранить', class: 'btn btn-default' %>
         <%= link_to 'Отмена', manage_metadata_category_path(@category) %>

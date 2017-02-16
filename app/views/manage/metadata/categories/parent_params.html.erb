@@ -1,0 +1,13 @@
+<h4>Управление свойствами родительских категорий</h4>
+<% if @parent_properties.any? %>
+  <%= simple_form_for [:manage, :metadata, @category] do |f|  %>
+    <%= f.input :property_ids,
+      as: :check_boxes,
+      collection: @parent_properties,
+      label: false %>
+    <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+  <% end %>
+<% else %>
+  <p>Нет свойств</p>
+<% end %>
+<%= link_to 'Вернуться', :back %>

@@ -1,7 +1,7 @@
 class Manage::Metadata::CategoriesController < ApplicationController
   authorize_resource
   load_resource only: :show
-  before_action :find_category, only: [:destroy, :edit, :update]
+  before_action :find_category, only: [:destroy, :edit, :update, :parent_params]
 
   def index
     @categories = Category.roots.ordered
@@ -28,13 +28,18 @@ class Manage::Metadata::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      render partial: 'category_item', locals: {category: @category} and return
+      render partial: 'category_item', locals: {category: @category} and return if request.xhr?
+      redirect_to manage_metadata_category_path(@category)
     end
   end
 
   def destroy
     @category.destroy
     render nothing: true
+  end
+
+  def parent_params
+    @parent_properties = @category.ancestors.map(&:properties).flatten.uniq
   end
 
   private
@@ -44,6 +49,6 @@ class Manage::Metadata::CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:title, :ancestry)
+    params.require(:category).permit(:title, :ancestry, property_ids: [])
   end
 end
