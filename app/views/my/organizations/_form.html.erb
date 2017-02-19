@@ -3,7 +3,8 @@
     <%= simple_form_for [:my, @organization] do |f| %>
       <%= f.input :title %>
       <%= f.input :address %>
-      <%= f.input :user_id, input_html: {value: current_user.id} if action_name == 'new' %>
+      <%= f.input :city_id, as: :hidden, input_html: { value: @current_city.id } if action_name == 'new' %>
+      <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } if action_name == 'new' %>
       <%= f.submit 'Сохранить', class: 'btn btn-success' %>
     <% end %>
   </div>

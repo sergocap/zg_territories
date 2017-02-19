@@ -8,10 +8,14 @@ class My::OrganizationsController < ApplicationController
      end
   end
 
+  def create
+    create! { organization_path(@organization) }
+  end
+
   private
 
   def organization_params
     params.require(:organization).permit(
-      [:user_id, :title, :address])
+      [:user_id, :title, :city_id, :address])
   end
 end

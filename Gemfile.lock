@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/sergocap/zg_header
-  revision: b25379d40e53805666094c96a375eb41229d5991
+  revision: d054517f666ccba077053da582980d857a603864
   specs:
     zg_header (0.1.0)
       config
@@ -94,6 +94,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.17)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     glyphicons-rails (0.1.2)
@@ -174,6 +176,8 @@ GEM
       redis (~> 3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -228,6 +232,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   config
   enumerize
+  friendly_id
   glyphicons-rails
   inherited_resources
   jbuilder (~> 2.5)
@@ -239,6 +244,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   ranked-model
   redis-session-store
+  russian
   sass-rails (~> 5.0)
   simple_form
   spring
