@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options options={}
-    options.merge(:city_slug => @current_city.friendly_id) if @current_city
+    options.merge!(:city_slug => @current_city.friendly_id) if @current_city
+    options
   end
 
   def current_ability

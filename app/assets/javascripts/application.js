@@ -13,6 +13,6 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
-//= require turbolinks
+//= require vue
 //= require nested_form
 //= require_tree .
