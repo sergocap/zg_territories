@@ -30,5 +30,14 @@ module Searchers
       end
     end
   end
+
+  class ManageOrganizationSearcher < Searcher
+    private
+    def search
+      Organization.search do
+        paginate page: search_params.page, per_page: Organization.default_per_page
+      end
+    end
+  end
 end
 

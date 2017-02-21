@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root 'organizations#welcome'
   namespace :manage do
+    root 'organizations#index'
+    resources :organizations
     namespace :metadata do
+      root 'categories#index'
       resources :categories do
         get 'parent_params', on: :member
         resources :properties
@@ -13,7 +16,7 @@ Rails.application.routes.draw do
   get 'categories/get_hierarch_list_items'
 
   scope '/:city_slug' do
-    get '/', to: 'organizations#index'
+    root 'organizations#index'
     resources :organizations
     namespace :my do
       resources :organizations

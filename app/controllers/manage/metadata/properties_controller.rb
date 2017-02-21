@@ -1,4 +1,4 @@
-class Manage::Metadata::PropertiesController < ApplicationController
+class Manage::Metadata::PropertiesController < Manage::ApplicationController
   before_action :find_category, only: [:new, :create, :destroy, :edit, :update]
   before_action :find_property, only: [:destroy, :edit, :update]
   before_action :find_category_property, only: [:destroy, :edit, :update]

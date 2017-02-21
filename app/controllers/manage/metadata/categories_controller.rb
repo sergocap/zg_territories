@@ -1,4 +1,4 @@
-class Manage::Metadata::CategoriesController < ApplicationController
+class Manage::Metadata::CategoriesController < Manage::ApplicationController
   authorize_resource
   load_resource only: :show
   before_action :find_category, only: [:destroy, :edit, :update, :parent_params]

@@ -1,6 +1,3 @@
-<%= link_to 'К всему дереву', manage_metadata_categories_path, style: 'float:right' %>
-
-
 <% if @category.ancestors.any? %>
   <h4>Родители:</h4>
   <% @category.ancestors.each do |parent| %>

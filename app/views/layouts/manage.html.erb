@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ЗГ Организации</title>
+    <title>Управление ЗГ Организации</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,7 +11,7 @@
   <body>
     <%= render partial: 'zg_header/zg_header' %>
     <div class='container'>
-      <%= render partial: 'layouts/categories_header' unless @current_city.nil? %>
+      <%= render partial: 'layouts/manage_menu' %>
       <%= yield %>
     </div>
   </body>
