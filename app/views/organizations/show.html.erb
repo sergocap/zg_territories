@@ -1,4 +1,34 @@
-<h2><%= @organization.title %></h2>
-<p><%= @organization.address %></p>
-<%= link_to 'Редактировать',
-  edit_my_organization_path(@organization) if @organization.owner?(current_user) %>
+<div class='row'>
+  <div class='col-xs-6'>
+
+    <h1><%= @organization.title %></h1>
+    <p><%= @organization.address %></p>
+
+    <hr>
+    <% @organization.values.each do |value| %>
+      <%= render partial: "common/values/#{value.property.kind}", locals: {:value => value} %>
+    <% end %>
+
+    <% unless @organization.parent.nil? %>
+      <h3>Родительская организация
+        <%= link_to @organization.parent.title, organization_path(@organization.parent) %>
+      </h3>
+    <% end %>
+
+    <% if @organization.children.any? %>
+      <h3>Дочерние организации
+        <% @organization.children.each do |child| %>
+          <%= link_to child.title, organization_path(child) %>
+        <% end %>
+      </h3>
+    <% end %>
+
+    <% if @organization.owner?(current_user) %>
+      <div class='panel panel-default'>
+        <%= link_to 'Редактировать',
+          edit_my_organization_path(@organization) if @organization.owner?(current_user) %>
+        <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>
+      </div>
+    <% end %>
+  </div>
+</div>

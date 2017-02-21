@@ -13,6 +13,9 @@
       <%= f.input :user_id, as: :hidden,
         input_html: { value: current_user.id } %>
 
+      <%= f.input :parent_id, as: :hidden,
+        input_html: { value: params[:parent_id] } %>
+
       <%= f.input :category_id, as: :hidden,
         input_html: { 'v-model': 'organization.category_id' }  %>
 

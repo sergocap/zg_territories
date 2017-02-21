@@ -5,13 +5,13 @@
     as: :select,
     :include_blank => true,
     collection: f.object.property.hierarch_list_items,
-    :selected => f.object.hierarch_list_item.parent.id %>
+    :selected => f.object.hierarch_list_item.try(:parent).try(:id) %>
 
   <%= f.input :hierarch_list_item_id,
     :input_html => { class: 'js-children_hli' },
     label: false,
     as: :select,
     :include_blank => true,
-    collection: f.object.hierarch_list_item.parent.children,
+    collection: f.object.hierarch_list_item.try(:parent).try(:children),
     :selected => f.object.hierarch_list_item_id %>
 </div>

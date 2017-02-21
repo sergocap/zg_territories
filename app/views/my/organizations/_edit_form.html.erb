@@ -5,7 +5,7 @@
 
       <%= f.input :address %>
 
-      <h2><%= @organization.category.title %></h2>
+      <h2><%= @organization.category.try(:title) %></h2>
 
       <%= f.simple_fields_for :values do |value_form| %>
         <%= render partial: "/my/organizations/values_fields/#{value_form.object.property.kind}",
