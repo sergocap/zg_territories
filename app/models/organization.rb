@@ -4,6 +4,17 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :values
   validates_presence_of :title, :address, message: 'Не может быть пустым'
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
+  include SettingsStateMachine
+
+  after_initialize :set_initial_status
+
+  def set_initial_status
+    self.state ||= :draft
+  end
+
+  def self.states_list
+    [:draft, :published, :moderation]
+  end
 
   searchable include: [:values] do
     integer :list_item_ids, multiple: true do
@@ -15,8 +26,8 @@ class Organization < ApplicationRecord
     end
 
     integer :category_id
-
     integer :city_id
+    string  :state
   end
 
   def parent

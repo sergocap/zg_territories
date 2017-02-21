@@ -35,6 +35,7 @@ module Searchers
     private
     def search
       Organization.search do
+        with :state, search_params.state if search_params.state && search_params.state != 'all'
         paginate page: search_params.page, per_page: Organization.default_per_page
       end
     end

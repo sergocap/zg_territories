@@ -1,7 +1,7 @@
 class My::OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
-  before_action :find_categories, only: :new
+  before_action :find_categories, only: [:new, :create]
 
   def show
      show! do |format|
@@ -10,7 +10,15 @@ class My::OrganizationsController < ApplicationController
   end
 
   def create
-    create! { organization_path(@organization) }
+    create! do |format|
+      format.html do
+        if @organization.save
+          redirect_to organization_path(@organization)
+        else
+          render :new
+        end
+      end
+    end
   end
 
   private
