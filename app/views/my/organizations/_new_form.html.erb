@@ -8,10 +8,10 @@
         input_html: { 'v-model': 'organization.address' }   %>
 
       <%= f.input :city_id, as: :hidden,
-        input_html: { value: @current_city.id } if action_name == 'new' %>
+        input_html: { value: @current_city.id } %>
 
       <%= f.input :user_id, as: :hidden,
-        input_html: { value: current_user.id } if action_name == 'new' %>
+        input_html: { value: current_user.id } %>
 
       <%= f.input :category_id, as: :hidden,
         input_html: { 'v-model': 'organization.category_id' }  %>
@@ -118,6 +118,7 @@
           {{item.title}}
         </option>
       </select>
+      <br>
 
       <select
         v-if='hierarch_list_items.length'

@@ -1,0 +1,17 @@
+<div class='wrapper_hierarch_list_items'>
+  <%= f.input :hierarch_list_item_parent_id,
+    :input_html => { class: 'js-parent_hli' },
+    label: f.object.property.title,
+    as: :select,
+    :include_blank => true,
+    collection: f.object.property.hierarch_list_items,
+    :selected => f.object.hierarch_list_item.parent.id %>
+
+  <%= f.input :hierarch_list_item_id,
+    :input_html => { class: 'js-children_hli' },
+    label: false,
+    as: :select,
+    :include_blank => true,
+    collection: f.object.hierarch_list_item.parent.children,
+    :selected => f.object.hierarch_list_item_id %>
+</div>

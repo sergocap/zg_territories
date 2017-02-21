@@ -6,4 +6,8 @@ class HierarchListItem < ApplicationRecord
   validates :title, uniqueness: { scope: :property_id }
 
   accepts_nested_attributes_for :children, allow_destroy: true
+
+  def parent
+    HierarchListItem.where(:id => parent_id).first
+  end
 end

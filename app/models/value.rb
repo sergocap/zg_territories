@@ -1,4 +1,5 @@
 class Value < ApplicationRecord
+  attr_accessor :hierarch_list_item_parent_id
   belongs_to :property
   belongs_to :list_item
   belongs_to :hierarch_list_item
