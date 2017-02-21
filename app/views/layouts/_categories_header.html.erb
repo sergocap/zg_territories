@@ -1,0 +1,9 @@
+<div class='categories_header'>
+  <% Category.roots.each do |category| %>
+    <span class='category_item'><%= link_to category.title %>
+      <ul>
+        <%= render partial: 'layouts/categories_tree', locals: { categories: category.children } %>
+      </ul>
+    </span>
+  <% end %>
+</div>

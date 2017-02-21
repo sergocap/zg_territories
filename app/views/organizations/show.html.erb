@@ -2,7 +2,8 @@
   <div class='col-xs-6'>
 
     <h1><%= @organization.title %></h1>
-    <p><%= @organization.address %></p>
+    <p>Адрес: <%= @organization.address %></p>
+    <p>Владелец: <%= @organization.user.fullname %></p>
 
     <hr>
     <% @organization.values.each do |value| %>

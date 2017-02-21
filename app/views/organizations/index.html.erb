@@ -1,5 +1,11 @@
-<%= link_to 'Добавить организацию', new_my_organization_path, class: 'btn btn-success' %>
-<h3>Здесь инфоормация об организациях</h3>
-<% @organizations.each do |organization| %>
-  <%= link_to organization.title, organization_path(organization) %>
-<% end %>
+<div class='organizations_main'>
+  <%= link_to 'Добавить организацию', new_my_organization_path, class: 'btn btn-success' %>
+  <h3>Организации</h3>
+  <%= paginate @organizations %>
+  <% @organizations.each do |organization| %>
+    <div class='organization'>
+      <%= link_to organization.title, organization_path(organization) %>
+    </div>
+  <% end %>
+  <%= paginate @organizations %>
+</div>

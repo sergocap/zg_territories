@@ -1,0 +1,10 @@
+<% categories.each do |category| %>
+  <div class='category_item'>
+    <span><%= link_to category.title, '#' %></span>
+    <% if category.children.any? %>
+      <ul>
+        <%= render partial: 'layouts/categories_tree', locals: { categories: category.children } %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>

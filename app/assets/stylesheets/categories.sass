@@ -1,0 +1,16 @@
+.categories_header
+  span.category_item
+    display: inline-block
+    padding: 10px
+
+  ul
+    position: absolute
+    display: none
+
+  .category_item
+    &:hover > ul
+      z-index: 100
+      display: block
+      background: white
+      border: 1px solid #ccc
+      padding: 10px

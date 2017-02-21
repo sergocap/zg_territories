@@ -5,4 +5,8 @@ class OrganizationsController < ApplicationController
   def welcome
     @cities = City.all
   end
+
+  def index
+    @organizations = Organization.all.page(params[:page]).per 10
+  end
 end
