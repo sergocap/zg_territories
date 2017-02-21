@@ -5,8 +5,6 @@ class Organization < ApplicationRecord
   validates_presence_of :title, :address, message: 'Не может быть пустым'
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
 
-  paginates_per 20
-
   searchable include: [:values] do
     integer :list_item_ids, multiple: true do
       values.map { |value| value.list_items.map(&:id) + [] << value.list_item_id }.flatten.compact
@@ -17,6 +15,8 @@ class Organization < ApplicationRecord
     end
 
     integer :category_id
+
+    integer :city_id
   end
 
   def parent
