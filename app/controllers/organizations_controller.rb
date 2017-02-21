@@ -1,21 +1,28 @@
 class OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
+  before_action :find_category
 
   def welcome
     @cities = City.all
   end
 
   def index
-    if params[:category]
-      if params['commit'] == 'Фильтровать'
-        #raise params.inspect
-      else
-        @category = Category.find(params[:category])
-        @organizations = @category.organizations.page(params[:page]).per 10
-      end
-    else
-      @organizations = Organization.all.page(params[:page]).per 10
-    end
+    @organizations = Searchers::OrganizationSearcher.new(search_params).collection
+  end
+
+  private
+
+  def find_category
+    @category = Category.find(params[:category]) if params[:category]
+  end
+
+  def search_params
+    {
+      list_items: params[:list_items],
+      hierarch_list_items: params[:hierarch_list_items],
+      category_id: @category.try(:id),
+      page: params[:page]
+    }
   end
 end
