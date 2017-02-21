@@ -12,4 +12,6 @@ class Property < ApplicationRecord
 
   extend Enumerize
   enumerize :kind, in: [:string, :integer, :float, :boolean, :limited_list, :unlimited_list, :hierarch_limited_list], default: :string
+
+  alias_attribute :to_s, :title
 end

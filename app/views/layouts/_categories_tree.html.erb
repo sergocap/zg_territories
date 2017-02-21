@@ -1,6 +1,6 @@
 <% categories.each do |category| %>
   <div class='category_item'>
-    <span><%= link_to category.title, '#' %></span>
+    <span><%= link_to category.title, organizations_path(category: category.id) %></span>
     <% if category.children.any? %>
       <ul>
         <%= render partial: 'layouts/categories_tree', locals: { categories: category.children } %>

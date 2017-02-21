@@ -2,6 +2,7 @@ class Manage::Metadata::PropertiesController < ApplicationController
   before_action :find_category, only: [:new, :create, :destroy, :edit, :update]
   before_action :find_property, only: [:destroy, :edit, :update]
   before_action :find_category_property, only: [:destroy, :edit, :update]
+  after_action  :add_category_property, only: :create
 
   def new
     @property = Property.new property_params
@@ -10,7 +11,6 @@ class Manage::Metadata::PropertiesController < ApplicationController
 
   def create
     @property = Property.create property_params
-    @property.category_properties.create category_property_params
     resolve_redirect
   end
 
@@ -38,6 +38,10 @@ class Manage::Metadata::PropertiesController < ApplicationController
 
   def find_category_property
     @category_property = @category.category_properties.where(:property_id => @property.id).first
+  end
+
+  def add_category_property
+    @property.category_properties.create category_property_params
   end
 
   def property_params

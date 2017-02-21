@@ -4,7 +4,7 @@ class Value < ApplicationRecord
   belongs_to :list_item
   belongs_to :hierarch_list_item
   belongs_to :organization
-  has_many :list_item_values
+  has_many :list_item_values, dependent: :destroy
   has_many :list_items, through: :list_item_values
 
 

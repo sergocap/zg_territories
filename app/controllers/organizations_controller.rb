@@ -7,6 +7,15 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = Organization.all.page(params[:page]).per 10
+    if params[:category]
+      if params['commit'] == 'Фильтровать'
+        #raise params.inspect
+      else
+        @category = Category.find(params[:category])
+        @organizations = @category.organizations.page(params[:page]).per 10
+      end
+    else
+      @organizations = Organization.all.page(params[:page]).per 10
+    end
   end
 end

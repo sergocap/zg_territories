@@ -1,0 +1,40 @@
+%p= render_breadcrumbs
+
+%h3= @category
+- hierarch_counter = 0
+- unless @category.inserted.present?
+  .row
+    .col-xs-12
+      = simple_form_for :search, url: category_path(@category), method: :get do |f|
+        .row
+          %ul
+            - if @category.all_properties.any?
+              .col-xs-2
+                - @category.all_properties.each do |property|
+                  %li
+                    %h4= property
+                    - if property.show_on_filter_as == 'range'
+                      = render partial: 'range_inputs', locals: {:f => f, :property => property, :params => params}
+                    - if property.show_on_filter_as == 'range_select'
+                      = render partial: 'range_select_inputs', locals: {:f => f, :property => property, :params => params}
+                    - if property.show_on_filter_as == 'range_buttons'
+                      = render partial: 'range_buttons_inputs', locals: {:f => f, :property => property, :params => params}
+                    - elsif property.kind == 'hierarch_limited_list'
+                      = render partial: 'hierarch_inputs', locals: {:f => f, :property => property, :params => params, :hierarch_counter => hierarch_counter}
+                      - hierarch_counter+=1
+                    - elsif ['select', 'check_boxes', 'radio_buttons', 'range_buttons', nil].include? property.show_on_filter_as
+                      = render partial: 'standart_inputs', locals: {:f => f, :property => property, :params => params}
+        = f.submit 'Search'
+
+- if @category.inserted.present?
+  - @category.inserted.each do |child|
+    = link_to child.title + ' (' + child.subtree.map(&:adverts).flatten.size.to_s + ')', category_path(child)
+- else
+  %ul
+  = paginate @adverts
+  - @adverts.each do |advert|
+    %li
+      .advert
+        = link_to advert.title, advert_path(advert)
+        = image_tag advert.images.try(:first).try(:image).try(:url, 'thumb')
+  = paginate @adverts

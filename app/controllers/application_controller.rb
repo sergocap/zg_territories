@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def namespace
-    controller_path.split('/').first.capitalize
+    @current_namespace ||= controller_path.split('/').first.capitalize
   end
 
   def current_city

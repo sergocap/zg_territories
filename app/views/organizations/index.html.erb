@@ -1,6 +1,12 @@
 <div class='organizations_main'>
   <%= link_to 'Добавить организацию', new_my_organization_path, class: 'btn btn-success' %>
   <h3>Организации</h3>
+
+  <% if @category %>
+    <h2>Категория: <%= @category.title %></h2>
+    <%= render partial: 'filter', locals: { category: @category } %>
+  <% end %>
+
   <%= paginate @organizations %>
   <% @organizations.each do |organization| %>
     <div class='organization'>
