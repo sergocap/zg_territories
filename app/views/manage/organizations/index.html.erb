@@ -1,7 +1,6 @@
 <h1>Организации</h1>
 <div class='row'>
-  <div class='col-xs-6'>
-    <%= render partial: 'filter' %>
+  <div class='col-xs-8'>
     <%= paginate @organizations %>
     <% @organizations.each do |organization| %>
       <div class='organization'>
@@ -10,4 +9,5 @@
     <% end %>
     <%= paginate @organizations %>
   </div>
+  <%= render partial: 'filter' %>
 </div>

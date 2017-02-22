@@ -18,16 +18,16 @@ class Organization < ApplicationRecord
 
   searchable include: [:values] do
     integer :list_item_ids, multiple: true do
-      values.map { |value| value.list_items.map(&:id) + [] << value.list_item_id }.flatten.compact
+      values.map { |value| value.list_items.map(&:id) + [] << value.list_item_id }.
+        flatten.compact
     end
-
     integer :hierarch_list_item_ids, multiple: true do
       values.map(&:hierarch_list_item).compact.map(&:id)
     end
-
     integer :category_id
     integer :city_id
     string  :state
+    text    :title
   end
 
   def parent

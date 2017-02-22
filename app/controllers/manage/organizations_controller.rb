@@ -11,7 +11,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
   def search_params
     {
       page: params[:page],
-      state: params[:state]
+      state: params[:state],
+      text: params[:text]
     }
   end
 end

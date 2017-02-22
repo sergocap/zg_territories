@@ -1,5 +1,9 @@
 ru:
   simple_form:
+    labels:
+      defaults:
+        state: Состояние
+
     options:
       defaults:
         show_as:

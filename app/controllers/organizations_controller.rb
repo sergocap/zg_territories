@@ -23,7 +23,8 @@ class OrganizationsController < ApplicationController
       hierarch_list_items: params[:hierarch_list_items],
       category_id: @category.try(:id),
       page: params[:page],
-      city_id: current_city.try(:id)
+      city_id: current_city.try(:id),
+      text: params[:text]
     }
   end
 end
