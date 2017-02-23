@@ -11,6 +11,10 @@ class OrganizationsController < ApplicationController
     @organizations = Searchers::OrganizationSearcher.new(search_params).collection
   end
 
+  def show
+    redirect_to '/404' if !@organization.published? && !@organization.owner?(current_user)
+  end
+
   private
 
   def find_category
@@ -24,7 +28,8 @@ class OrganizationsController < ApplicationController
       category_id: @category.try(:id),
       page: params[:page],
       city_id: current_city.try(:id),
-      text: params[:text]
+      text: params[:text],
+      state: 'published'
     }
   end
 end

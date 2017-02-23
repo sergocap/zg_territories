@@ -2,12 +2,16 @@ module SettingsStateMachine
   extend ActiveSupport::Concern
   included do
     state_machine :state, initial: :draft do
+      after_transition any => :draft do |object, transition|
+        # послать письмо через апиху
+      end
+
       event :to_moderation do
         transition :draft => :moderation
       end
 
       event :to_published do
-        transition :moderating => :published
+        transition [:moderation, :draft] => :published
       end
 
       event :to_draft do

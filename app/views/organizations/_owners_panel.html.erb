@@ -1,0 +1,8 @@
+<div class='panel panel-default col-xs-6'>
+  <div class='js-state_block'>
+    <%= render partial: 'my/organizations/state_manage' %>
+  </div>
+  <%= link_to 'Редактировать', edit_my_organization_path(@organization) if @organization.owner?(current_user) %>
+  <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>
+</div>
+

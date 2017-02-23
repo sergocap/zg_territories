@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'organizations#welcome'
   namespace :manage do
     root 'organizations#index'
-    resources :organizations
+    resources :organizations do
+      get 'change_state', on: :member
+    end
     namespace :metadata do
       root 'categories#index'
       resources :categories do
@@ -19,7 +21,9 @@ Rails.application.routes.draw do
     root 'organizations#index'
     resources :organizations
     namespace :my do
-      resources :organizations
+      resources :organizations do
+        get 'change_state', on: :member
+      end
     end
   end
 

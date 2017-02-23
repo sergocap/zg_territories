@@ -1,6 +1,5 @@
 <div class='row'>
   <div class='col-xs-6'>
-
     <h1><%= @organization.title %></h1>
     <p>Адрес: <%= @organization.address %></p>
     <p>Владелец: <%= @organization.user.fullname %></p>
@@ -24,7 +23,11 @@
       </h3>
     <% end %>
   </div>
-  <% if @organization.owner?(current_user) %>
-    <%= render partial: 'owners_panel' %>
-  <% end %>
+
+  <div class='col-xs-6'>
+    <div class='js-state_block'>
+      <%= render partial: 'state_manage' %>
+    </div>
+    <%= link_to 'Удалить', manage_organization_path(@organization), method: 'DELETE', data: { confirm: 'Вы уверены?' } %>
+  </div>
 </div>

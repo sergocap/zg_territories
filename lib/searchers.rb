@@ -21,6 +21,7 @@ module Searchers
         fulltext search_params.text if search_params.text
         with :category_id, search_params.category_id if search_params.category_id
         with :city_id, search_params.city_id if search_params.city_id
+        with :state, search_params.state if search_params.state
 
         any_of do
           with :list_item_ids, search_params.list_items if search_params.list_items

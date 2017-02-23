@@ -21,6 +21,19 @@ class My::OrganizationsController < ApplicationController
     end
   end
 
+  def change_state
+    case params['new_state']
+    when 'draft'
+      @organization.to_draft
+    when 'moderation'
+      @organization.to_moderation
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def find_categories
