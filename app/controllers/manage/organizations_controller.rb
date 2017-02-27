@@ -7,14 +7,11 @@ class Manage::OrganizationsController < Manage::ApplicationController
   end
 
   def change_state
-    case params['new_state']
-    when 'draft'
-      @organization.to_draft
-      ApiWithProfile::SendMail.organization_to_draft(@organization.user.id, @organization)
-    when 'published'
-      @organization.to_published
-      ApiWithProfile::SendMail.organization_to_public(@organization.user.id, @organization)
-    end
+    new_state = params['new_state']
+    message = params['message']
+    @organization.send ("to_#{new_state}")
+    ApiWithProfile::SendMail.organization_to_draft(@organization.user.id, @organization)
+    ApiWithProfile::SendMail.send "organization_to_#{new_state}", @organization.user.id, @organization, message
 
     respond_to do |format|
       format.js

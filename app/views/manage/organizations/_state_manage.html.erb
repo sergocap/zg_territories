@@ -1,4 +1,20 @@
 <p>Состояние: <%= @organization.state %></p>
-<%= link_to 'В черновики', change_state_manage_organization_path(@organization, new_state: 'draft'), remote: true if @organization.can_to_draft? %>
-<%= link_to 'Опубликовать', change_state_manage_organization_path(@organization, new_state: 'published'), remote: true if @organization.can_to_published? %>
+
+<% if @organization.can_to_draft? %>
+  <%= link_to 'В черновики', '#', 'onclick': '$(this).next().toggle()' %>
+  <div class='block_with_message' style='display:none'>
+    <%= simple_form_for :to_draft,
+      url: change_state_manage_organization_path(@organization, new_state: 'draft'),
+      remote: true,
+      method: :get do |f| %>
+      <%= f.input :message, input_html: { name: 'message' }, as: :text, label: false %>
+      <%= f.submit 'Отправить', class: 'btn btn-success'%>
+    <% end %>
+    <%= link_to 'Отмена', '#', 'onclick': '$(this).closest(".block_with_message").toggle()' %>
+  </div>
+<% end %>
+
+<%= link_to 'Опубликовать',
+  change_state_manage_organization_path(@organization, new_state: 'published'),
+  remote: true if @organization.can_to_published? %>
 

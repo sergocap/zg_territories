@@ -1,6 +1,6 @@
 module ApiWithProfile
   class SendMail
-    def self.organization_to_draft(user_id, organization)
+    def self.organization_to_draft(user_id, organization, message = nil)
       @organization = organization
       organization_link = gen_organization_link(organization)
 
@@ -8,10 +8,11 @@ module ApiWithProfile
         "/mail_organization_to_draft?" +
         "user_id=#{user_id}&" +
         "organization_title=#{organization.title}&" +
-        "organization_link=#{organization_link}")
+        "organization_link=#{organization_link}&" +
+        "message=#{message}")
     end
 
-    def self.organization_to_public(user_id, organization)
+    def self.organization_to_published(user_id, organization, message = nil)
     end
 
     private
