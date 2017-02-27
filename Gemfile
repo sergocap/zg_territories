@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'rest-client'
 gem 'inherited_resources'
 gem 'cancan'
 gem 'ranked-model'

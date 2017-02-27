@@ -1,6 +1,7 @@
 class Organization < ApplicationRecord
   has_many :values
   belongs_to :category
+  belongs_to :city
   accepts_nested_attributes_for :values
   validates_presence_of :title, :address, message: 'Не может быть пустым'
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'

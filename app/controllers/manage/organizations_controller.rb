@@ -10,8 +10,10 @@ class Manage::OrganizationsController < Manage::ApplicationController
     case params['new_state']
     when 'draft'
       @organization.to_draft
+      ApiWithProfile::SendMail.organization_to_draft(@organization.user.id, @organization)
     when 'published'
       @organization.to_published
+      ApiWithProfile::SendMail.organization_to_public(@organization.user.id, @organization)
     end
 
     respond_to do |format|

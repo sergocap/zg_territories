@@ -89,6 +89,8 @@ GEM
     daemons (1.2.4)
     debug_inspector (0.0.2)
     deep_merge (1.1.1)
+    domain_name (0.5.20161129)
+      unf (>= 0.0.5, < 1.0.0)
     enumerize (2.0.1)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -120,6 +122,8 @@ GEM
       haml (~> 4.0)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.8.0)
     inherited_resources (1.7.0)
       actionpack (>= 3.2, < 5.1)
@@ -160,6 +164,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     nested_form (0.3.2)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -208,6 +213,10 @@ GEM
       redis (~> 3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (2.0.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     ruby_parser (3.8.4)
@@ -256,6 +265,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     vuejs-rails (2.1.10)
     web-console (3.4.0)
       actionview (>= 5.0)
@@ -294,6 +306,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   ranked-model
   redis-session-store
+  rest-client
   russian
   sass-rails (~> 5.0)
   simple_form
