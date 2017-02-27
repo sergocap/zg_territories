@@ -1,0 +1,11 @@
+<div class='row'>
+  <div class='col-xs-12'>
+    Здравствуйте, <%= organization.user.name %>. Ваша организация
+    <%= link_to organization.title, organization_url(organization, :city_slug => organization.city.slug), target: '_blank' %>
+    была отправлена в черновики!
+    <% unless message.nil? %>
+      Модератор оставил такой комментарий: <%= message %>
+    <% end %>
+  </div>
+</div>
+
