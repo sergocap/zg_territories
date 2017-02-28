@@ -14,5 +14,6 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require vue
+//= require bootstrap-slider
 //= require nested_form
 //= require_tree .

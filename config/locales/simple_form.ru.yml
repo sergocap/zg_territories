@@ -10,13 +10,21 @@ ru:
           check_boxes: Множественный выбор (Чекбоксы)
           radio_buttons: Одиночный выбор (Радио-кнопки)
           select: Одиночный выбор (Выпадающий список)
+          boolean: Логическое значение
+          string: Строка
+          numeric: Число
+          hierach_limited_list: Иерархичный список
 
         show_on_filter_as:
           check_boxes: Множественный выбор (Чекбоксы)
           radio_buttons: Одиночный выбор (Радио-кнопки)
           select: Одиночный выбор (Выпадающий список)
-          range: Ползунок
+          range: Ползунок (два значения)
           boolean: Логическое значение
+          string: Строка
+          range_select: Простой ползунок
+          range_buttons: Кнопки выбора
+          hierach_limited_list: Иерархичный список
 
 
 

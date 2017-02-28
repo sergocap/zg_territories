@@ -1,25 +1,26 @@
 <%= simple_nested_form_for [:manage, :metadata, @category, @property] do |f| %>
   <div class='row'>
     <div class='col-xs-12'>
+      <h2>Тип поля: <%= t('enumerize.property.kind.' + (@property.kind || params['proeprty']['kind'])) %></h2>
       <div class='col-xs-6'>
         <%= f.input :title,
           input_html: {disabled: !can_change_fields?(@category, @property) } %>
-        <%= f.input :kind %>
+        <div style='display:none'><%= f.input :kind %></div>
         <%= f.input :category_id, as: :hidden %>
 
         <%= f.simple_fields_for @category_property do |cat_pro| %>
           <%= cat_pro.input :category_id, as: :hidden %>
           <%= cat_pro.input :necessarily %>
-          <% unless literal?(@property.kind) %>
-            <%= cat_pro.input :show_on_public %>
-            <%= cat_pro.input :show_as,
-              as: :select,
-              collection: [:check_boxes, :radio_buttons, :select]%>
-          <% end %>
+          <%= cat_pro.input :show_on_public %>
+          <%= cat_pro.input :show_as,
+            as: :select,
+            include_blank: false,
+            collection: collection_for_show_as(@property.kind) %>
         <% end %>
 
         <%= f.input :show_on_filter_as,
           as: :select,
+          include_blank: true,
           collection: collection_for_filter(@property.kind),
           input_html: {disabled: !can_change_fields?(@category, @property)} %>
 

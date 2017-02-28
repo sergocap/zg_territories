@@ -10,6 +10,7 @@ ru:
         <<: *commons
 
       property:
+        <<: *commons
         kind:               Тип поля
         category_id:        Категория
         show_on_filter_as:  Показывать при фильтрации как
