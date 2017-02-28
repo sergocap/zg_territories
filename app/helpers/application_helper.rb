@@ -23,6 +23,10 @@ module ApplicationHelper
     }[kind]
   end
 
+  def category_property(category_id, property_id)
+    CategoryProperty.where(:category_id => category_id, :property_id => property_id).first
+  end
+
   def massive(property)
     property.list_items.map(&:title).map(&:to_i).delete_if {|x| x == 0}
   end

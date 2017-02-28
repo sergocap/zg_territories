@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
       format.json do
         render json: { category: @category,
                       properties: @category.properties,
+                      category_properties: @category.category_properties,
                       list_items: @category.properties.map(&:list_items).flatten,
                       root_hierarch_list_items: @category.properties.map(&:hierarch_list_items).flatten
         }

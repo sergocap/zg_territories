@@ -28,6 +28,7 @@
           v-for='(value, index) in organization.values'
           :value='value'
           :index='index'
+          :category_property='get_category_property(value.property_id)'
           :list_items='get_list_items(value.property_id)'
           :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
           :hierarch_list_items='[]'>
@@ -85,7 +86,7 @@
     <select
       :name='"organization[values_attributes][" + index + "][list_item_id]"'
       class='form-control select'
-      v-if='value.property.kind === "limited_list"'
+      v-if='value.property.kind === "limited_list" && category_property.show_as === "select"'
       v-model='value.list_item_id'
     >
       <option
@@ -94,6 +95,18 @@
           {{item.title}}
       </option>
     </select>
+
+    <template v-if='value.property.kind === "limited_list" && category_property.show_as === "radio_buttons"'>
+      <div
+        v-for='item in list_items'
+      >
+        <input
+          type='radio'
+          :value='item.id'
+          :name='"organization[values_attributes][" + index + "][list_item_id]"'>
+            {{item.title}}
+      </div>
+    </template>
 
     <template v-if='value.property.kind === "unlimited_list"'>
       <div v-for='item in list_items'>

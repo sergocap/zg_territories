@@ -2,6 +2,7 @@ class My::OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
   before_action :find_categories, only: [:new, :create]
+  before_action :find_category,   only: [:edit]
 
   def show
      show! do |format|
@@ -38,6 +39,10 @@ class My::OrganizationsController < ApplicationController
 
   def find_categories
     @categories = Category.roots
+  end
+
+  def find_category
+    @category = @organization.category
   end
 
   def organization_params

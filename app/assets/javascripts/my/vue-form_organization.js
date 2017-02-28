@@ -5,6 +5,7 @@ window.onload = function() {
       props: {
         value: Object,
         index: Number,
+        category_property: Object,
         list_items: Array,
         root_hierarch_list_items: Array,
       },
@@ -45,6 +46,7 @@ window.onload = function() {
           values: []
         },
         list_items: [],
+        category_properties: [],
         root_hierarch_list_items: [],
         errors: {},
         city_slug: $('#city_slug').val()
@@ -56,6 +58,13 @@ window.onload = function() {
             return item.property_id == property_id;
           });
           return filtered;
+        },
+
+        get_category_property: function(property_id) {
+          filtered = this.category_properties.filter(function(item) {
+            return item.property_id == property_id;
+          });
+          return filtered[0];
         },
 
         get_root_hierarch_list_items: function(property_id) {
@@ -92,6 +101,7 @@ window.onload = function() {
                 });
               });
               that.list_items = res.list_items;
+              that.category_properties = res.category_properties;
               that.root_hierarch_list_items = res.root_hierarch_list_items;
             },
             error: function(res) {

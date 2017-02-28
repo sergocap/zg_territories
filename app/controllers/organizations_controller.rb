@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   end
 
   def search_params
-    param_lists = params['list_items']
+    param_lists = params['list_items'] || []
 
     unless params['ranges'].nil?
       elems = []
