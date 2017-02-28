@@ -17,7 +17,6 @@ module Searchers
       search_params.list_items.reject!(&:empty?) if search_params.list_items
       search_params.hierarch_list_items.reject!(&:empty?) if search_params.hierarch_list_items
       Organization.search do
-
         fulltext search_params.text if search_params.text
         with :category_id, search_params.category_id if search_params.category_id
         with :city_id, search_params.city_id if search_params.city_id
@@ -38,7 +37,7 @@ module Searchers
     def search
       Organization.search do
         fulltext search_params.text if search_params.text
-        with :state, search_params.state if search_params.state && search_params.state != 'all'
+        with :state, search_params.state if !search_params.state.try(:empty?) && search_params.state != 'all'
         paginate page: search_params.page, per_page: Organization.default_per_page
       end
     end
