@@ -44,16 +44,16 @@ module ApplicationHelper
   end
 
   def value(property, params_ranges)
-    if value = params_ranges.try(:[], property.id.to_s)
-      value.split(',').map(&:to_i)
+    if values = params_ranges.try(:[], property.id.to_s)
+      values.split(',').map(&:to_i)
     else
       return [min_value(property),max_value(property)]
     end
   end
 
   def selected_for_ranges_select(params_ranges_select, property, position)
-    if !params_ranges_select.try(:[], "#{property.id.to_s}").nil?
-      params_ranges_select[property.id.to_s][position == 'first' ? 0 : 1]
+    if values = params_ranges_select.try(:[], property.id.to_s)
+      values[position == 'first' ? 0 : 1]
     end
   end
 end

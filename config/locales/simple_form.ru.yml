@@ -22,11 +22,9 @@ ru:
           range: Ползунок (два значения)
           boolean: Логическое значение
           string: Строка
-          range_select: Простой ползунок
+          range_select: Два селекта (диапозон)
           range_buttons: Кнопки выбора
           hierach_limited_list: Иерархичный список
-
-
 
     "yes": 'Да'
     "no": 'Нет'

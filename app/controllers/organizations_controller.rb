@@ -28,13 +28,29 @@ class OrganizationsController < ApplicationController
       elems = []
       params['ranges'].each do |k, v|
         values = v.split(',').map(&:to_i)
-        elems << @category.properties.find(k.to_i)
-          .list_items.select {|item| (values[0]..values[1]).include?(item.title.to_i) }
-          .map(&:id).map(&:to_s) if values.size == 2
+        elems << list_items_between(values, k) if values.count == 2
       end
       param_lists << elems
-      param_lists = param_lists.flatten
     end
+
+    unless params['ranges_select'].nil?
+      elems = []
+      params['ranges_select'].each do |k, v|
+        values = []
+        values[0] = v[0].empty? ?
+          @category.properties.find(k).list_items.first.title.to_i :
+          ListItem.find(v[0]).title.to_i
+
+        values[1] = v[1].empty? ?
+          @category.properties.find(k).list_items.last.title.to_i :
+          ListItem.find(v[1]).title.to_i
+
+        values.sort!
+        elems << list_items_between(values, k) if values.count == 2
+      end
+      param_lists << elems
+    end
+    param_lists = param_lists.flatten
 
     {
       list_items: param_lists,
@@ -45,5 +61,13 @@ class OrganizationsController < ApplicationController
       text: params[:text],
       state: 'published'
     }
+  end
+
+  def list_items_between(values, property_id)
+    property = @category.properties.find(property_id)
+    property.list_items
+      .select {|item| (values[0]..values[1]).include?(item.title.to_i) }
+      .map(&:id).map(&:to_s)
+
   end
 end
