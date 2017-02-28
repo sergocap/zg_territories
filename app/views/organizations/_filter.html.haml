@@ -1,4 +1,4 @@
-.col-xs-4
+.col-xs-4.filter
   %h4 Фильтр
   - hierarch_counter = 0
   = simple_form_for :search, url: organizations_path(category: category.id), method: :get do |f|

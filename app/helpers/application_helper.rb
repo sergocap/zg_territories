@@ -4,7 +4,7 @@ module ApplicationHelper
       'string' => [],
       'limited_list' => [:range, :range_select, :range_buttons, :select, :check_boxes, :radio_buttons],
       'unlimited_list' => [:range, :range_select, :range_buttons, :select, :check_boxes, :radio_buttons],
-      'hierarch_limited_list' => [:hierach_limited_list],
+      'hierarch_limited_list' => [:hierarch_limited_list],
       'integer' => [:range, :range_select, :range_buttons],
       'float' => [:range, :range_select],
       'boolean' => [:boolean]
@@ -16,7 +16,7 @@ module ApplicationHelper
       'string' => [:string],
       'limited_list' => [:radio_buttons, :select],
       'unlimited_list' => [:check_boxes],
-      'hierarch_limited_list' => [:hierach_limited_list],
+      'hierarch_limited_list' => [:hierarch_limited_list],
       'integer' => [:numeric],
       'float' => [:numeric],
       'boolean' => [:boolean]

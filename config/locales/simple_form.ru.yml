@@ -13,7 +13,7 @@ ru:
           boolean: Логическое значение
           string: Строка
           numeric: Число
-          hierach_limited_list: Иерархичный список
+          hierarch_limited_list: Иерархичный список
 
         show_on_filter_as:
           check_boxes: Множественный выбор (Чекбоксы)
@@ -24,7 +24,7 @@ ru:
           string: Строка
           range_select: Два селекта (диапозон)
           range_buttons: Кнопки выбора
-          hierach_limited_list: Иерархичный список
+          hierarch_limited_list: Иерархичный список
 
     "yes": 'Да'
     "no": 'Нет'

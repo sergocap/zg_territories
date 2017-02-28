@@ -1,15 +1,15 @@
 .wrapper_hierarch_list_items
-  - parent = params.try(:[], 'hierarch_list_item_parents')
+  - parent = params['hierarch_list_item_parents']
   = f.input :hierarch_list_item_parents,
     label: false,
-    input_html: {class: 'js-parent_hli', name: 'hierarch_list_item_parents[]'},
+    input_html: { class: 'js-parent_hli', name: 'hierarch_list_item_parents[]' },
     collection: property.hierarch_list_items,
     selected: parent,
     :include_blank => true
 
   = f.input :hierarch_list_items,
-    input_html: {class: 'js-children_hli', name: 'hierarch_list_items[]'},
+    input_html: { class: 'js-children_hli', name: 'hierarch_list_items[]' },
     label: false,
-    collection: params[:hierarch_list_items].try(:[], hierarch_counter) ? HierarchListItem.find(params.try(:[], 'hierarch_list_items')[hierarch_counter]).parent.children : [],
-    selected: params.try(:[], 'hierarch_list_items')
+    collection: params[:hierarch_list_items].try(:[], hierarch_counter) ? HierarchListItem.find(params['hierarch_list_items'][hierarch_counter]).parent.children : [],
+    selected: params['hierarch_list_items']
 
