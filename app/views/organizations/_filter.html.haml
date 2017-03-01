@@ -12,6 +12,8 @@
             %h4= property
             - if property.show_on_filter_as == 'range'
               = render partial: 'organizations/filter_fields/range_inputs', locals: {:f => f, :property => property, :params => params}
+            - if property.show_on_filter_as == 'range_for_numeric'
+              = render partial: 'organizations/filter_fields/range_for_numeric', locals: {:f => f, :property => property, :params => params}
             - if property.show_on_filter_as == 'range_select'
               = render partial: 'organizations/filter_fields/range_select_inputs', locals: {:f => f, :property => property, :params => params}
             - if property.show_on_filter_as == 'range_buttons'

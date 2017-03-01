@@ -3,7 +3,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
   inherit_resources
 
   def index
-    @organizations = Searchers::ManageOrganizationSearcher.new(search_params).collection
+    @organizations = Searchers::ManageOrganizationSearcher.new(search_params).search
   end
 
   def change_state

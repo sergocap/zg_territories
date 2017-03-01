@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = Searchers::OrganizationSearcher.new(search_params).collection
+    @organizations = Searchers::OrganizationSearcher.new(search_params).search
   end
 
   def show
@@ -50,11 +50,20 @@ class OrganizationsController < ApplicationController
       end
       param_lists << elems
     end
+
+    params_ranges = {}
+    unless params['ranges_for_numeric'].nil?
+      params['ranges_for_numeric'].each do |k, v|
+        params_ranges[k.to_i] = v.split(',').map(&:to_f)
+      end
+    end
+
     param_lists = param_lists.flatten
 
     {
       list_items: param_lists,
       hierarch_list_items: params[:hierarch_list_items],
+      ranges_for_numeric: params_ranges,
       category_id: @category.try(:id),
       page: params[:page],
       city_id: current_city.try(:id),
