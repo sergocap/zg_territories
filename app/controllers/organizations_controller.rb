@@ -58,12 +58,20 @@ class OrganizationsController < ApplicationController
       end
     end
 
+    params_booleans = {}
+    unless params['boolean_values'].nil?
+      params['boolean_values'].each do |k, v|
+        params_booleans[k.to_i] = (v.to_i.zero? ? false : true)
+      end
+    end
+
     param_lists = param_lists.flatten
 
     {
       list_items: param_lists,
       hierarch_list_items: params[:hierarch_list_items],
       ranges_for_numeric: params_ranges,
+      booleans: params_booleans,
       category_id: @category.try(:id),
       page: params[:page],
       city_id: current_city.try(:id),

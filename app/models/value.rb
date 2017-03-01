@@ -13,7 +13,10 @@ class Value < ApplicationRecord
       (list_items.map(&:id) + [] << list_item_id).flatten.compact
     end
 
-    integer :hierarch_list_item_id
+    integer :hierarch_list_item_ids, multiple: true do
+      [hierarch_list_item_id].compact
+    end
+
     integer :property_id
 
     double :numeric_values, multiple: true do
@@ -39,8 +42,6 @@ class Value < ApplicationRecord
       organization.title
     end
   end
-
-
 
   def get
     case property.kind.to_sym

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221160505) do
+ActiveRecord::Schema.define(version: 20170301083306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,9 +132,9 @@ ActiveRecord::Schema.define(version: 20170221160505) do
     t.string   "string_value"
     t.integer  "integer_value"
     t.float    "float_value"
-    t.boolean  "boolean_value"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.boolean  "boolean_value",         default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["hierarch_list_item_id"], name: "index_values_on_hierarch_list_item_id", using: :btree
     t.index ["list_item_id"], name: "index_values_on_list_item_id", using: :btree
     t.index ["organization_id"], name: "index_values_on_organization_id", using: :btree

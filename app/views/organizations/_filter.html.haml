@@ -18,10 +18,12 @@
               = render partial: 'organizations/filter_fields/range_select_inputs', locals: {:f => f, :property => property, :params => params}
             - if property.show_on_filter_as == 'range_buttons'
               = render partial: 'organizations/filter_fields/range_buttons_inputs', locals: {:f => f, :property => property, :params => params}
+            - if property.show_on_filter_as == 'boolean'
+              = render partial: 'organizations/filter_fields/boolean', locals: {:f => f, :property => property, :params => params}
             - if property.show_on_filter_as == 'hierarch_limited_list'
               = render partial: 'organizations/filter_fields/hierarch_inputs', locals: {:f => f, :property => property, :params => params, :hierarch_counter => hierarch_counter}
               - hierarch_counter+=1
-            - elsif ['select', 'boolean', 'check_boxes', 'radio_buttons'].include? property.show_on_filter_as
+            - elsif ['select', 'check_boxes', 'radio_buttons'].include? property.show_on_filter_as
               = render partial: 'organizations/filter_fields/standart_inputs', locals: {:f => f, :property => property, :params => params}
 
     = f.submit 'Фильтровать', class: 'btn btn-default'

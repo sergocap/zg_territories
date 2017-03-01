@@ -19,22 +19,26 @@ module Searchers
         with :state, search_params.state if search_params.state
 
         any_of do
-          any_of do
-            search_params.ranges_for_numeric.each do |k, v|
-              if v.any?
-                all_of do
-                  with :property_id, k
-                  with :numeric_values, v[0]..v[1]
-                end
+          search_params.ranges_for_numeric.each do |k, v|
+            if v.any?
+              all_of do
+                with :property_id, k
+                with :numeric_values, v[0]..v[1]
               end
             end
           end
 
-          with :list_item_ids, search_params.list_items if search_params.list_items
-          with :hierarch_list_item_id, search_params.hierarch_list_items if search_params.hierarch_list_items
+          search_params.booleans.each do |k, v|
+            all_of do
+              with :property_id, k
+              with :boolean_value, v
+            end
+          end
         end
-      end
 
+        with :list_item_ids, search_params.list_items if search_params.list_items.to_a.present?
+        with :hierarch_list_item_ids, search_params.hierarch_list_items if search_params.hierarch_list_items.to_a.present?
+      end
       Kaminari.paginate_array(
         search.results.map(&:organization).compact.uniq)
         .page(search_params.page).per(Organization.default_per_page)

@@ -1,0 +1,5 @@
+= f.input :boolean,
+  label: false,
+  input_html: { name: 'boolean_values[' + property.id.to_s + ']',
+  checked: params['boolean_values'].try(:[], property.id.to_s).to_i == 1 ? true : false },
+  as: :boolean
