@@ -48,6 +48,11 @@ class My::OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(
       [:user_id, :category_id, :title, :city_id, :parent_id, :address,
+         schedules_attributes: [:id, :from, :to, :monday, :tuesday,
+                                :wednesday, :thursday, :friday,
+                                :saturday, :sunday, :free,
+                                :comment, :_destroy,
+                                breaks_attributes: [:id, :from, :to, :_destroy]],
          values_attributes: [:string_value, :integer_value, :float_value,
                            :property_id, :id,
                            :boolean_value,

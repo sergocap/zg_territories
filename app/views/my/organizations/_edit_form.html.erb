@@ -5,6 +5,11 @@
 
       <%= f.input :address %>
 
+      <div class="js-schedules_fields">
+          <%= f.simple_fields_for :schedules %>
+          <%= f.link_to_add 'Добавить расписание', :schedules %>
+      </div>
+
       <h2><%= @organization.category.try(:title) %></h2>
 
       <%= f.simple_fields_for :values do |value_form| %>

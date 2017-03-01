@@ -1,9 +1,12 @@
 class Organization < ApplicationRecord
   has_many :values
+  has_many :schedules
   belongs_to :category
   belongs_to :city
   accepts_nested_attributes_for :values
+  accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title, :address, message: 'Не может быть пустым'
+  validates_presence_of :schedules, :message => 'У заведения должно быть хотя бы одно расписание'
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
   include SettingsStateMachine
 

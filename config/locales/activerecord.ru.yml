@@ -29,3 +29,21 @@ ru:
 
       organization:
         <<: *commons
+
+      schedule:
+        from: с
+        to:   по
+        monday: Пн
+        tuesday: Вт
+        wednesday: Ср
+        thursday: Чт
+        friday: Пт
+        saturday: Сб
+        sunday: Вс
+        free: Выходной
+        comment: Комментарий
+
+      break:
+        from: с
+        to:   по
+

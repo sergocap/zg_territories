@@ -7,6 +7,11 @@
       <%= f.input :address,
         input_html: { 'v-model': 'organization.address' }   %>
 
+      <div class="js-schedules_fields">
+          <%= f.simple_fields_for :schedules %>
+          <%= f.link_to_add 'Добавить расписание', :schedules %>
+      </div>
+
       <%= f.input :city_id, as: :hidden,
         input_html: { value: @current_city.id } %>
 

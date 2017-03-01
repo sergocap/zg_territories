@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301083306) do
+ActiveRecord::Schema.define(version: 20170301091334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "breaks", force: :cascade do |t|
+    t.time     "from"
+    t.time     "to"
+    t.integer  "schedule_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["schedule_id"], name: "index_breaks_on_schedule_id", using: :btree
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -116,6 +125,24 @@ ActiveRecord::Schema.define(version: 20170301083306) do
     t.string   "show_on_filter_as"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.boolean  "monday",          default: false
+    t.boolean  "tuesday",         default: false
+    t.boolean  "wednesday",       default: false
+    t.boolean  "thursday",        default: false
+    t.boolean  "friday",          default: false
+    t.boolean  "saturday",        default: false
+    t.boolean  "sunday",          default: false
+    t.boolean  "free",            default: false
+    t.string   "comment"
+    t.time     "from"
+    t.time     "to"
+    t.integer  "organization_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["organization_id"], name: "index_schedules_on_organization_id", using: :btree
   end
 
   create_table "time_zones", force: :cascade do |t|
