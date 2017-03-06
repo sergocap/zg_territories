@@ -136,7 +136,6 @@ window.onload = function() {
             success: function(res) {
               $('#organization_category_id').val(res.category.id);
               store = JSON.parse($('#store_organization').html());
-              console.log(store);
               store_errors = JSON.parse($('#store_organization_errors').html());
               that.organization.category = res.category;
               that.organization.values = [];

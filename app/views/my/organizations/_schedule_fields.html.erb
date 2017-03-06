@@ -7,8 +7,8 @@
   <%= f.input :wednesday %>
   <%= f.input :thursday %>
   <%= f.input :friday %>
-  <%= f.input :saturday %>
-  <%= f.input :sunday %>
+  <%= f.input :saturday, input_html: { class: 'js-ignore_init' } %>
+  <%= f.input :sunday, input_html: { class: 'js-ignore_init' } %>
 </div>
 <%= f.input :free %>
 <%= f.simple_fields_for :breaks do |b| %>
@@ -25,4 +25,3 @@
   <%= f.input :comment, as: :text, label: false %>
 </div>
 <%= f.link_to_remove 'Удалить расписание' %>
-

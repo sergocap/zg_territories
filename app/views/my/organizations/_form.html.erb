@@ -14,9 +14,9 @@
       <%= f.input :title %>
       <%= f.input :address %>
 
-      <div class='js-schedules_fields'>
+      <div class='js-schedules_fields <%= check_init_schedule %>'>
           <%= f.simple_fields_for :schedules %>
-          <%= f.link_to_add 'Добавить расписание', :schedules %>
+          <%= f.link_to_add 'Добавить расписание', :schedules, class: 'js-new_schedule' %>
           <%= f.error :schedules, style: 'color:#a94442' %>
       </div>
 
