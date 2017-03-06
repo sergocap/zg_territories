@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/sergocap/zg_header
-  revision: 3a6036148250e0a28dc727ce9efde4916144fbfc
+  revision: 7de5507408377fb84fe8a9d4f27de482aaf268bb
   specs:
     zg_header (0.1.0)
       config

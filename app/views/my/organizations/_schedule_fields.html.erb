@@ -1,7 +1,15 @@
 <label>Расписание работы</label>
 <%= f.input :from %>
 <%= f.input :to %>
-<div class='days'><%= f.input :monday %><%= f.input :tuesday %><%= f.input :wednesday %><%= f.input :thursday %><%= f.input :friday %><%= f.input :saturday %><%= f.input :sunday %></div>
+<div class='days'>
+  <%= f.input :monday %>
+  <%= f.input :tuesday %>
+  <%= f.input :wednesday %>
+  <%= f.input :thursday %>
+  <%= f.input :friday %>
+  <%= f.input :saturday %>
+  <%= f.input :sunday %>
+</div>
 <%= f.input :free %>
 <%= f.simple_fields_for :breaks do |b| %>
   <div class='break_fields'>

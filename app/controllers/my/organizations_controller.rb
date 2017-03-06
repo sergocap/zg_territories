@@ -3,6 +3,7 @@ class My::OrganizationsController < ApplicationController
   inherit_resources
   before_action :find_categories, only: [:new, :create]
   before_action :find_category,   only: [:edit]
+  before_filter :build_nested_objects, :only => [:new, :create]
 
   def show
      show! do |format|
@@ -58,9 +59,14 @@ class My::OrganizationsController < ApplicationController
                            :boolean_value,
                            :list_item_id,
                            :hierarch_list_item_id,
+                           :root_hierarch_list_item_id,
                            :category_id,
                            list_item_ids: []]
     ])
 
+  end
+
+  def build_nested_objects
+    @organization.schedules.any? || @organization.schedules.build
   end
 end

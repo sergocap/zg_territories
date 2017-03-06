@@ -1,6 +1,6 @@
 <% categories.each do |category| %>
   <div class='category_item'>
-    <span><%= link_to category.title, '#', '@click': "setCategory(#{category.id})" %></span>
+    <span><%= link_to category.title, 'javascript:void(0)', '@click': "setCategory(#{category.id})" %></span>
     <ul>
       <%= render partial: 'categories_tree', locals: { categories: category.children } %>
     </ul>

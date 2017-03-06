@@ -1,5 +1,4 @@
 class Value < ApplicationRecord
-  attr_accessor :hierarch_list_item_parent_id
   belongs_to :property
   belongs_to :list_item
   belongs_to :hierarch_list_item
@@ -57,6 +56,29 @@ class Value < ApplicationRecord
       list_items
     when :hierarch_limited_list
       hierarch_list_item
+    else
+      ''
+    end
+  end
+
+  def pretty_view
+    case property.kind.to_sym
+    when :boolean
+      '{"property_id":"' + property.id.to_s + '","boolean_value":"' + (boolean_value ? 'on' : '') + '"}'
+    when :string
+      '{"property_id":"' + property.id.to_s + '","string_value":"' + string_value.to_s + '"}'
+    when :float
+      '{"property_id":"' + property.id.to_s + '","float_value":"' + float_value.to_s + '"}'
+    when :integer
+      '{"property_id":"' + property.id.to_s + '","integer_value":"' + integer_value.to_s + '"}'
+    when :limited_list
+      '{"property_id":"' + property.id.to_s + '","list_item_id":"' + list_item_id.to_s + '"}'
+    when :unlimited_list
+      '{"property_id":"' + property.id.to_s + '","list_item_ids":[' + list_items.map(&:id).map(&:to_s).join(',') + ']}'
+    when :hierarch_limited_list
+      '{"property_id":"' + property.id.to_s + '","root_hierarch_list_item_id":"' + root_hierarch_list_item_id.to_s + '","hierarch_list_item_id":"' + hierarch_list_item_id.to_s + '"}'
+    when :root_hierarch_limited_list
+      '{"property_id":"' + property.id.to_s + '","root_hierarch_list_item_id":"' + root_hierarch_list_item_id.to_s + '"}'
     else
       ''
     end

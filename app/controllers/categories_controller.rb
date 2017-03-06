@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     respond_to do |format|
       format.json do
-        render json: { category: @category,
+        render json: {
+                      category: @category,
                       properties: @category.properties,
                       category_properties: @category.category_properties,
                       list_items: @category.properties.map(&:list_items).flatten,
