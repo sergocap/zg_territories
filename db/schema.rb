@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305064207) do
+ActiveRecord::Schema.define(version: 20170306082340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "city_id"
+    t.string   "street"
+    t.string   "house"
+    t.string   "region"
+    t.string   "office"
+    t.string   "longitude"
+    t.string   "latitude"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_addresses_on_organization_id", using: :btree
+  end
 
   create_table "breaks", force: :cascade do |t|
     t.time     "from"
@@ -98,7 +112,6 @@ ActiveRecord::Schema.define(version: 20170305064207) do
 
   create_table "organizations", force: :cascade do |t|
     t.string  "title"
-    t.string  "address"
     t.uuid    "user_id"
     t.integer "parent_id"
     t.integer "category_id"

@@ -1,0 +1,17 @@
+<div>
+  <h2>Адрес</h2>
+  <%= f.input :city_id, as: :select, collection: @cities, selected: @current_city %>
+  <%= f.input :street %>
+  <%= f.input :house %>
+  <%= f.input :office %>
+  <%= f.input :longitude %>
+  <%= f.input :latitude %>
+  <div is='map-template'>
+  </div>
+</div>
+
+<script type='text/x-template' id='map-template'>
+  <div class='js-map_wrapper'>
+    <div id='map'></div>
+  </div>
+</script>

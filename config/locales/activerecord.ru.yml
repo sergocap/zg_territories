@@ -6,6 +6,14 @@ ru:
         title: Название
         address: Адрес
 
+      address:
+        city_id: Город
+        street: Улица
+        house: Дом
+        office: Офис
+        longitude: Долгота
+        latitude: Ширина
+
       category:
         <<: *commons
 

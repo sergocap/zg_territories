@@ -1,16 +1,19 @@
 class Organization < ApplicationRecord
-  has_many :values
-  has_many :schedules
+  has_many :values, :dependent => :destroy
+  has_many :schedules, :dependent => :destroy
+  has_one :address, :dependent => :destroy
   belongs_to :category
   belongs_to :city
   accepts_nested_attributes_for :values
   accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
-  validates_presence_of :title, :address, message: 'Не может быть пустым'
+  accepts_nested_attributes_for :address,   :reject_if => :all_blank, :allow_destroy => true
+  validates_presence_of :title
   validates_presence_of :schedules, :message => 'У заведения должно быть хотя бы одно расписание'
   validate :check_necessarily
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
   include SettingsStateMachine
 
+  delegate :latitude, :longitude, :to => :address, :allow_nil => true
   after_initialize :set_initial_status
 
   def set_initial_status

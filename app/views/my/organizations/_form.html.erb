@@ -1,5 +1,6 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 <div class='row' id='vue-form_organization'>
-  <div class='col-xs-5'>
+  <div class='col-xs-7'>
     <%= simple_nested_form_for [:my, @organization] do |f| %>
       <div id='store_organization' class='store'>
         <% if @organization.persisted? %>
@@ -11,10 +12,15 @@
       <div id='store_organization_errors' class='store'>
         <%= @organization.errors.messages.to_json %>
       </div>
+
       <%= f.input :title %>
-      <%= f.input :address %>
+
+      <div class='js-address_fields'>
+        <%= f.simple_fields_for :address %>
+      </div>
 
       <div class='js-schedules_fields <%= check_init_schedule %>'>
+          <h2>Расписание работы</h2>
           <%= f.simple_fields_for :schedules %>
           <%= f.link_to_add 'Добавить расписание', :schedules, class: 'js-new_schedule' %>
           <%= f.error :schedules, style: 'color:#a94442' %>

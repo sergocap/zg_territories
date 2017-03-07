@@ -4,6 +4,7 @@ class My::OrganizationsController < ApplicationController
   before_action :find_categories, only: [:new, :create]
   before_action :find_category,   only: [:edit]
   before_filter :build_nested_objects, :only => [:new, :create]
+  before_action :scope_cities, only: [:edit, :new]
 
   def show
      show! do |format|
@@ -46,9 +47,13 @@ class My::OrganizationsController < ApplicationController
     @category = @organization.category
   end
 
+  def scope_cities
+    @cities = City.all
+  end
+
   def organization_params
     params.require(:organization).permit(
-      [:user_id, :category_id, :title, :city_id, :parent_id, :address,
+      [:user_id, :category_id, :title, :city_id, :parent_id,
          schedules_attributes: [:id, :from, :to, :monday, :tuesday,
                                 :wednesday, :thursday, :friday,
                                 :saturday, :sunday, :free,
@@ -61,12 +66,14 @@ class My::OrganizationsController < ApplicationController
                            :hierarch_list_item_id,
                            :root_hierarch_list_item_id,
                            :category_id,
-                           list_item_ids: []]
+                           list_item_ids: []],
+         address_attributes: [:city_id, :longitude, :latitude,
+                              :street, :house, :id, :office]
     ])
-
   end
 
   def build_nested_objects
     @organization.schedules.any? || @organization.schedules.build
+    @organization.address.present? || @organization.build_address
   end
 end
