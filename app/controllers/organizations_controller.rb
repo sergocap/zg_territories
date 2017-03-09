@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
 
   def show
     redirect_to '/404' if !@organization.published? && !@organization.owner?(current_user)
+    @organization.add_statistic
   end
 
   private
