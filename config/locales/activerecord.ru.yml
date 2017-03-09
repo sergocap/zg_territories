@@ -5,6 +5,8 @@ ru:
       attribute_commons: &commons
         title: Название
         address: Адрес
+        phone: Телефон
+        email: Email
 
       address:
         city_id: Город

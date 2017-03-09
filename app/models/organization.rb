@@ -10,6 +10,8 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :address,   :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title
+  validates_presence_of :category, :message => 'Укажите категорию'
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'Неверный email'
   validates_presence_of :schedules, :message => 'У заведения должно быть хотя бы одно расписание'
   validate :check_necessarily
   include SettingsStateMachine

@@ -53,7 +53,7 @@ class My::OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(
-      [:user_id, :category_id, :title, :city_id, :parent_id,
+      [:user_id, :category_id, :title, :email, :phone, :city_id, :parent_id,
          schedules_attributes: [:id, :from, :to, :monday, :tuesday,
                                 :wednesday, :thursday, :friday,
                                 :saturday, :sunday, :free,

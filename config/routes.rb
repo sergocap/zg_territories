@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   get 'categories/get_by_id'
   get 'categories/get_hierarch_list_items'
+  get 'show_phone', to: 'organizations#show_phone'
 
   scope '/:city_slug' do
     root 'organizations#index'

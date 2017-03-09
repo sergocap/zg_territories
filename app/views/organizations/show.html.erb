@@ -5,7 +5,10 @@
     <h1><%= @organization.title %></h1>
     <p>Адрес: <%= @organization.address %></p>
     <p>Владелец: <%= @organization.user.fullname %></p>
-
+    <p>email: <%= @organization.email %></p>
+    <p>Телефон: <span class='js-phone'><%= @organization.phone.truncate(5) %></span>
+      <%= link_to "Показать телефон","javascript:void()", class: "js-show_phone", id: @organization.id, rel: :nofollow %>
+    </p>
     <hr>
     <% @organization.values.each do |value| %>
       <%= render partial: "common/values/#{value.property.kind}", locals: {:value => value} %>

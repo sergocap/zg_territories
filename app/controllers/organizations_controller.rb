@@ -1,6 +1,8 @@
 class OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
+  skip_authorize_resource :only => :show_phone
+
   before_action :find_category
 
   def welcome
@@ -14,6 +16,12 @@ class OrganizationsController < ApplicationController
   def show
     redirect_to '/404' if !@organization.published? && !@organization.owner?(current_user)
     @organization.add_statistic
+  end
+
+  def show_phone
+    @organization = Organization.find(params[:organization_id])
+    @organization.add_statistic('phone')
+    render text: @organization.phone
   end
 
   private

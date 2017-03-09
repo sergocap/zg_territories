@@ -14,6 +14,8 @@
       </div>
 
       <%= f.input :title %>
+      <%= f.input :email, as: :email %>
+      <%= f.input :phone %>
 
       <div class='js-address_fields'>
         <%= f.simple_fields_for :address %>
@@ -44,18 +46,18 @@
       <% end %>
 
       <h2>{{organization.category.title}}</h2>
-
-        <div
-          is='property-component'
-          v-for='(value, index) in organization.values'
-          :value='value'
-          :index='index'
-          :category_property='get_category_property(value.property_id)'
-          :list_items='get_list_items(value.property_id)'
-          :edit_mode='edit_mode'
-          :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
-          :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
-        </div>
+      <h2><%= f.error :category, style: 'color:#a94442' %></h2>
+      <div
+        is='property-component'
+        v-for='(value, index) in organization.values'
+        :value='value'
+        :index='index'
+        :category_property='get_category_property(value.property_id)'
+        :list_items='get_list_items(value.property_id)'
+        :edit_mode='edit_mode'
+        :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
+        :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
+      </div>
 
       <%= f.submit 'Сохранить', class: 'btn btn-success' %>
 
