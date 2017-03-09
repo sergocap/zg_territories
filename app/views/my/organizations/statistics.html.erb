@@ -1,0 +1,8 @@
+<h2>Статистика</h2>
+<h3>Просмотр организации</h3>
+<%= line_chart @organization.statistics.for_show.group_by_day(:created_at, :format => '%B').count %>
+
+<h3>Просмотр телефона</h3>
+<%= line_chart @organization.statistics.for_phone.group_by_day(:created_at, :format => '%B').count %>
+
+<h3><%= link_to 'К организации', organization_path(@organization)  %></h3>

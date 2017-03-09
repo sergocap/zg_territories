@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     namespace :my do
       resources :organizations do
         get 'change_state', on: :member
+        get 'statistics', on: :member
       end
     end
   end

@@ -77,6 +77,7 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancan (1.6.10)
+    chartkick (2.2.3)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -105,6 +106,8 @@ GEM
     glyphicons-rails (0.1.2)
       sass (~> 3.3)
       sass-rails
+    groupdate (3.2.0)
+      activesupport (>= 3)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -290,11 +293,13 @@ DEPENDENCIES
   bootstrap-slider-rails
   byebug
   cancan
+  chartkick
   coffee-rails (~> 4.2)
   config
   enumerize
   friendly_id
   glyphicons-rails
+  groupdate
   haml-rails
   hashie
   inherited_resources

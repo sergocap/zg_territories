@@ -4,5 +4,6 @@
   </div>
   <%= link_to 'Редактировать', edit_my_organization_path(@organization) if @organization.owner?(current_user) %>
   <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>
+  <%= link_to 'Статистика', statistics_my_organization_path(@organization) %>
 </div>
 
