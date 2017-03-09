@@ -29,11 +29,13 @@
     <% if @organization.owner?(current_user) %>
       <%= render partial: 'owners_panel' %>
     <% end %>
-    <div class='js-map_wrapper map_show_mode'>
-      <div class='map-coordinates'
-        data-latitude='<%= @organization.latitude %>'
-        data-longitude='<%= @organization.longitude %>'></div>
-      <div id='map'></div>
-    </div>
+    <% if @organization.address.present? %>
+      <div class='js-map_wrapper map_show_mode'>
+        <div class='map-coordinates'
+          data-latitude='<%= @organization.latitude %>'
+          data-longitude='<%= @organization.longitude %>'></div>
+        <div id='map'></div>
+      </div>
+    <% end %>
   </div>
 </div>
