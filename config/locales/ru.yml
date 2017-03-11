@@ -6,6 +6,12 @@ ru:
   categories:
     new: Добавить категорию
 
+  state:
+    draft: В черновиках
+    moderation: На модерации
+    published: Опубликованно
+    all: Все
+
   helpers:
     page_entries_info:
       more_pages:

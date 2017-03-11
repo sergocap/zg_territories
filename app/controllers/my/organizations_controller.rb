@@ -3,7 +3,7 @@ class My::OrganizationsController < ApplicationController
   inherit_resources
   before_action :find_categories, only: [:new, :create]
   before_action :find_category,   only: [:edit]
-  before_filter :build_nested_objects, :only => [:new, :create]
+  before_filter :build_nested_objects, :only => [:edit, :new, :create]
   before_action :scope_cities, only: [:edit, :new]
 
   def show

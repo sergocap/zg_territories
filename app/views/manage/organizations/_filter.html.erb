@@ -2,6 +2,7 @@
   <%= simple_form_for :search, method: 'GET', url: manage_organizations_path do |f| %>
     <%= f.input :state,
       label: false,
+      label_method: -> (name) { t('state.' + name.to_s) },
       input_html: { name: 'state' },
       as: :radio_buttons,
       collection: Organization.states_list << :all,

@@ -11,9 +11,10 @@
 
   <body>
     <%= render partial: 'zg_header/zg_header' %>
+    <%= render partial: 'layouts/categories_header' unless @current_city.nil? %>
     <div class='container'>
-      <%= render partial: 'layouts/categories_header' unless @current_city.nil? %>
       <%= yield %>
     </div>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>

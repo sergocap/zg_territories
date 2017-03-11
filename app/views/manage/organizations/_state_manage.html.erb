@@ -1,4 +1,4 @@
-<p>Состояние: <%= @organization.state %></p>
+<p>Состояние: <%= t('state.' + @organization.state) %></p>
 
 <% if @organization.can_to_draft? %>
   <%= link_to 'В черновики', '#', 'onclick': '$(this).next().toggle()' %>

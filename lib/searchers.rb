@@ -38,6 +38,7 @@ module Searchers
 
         with :list_item_ids, search_params.list_items if search_params.list_items.to_a.present?
         with :hierarch_list_item_ids, search_params.hierarch_list_items if search_params.hierarch_list_items.to_a.present?
+        paginate page: 1, per_page: 100_000_000
       end
       Kaminari.paginate_array(
         search.results.map(&:organization).compact.uniq)

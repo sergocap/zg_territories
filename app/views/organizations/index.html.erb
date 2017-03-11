@@ -7,6 +7,10 @@
       <h2>Категория: <%= @category.title %></h2>
     <% end %>
 
+    <% if params[:commit] == 'Фильтровать' %>
+      <h3>Результаты поиска:</h3>
+    <% end %>
+
     <%= paginate @organizations %>
     <% @organizations.each do |organization| %>
       <div class='organization'>
@@ -15,5 +19,5 @@
     <% end %>
     <%= paginate @organizations %>
   </div>
-  <%= render partial: 'filter', locals: { category: @category } if @category %>
+  <%= render partial: 'filter', locals: { category: @category } %>
 </div>

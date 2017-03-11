@@ -44,6 +44,8 @@ class Value < ApplicationRecord
 
   def get
     case property.kind.to_sym
+    when :boolean
+      boolean_value ? 'Есть' : 'Нет'
     when :string
       string_value
     when :float
@@ -53,9 +55,10 @@ class Value < ApplicationRecord
     when :limited_list
       list_item
     when :unlimited_list
-      list_items
+      list_items.map(&:title).join('; ')
     when :hierarch_limited_list
-      hierarch_list_item
+      return nil unless hierarch_list_item.present?
+      [hierarch_list_item.parent.title, hierarch_list_item.title].join(' - ')
     else
       ''
     end

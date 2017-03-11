@@ -1,31 +1,33 @@
 .col-xs-4.filter
   %h4 Фильтр
   - hierarch_counter = 0
-  = simple_form_for :search, url: organizations_path(category: category.id), method: :get do |f|
+  = simple_form_for :search, url: organizations_path(category: category.try(:id)), method: :get do |f|
     = f.input :text, label: false, input_html: { name: 'text', value: params['text'] }
-    %ul
-      = f.input :category, as: :hidden, input_html: { name: 'category', value: category.id }
-      - category.properties.each do |property|
+    - if category.present?
+      %ul
+        = f.input :category, as: :hidden, input_html: { name: 'category', value: category.id }
+        - category.properties.each do |property|
 
-        - if collection_for_filter(property.kind).any? && !property.show_on_filter_as.empty?
-          %li
-            %h4= property
-            - if property.show_on_filter_as == 'range'
-              = render partial: 'organizations/filter_fields/range_inputs', locals: {:f => f, :property => property, :params => params}
-            - if property.show_on_filter_as == 'range_for_numeric'
-              = render partial: 'organizations/filter_fields/range_for_numeric', locals: {:f => f, :property => property, :params => params}
-            - if property.show_on_filter_as == 'range_select'
-              = render partial: 'organizations/filter_fields/range_select_inputs', locals: {:f => f, :property => property, :params => params}
-            - if property.show_on_filter_as == 'range_buttons'
-              = render partial: 'organizations/filter_fields/range_buttons_inputs', locals: {:f => f, :property => property, :params => params}
-            - if property.show_on_filter_as == 'boolean'
-              = render partial: 'organizations/filter_fields/boolean', locals: {:f => f, :property => property, :params => params}
-            - if property.show_on_filter_as == 'hierarch_limited_list'
-              = render partial: 'organizations/filter_fields/hierarch_inputs', locals: {:f => f, :property => property, :params => params, :hierarch_counter => hierarch_counter}
-              - hierarch_counter+=1
-            - elsif ['select', 'check_boxes', 'radio_buttons'].include? property.show_on_filter_as
-              = render partial: 'organizations/filter_fields/standart_inputs', locals: {:f => f, :property => property, :params => params}
+          - if collection_for_filter(property.kind).any? && !property.show_on_filter_as.empty?
+            %li
+              %h4= property
+              - if property.show_on_filter_as == 'range'
+                = render partial: 'organizations/filter_fields/range_inputs', locals: {:f => f, :property => property, :params => params}
+              - if property.show_on_filter_as == 'range_for_numeric'
+                = render partial: 'organizations/filter_fields/range_for_numeric', locals: {:f => f, :property => property, :params => params}
+              - if property.show_on_filter_as == 'range_select'
+                = render partial: 'organizations/filter_fields/range_select_inputs', locals: {:f => f, :property => property, :params => params}
+              - if property.show_on_filter_as == 'range_buttons'
+                = render partial: 'organizations/filter_fields/range_buttons_inputs', locals: {:f => f, :property => property, :params => params}
+              - if property.show_on_filter_as == 'boolean'
+                = render partial: 'organizations/filter_fields/boolean', locals: {:f => f, :property => property, :params => params}
+              - if property.show_on_filter_as == 'hierarch_limited_list'
+                = render partial: 'organizations/filter_fields/hierarch_inputs', locals: {:f => f, :property => property, :params => params, :hierarch_counter => hierarch_counter}
+                - hierarch_counter+=1
+              - elsif ['select', 'check_boxes', 'radio_buttons'].include? property.show_on_filter_as
+                = render partial: 'organizations/filter_fields/standart_inputs', locals: {:f => f, :property => property, :params => params}
 
     = f.submit 'Фильтровать', class: 'btn btn-default'
+    = link_to 'Сбросить фильтр', organizations_path(category: category.try(:id))
 
 
