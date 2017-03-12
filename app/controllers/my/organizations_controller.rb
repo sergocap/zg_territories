@@ -37,6 +37,13 @@ class My::OrganizationsController < ApplicationController
     end
   end
 
+  def managers_for_organization
+    @organization = Organization.find(params[:id])
+    respond_to do |format|
+      format.json { render json: { managers: @organization.managers } }
+    end
+  end
+
   private
 
   def find_categories

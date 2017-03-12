@@ -1,0 +1,17 @@
+<div class='row'>
+  <div class='col-xs-6'>
+    <div class='my_organization_managers' id='vue-organization_managers'>
+      <input type='hidden' id='organization_data' data-organization-id='<%= @organization.id %>'/>
+      <h1>Менеждеры</h1>
+      <input type='email' v-model='new_manager.email' class='new_manager_email form-control' placeholder='email пользователя' />
+      <button type='button' @click='addManagers()' class='btn btn-primary'>Добавить управляющего</button>
+      <div
+        v-for='manager in managers'
+        :key='manager.id'
+        >
+        <strong>{{manager.name}}</strong>
+        {{manager.email}}
+      </div>
+    </div>
+  </div>
+</div>

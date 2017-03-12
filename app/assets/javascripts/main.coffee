@@ -1,5 +1,6 @@
 $ ->
   init_vue_organization() if $('#vue-form_organization').length
+  init_vue_organization_managers() if $('#vue-organization_managers').length
   init_hierarch_list_items() if $('.wrapper_hierarch_list_items').length
   init_range_buttons() if $('.js-range_buttons').length
   init_schedules() if $('.js-schedules_fields').length

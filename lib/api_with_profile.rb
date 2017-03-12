@@ -1,4 +1,8 @@
 module ApiWithProfile
+  def self.get_users_id_by(key, value)
+    JSON.parse RestClient.get Settings['profile']['api'] + '/get_users_id_by', { params: { key: key, value: value } }
+  end
+
   def self.send_mail_about_state(new_state, organization, message = nil)
     action_view = get_action_view
 
@@ -13,6 +17,19 @@ module ApiWithProfile
               end
 
     send_mail(organization.user.id, subject, body)
+  end
+
+  def self.send_mail_about_role(user, organization, organization_manager)
+    action_view = get_action_view
+
+    body = action_view.render partial: 'common/render_mails/about_role',
+      locals: { :organization => organization,
+                :user => user,
+                :organization_manager => organization_manager }, layout: false
+
+    subject = '[ZnaiGorod] Подтверждение роли'
+
+    send_mail(user.id, subject, body)
   end
 
   def self.send_mail(user_id, subject, body)

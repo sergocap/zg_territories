@@ -1,0 +1,8 @@
+<div class='row'>
+  <div class='col-xs-12'>
+    Здравствуйте, <%= user.name %>. Подтвердите роль управляющего для организации
+    <%= link_to organization.title, organization_url(organization, :city_slug => organization.city.slug), target: '_blank' %>.
+    Пройдите по этой <%= link_to 'ссылке', confirm_manager_role_organization_manager_url(organization_manager), target: '_blank' %>
+  </div>
+</div>
+
