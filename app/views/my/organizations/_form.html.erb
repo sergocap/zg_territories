@@ -32,7 +32,7 @@
         input_html: { value: @current_city.id } %>
 
       <%= f.input :user_id, as: :hidden,
-        input_html: { value: current_user.id } %>
+        input_html: { value: current_user.id } unless @organization.persisted? %>
 
       <%= f.input :parent_id, as: :hidden,
         input_html: { value: params[:parent_id] } %>

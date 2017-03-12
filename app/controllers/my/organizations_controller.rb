@@ -1,6 +1,7 @@
 class My::OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
+
   before_action :find_categories, only: [:new, :create]
   before_action :find_category,   only: [:edit]
   before_filter :build_nested_objects, :only => [:edit, :new, :create]
@@ -39,8 +40,12 @@ class My::OrganizationsController < ApplicationController
 
   def managers_for_organization
     @organization = Organization.find(params[:id])
+    managers = []
+    @organization.organization_managers.map {|om|
+      managers << { user: om.manager, organization_manager: om } }
+
     respond_to do |format|
-      format.json { render json: { managers: @organization.managers } }
+      format.json { render json: { managers: managers } }
     end
   end
 

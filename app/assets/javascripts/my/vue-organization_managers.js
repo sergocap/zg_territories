@@ -24,6 +24,21 @@ function init_vue_organization_managers() {
             that.new_manager.email = '';
           }
         })
+      },
+
+      destroyManager: function(manager, index) {
+        var that = this;
+        $.ajax({
+          method: 'DELETE',
+          url: '/organization_managers/' + manager.organization_manager.id + '.json',
+          success: function(res) {
+            that.managers.splice(index, 1);
+          }
+        })
+      },
+
+      pretty_name: function(user) {
+        return user.surname + ' ' + user.name + ' ' + user.patronymic
       }
     },
 

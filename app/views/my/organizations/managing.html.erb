@@ -1,16 +1,36 @@
 <div class='row'>
-  <div class='col-xs-6'>
+  <div class='col-xs-10'>
     <div class='my_organization_managers' id='vue-organization_managers'>
       <input type='hidden' id='organization_data' data-organization-id='<%= @organization.id %>'/>
       <h1>Менеждеры</h1>
-      <input type='email' v-model='new_manager.email' class='new_manager_email form-control' placeholder='email пользователя' />
-      <button type='button' @click='addManagers()' class='btn btn-primary'>Добавить управляющего</button>
+      <input
+        type='email' v-model='new_manager.email'
+        class='new_manager_email form-control' placeholder='email пользователя' />
+
+      <button
+        type='button' @click='addManagers()'
+        class='btn btn-primary'>Добавить управляющего
+      </button>
+
       <div
-        v-for='manager in managers'
-        :key='manager.id'
-        >
-        <strong>{{manager.name}}</strong>
-        {{manager.email}}
+        v-for='(manager, index) in managers'
+        :key='manager.id'>
+
+        <strong>{{pretty_name(manager.user)}}</strong>
+
+        {{manager.user.email}}
+
+        <i>{{manager.organization_manager.state ? '' : '(роль не подтверждена)'}}</i>
+
+        <a
+          href='javascript:void(0)'
+          @click='destroyManager(manager, index)'>Удалить права
+        </a>
+
+        <a
+          data-confirm='Вы уверены?'
+          :href="'/organization_managers/' + manager.organization_manager.id + '/transfer_main_role/'">Передать права главного
+        </a>
       </div>
     </div>
   </div>

@@ -56,6 +56,10 @@ class Organization < ApplicationRecord
     user == some_user
   end
 
+  def manager?(user)
+    managers.include? user
+  end
+
   def is_child?
     !parent_id.nil?
   end

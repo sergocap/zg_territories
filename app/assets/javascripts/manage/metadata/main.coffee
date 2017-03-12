@@ -1,5 +1,5 @@
 $ ->
-  if $('.tree_categories')
+  if $('.tree_categories').length
     init_new_root_category()
     init_new_subcategory()
     init_handle_hidden()

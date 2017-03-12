@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   scope '/:city_slug' do
     root 'organizations#index'
-    resources :organizations
+    resources :organizations, only: [:welcome, :index, :show]
 
     namespace :my do
       resources :organizations do
@@ -31,8 +31,10 @@ Rails.application.routes.draw do
 
   resources :organization_managers do
     get 'confirm_manager_role', on: :member
+    get 'transfer_main_role', on: :member
   end
+
+  get 'organizations/show_phone'
   get 'categories/get_by_id'
   get 'categories/get_hierarch_list_items'
-  get 'show_phone', to: 'organizations#show_phone'
 end

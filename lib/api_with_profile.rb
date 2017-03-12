@@ -32,6 +32,19 @@ module ApiWithProfile
     send_mail(user.id, subject, body)
   end
 
+  def self.send_mail_about_main_role(user, organization)
+    action_view = get_action_view
+
+    body = action_view.render partial: 'common/render_mails/about_main_role',
+      locals: { :organization => organization,
+                :user => user}, layout: false
+
+    subject = '[ZnaiGorod] Вам присвоили организацию'
+
+    send_mail(user.id, subject, body)
+  end
+
+
   def self.send_mail(user_id, subject, body)
     RestClient.get Settings['profile']['api'] + '/send_mail', { params: { user_id: user_id, subject: subject, body: body } }
   end

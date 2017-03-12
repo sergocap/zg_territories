@@ -1,7 +1,6 @@
 class OrganizationsController < ApplicationController
   load_and_authorize_resource
   inherit_resources
-  skip_authorize_resource :only => :show_phone
 
   before_action :find_category
 

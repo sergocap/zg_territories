@@ -9,11 +9,13 @@ class Ability
     when 'My'
       return unless user
       can :manage, Organization, :user_id => user.id
+      can [:show, :edit, :update, :statistics], Organization do |organization|
+        organization.manager? user
+      end
       can :new, Organization
+    else
+      can [:show, :index], Organization, :city_id => city.id if city
+      can [:show_phone, :welcome], Organization
     end
-
-    can :read, Organization, :city_id => city.id if city
-    can :read, Organization unless city
-    can :welcome, Organization
   end
 end
