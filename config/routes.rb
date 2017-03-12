@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       get 'change_state', on: :member
     end
 
+    resources :service_packs, except: :show
+
     namespace :metadata do
       root 'categories#index'
       resources :categories do

@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class='col-xs-6 service_packs'>
+    <h2>Пакеты услуг</h2>
+    <% @service_packs.each do |service_pack| %>
+      <div class='service_pack'>
+        <%= link_to service_pack.title, edit_manage_service_pack_path(service_pack) %>
+        <span><%= service_pack.description %></span>
+        <%= link_to 'Удалить', manage_service_pack_path(service_pack), method: 'DELETE', data: { confirm: 'Вы уверены?' } %>
+      </div>
+    <% end %>
+    <%= link_to 'Добавить пакет', new_manage_service_pack_path, class: 'btn btn-default add_service_pack' %>
+  </div>
+</div>

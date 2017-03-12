@@ -1,0 +1,17 @@
+= simple_form_for [:manage, @service_pack] do |f|
+  = f.input :title
+  = f.input :description
+  = f.input :price_for_month
+  = f.input :price_for_six_months
+  = f.input :price_for_year
+  = f.input :tag, include_blank: false
+  %hr
+  %strong Услуги
+  = f.input :logotype
+  = f.input :gallery
+  = f.input :description_field
+  = f.input :small_comment
+  = f.input :price_list
+  = f.input :brand
+  = f.submit 'Сохранить', class: 'btn btn-success'
+  = link_to 'Отмена', :back

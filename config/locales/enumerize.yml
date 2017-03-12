@@ -9,4 +9,9 @@ ru:
         hierarch_limited_list: 'Дерево значений'
         unlimited_list: 'Список с выбором значений'
         boolean: 'Булевое значение'
+    service_pack:
+      tag:
+        minimal: Минимальный
+        base: Базовый
+        full: Полный
 

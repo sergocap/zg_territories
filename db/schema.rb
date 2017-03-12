@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312050245) do
+ActiveRecord::Schema.define(version: 20170312160656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,17 @@ ActiveRecord::Schema.define(version: 20170312050245) do
     t.index ["user_id"], name: "index_organization_managers_on_user_id", using: :btree
   end
 
+  create_table "organization_service_packs", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "service_pack_id"
+    t.string   "duration"
+    t.integer  "price"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_organization_service_packs_on_organization_id", using: :btree
+    t.index ["service_pack_id"], name: "index_organization_service_packs_on_service_pack_id", using: :btree
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string  "title"
     t.uuid    "user_id"
@@ -168,6 +179,23 @@ ActiveRecord::Schema.define(version: 20170312050245) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["organization_id"], name: "index_schedules_on_organization_id", using: :btree
+  end
+
+  create_table "service_packs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "tag"
+    t.integer  "price_for_month"
+    t.integer  "price_for_six_months"
+    t.integer  "price_for_year"
+    t.boolean  "logotype"
+    t.boolean  "gallery"
+    t.boolean  "description_field"
+    t.boolean  "small_comment"
+    t.boolean  "price_list"
+    t.boolean  "brand"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "statistics", force: :cascade do |t|

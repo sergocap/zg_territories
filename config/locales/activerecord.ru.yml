@@ -57,3 +57,18 @@ ru:
         from: с
         to:   по
 
+      service_pack:
+        <<: *commons
+        description: Описание
+        tag: Тег
+        price_for_month: Цена за месяц
+        price_for_six_months: Цена за пол года
+        price_for_year: Цена за год
+        logotype: Логотип
+        gallery: Галерея
+        description_field: Поле описания
+        small_comment: Короткое описание
+        price_list: Расценки
+        brand: Брендинг
+
+

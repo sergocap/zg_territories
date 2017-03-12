@@ -6,6 +6,8 @@ class Organization < ApplicationRecord
   has_many :schedules, :dependent => :destroy
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
   has_many :organization_managers,  :dependent => :destroy
+  has_many :organization_service_packs,  :dependent => :destroy
+  has_many :service_packs, :through => :organization_service_packs
   has_one :address, :dependent => :destroy
   accepts_nested_attributes_for :values
   accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
