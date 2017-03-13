@@ -45,8 +45,8 @@ Rails.application.routes.draw do
   get 'categories/get_hierarch_list_items'
 
   scope 'robokassa' do
-    get 'paid'    => 'robokassa#paid',    :as => :robokassa_paid
-    get 'success' => 'robokassa#success', :as => :robokassa_success
-    get 'fail'    => 'robokassa#fail',    :as => :robokassa_fail
+    post 'paid'    => 'robokassa#paid',    :as => :robokassa_paid
+    post 'success' => 'robokassa#success', :as => :robokassa_success
+    post 'fail'    => 'robokassa#fail',    :as => :robokassa_fail
   end
 end

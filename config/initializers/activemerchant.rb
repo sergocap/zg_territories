@@ -1,1 +1,1 @@
-ActiveMerchant::Billing::Base.mode = :test
+require 'active_merchant'

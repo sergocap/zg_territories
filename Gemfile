@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activemerchant', :require => 'active_merchant'
+gem 'activemerchant', git: 'https://github.com/sergocap/active_merchant'
 gem 'rest-client'
 gem 'inherited_resources'
 gem 'cancan'

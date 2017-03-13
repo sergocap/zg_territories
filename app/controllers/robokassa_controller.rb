@@ -5,15 +5,15 @@ class RobokassaController < ApplicationController
   before_filter :find_payment
 
   def paid
-    if notification.acknowledge
-      render :text => notification.success_response
+    if @notification.acknowledge
+      render :text => @notification.success_response
     else
       head :bad_request
     end
   end
 
   def success
-    if !@payment.approved? && notification.acknowledge
+    if !@payment.approved? && @notification.acknowledge
       @payment.approve!
     end
 
@@ -27,7 +27,7 @@ class RobokassaController < ApplicationController
   private
 
   def create_notification
-    @notification = Robokassa::Notification.new(request.raw_post, :secret => Settings['robokassa']['secret_1'])
+    @notification = Robokassa::Notification.new(request.raw_post, :secret => Settings['robokassa']['secret_2'])
   end
 
   def find_payment

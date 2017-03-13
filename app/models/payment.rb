@@ -41,6 +41,7 @@ class Payment < ApplicationRecord
   def approve!
     case paymentable
     when ServicePack
+      raise paymentable.inspect
     end
     self.state = :approved
     self.save
