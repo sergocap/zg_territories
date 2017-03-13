@@ -13,6 +13,10 @@ class My::OrganizationsController < ApplicationController
      end
   end
 
+  def index
+    @organizations = Organization.where(user_id: current_user.id, city_id: @current_city.id).page(params[:page]).per(20)
+  end
+
   def create
     create! do |format|
       format.html do

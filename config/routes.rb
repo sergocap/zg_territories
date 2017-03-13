@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get 'managers_for_organization', on: :member
         get 'change_state', on: :member
         get 'statistics', on: :member
+        get 'service_packs', on: :member
         get 'managing', on: :member
       end
     end
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   end
 
   get 'organizations/show_phone'
+  get 'organizations/service_packs'
   get 'categories/get_by_id'
   get 'categories/get_hierarch_list_items'
 end

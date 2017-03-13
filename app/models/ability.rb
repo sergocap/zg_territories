@@ -15,7 +15,7 @@ class Ability
       can :new, Organization
     else
       can [:show, :index], Organization, :city_id => city.id if city
-      can [:show_phone, :welcome], Organization
+      can [:service_packs, :show_phone, :welcome], Organization
     end
   end
 end

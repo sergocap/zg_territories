@@ -1,0 +1,11 @@
+<div class='row'>
+  <div class='col-xs-6'>
+    <%= paginate @organizations %>
+    <% @organizations.each do |organization| %>
+      <div class='organization'>
+        <%= link_to organization.title, organization_path(organization) %>
+      </div>
+    <% end %>
+    <%= paginate @organizations %>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class='row'>
+  <div class='col-xs-12'>
+    <h2>Пакеты услуг</h2>
+    <div class='payment_sevice_pack' id='vue-service_packs'>
+      <div
+        is='pack_template'
+        v-for='pack in service_packs'
+        :pack='pack'>
+      </div>
+    </div>
+    <h3><%= link_to 'К организации', organization_path(@organization)  %></h3>
+  </div>
+</div>
+
+<script type='text/x-template' id='one_pack'>
+  <div class='service_pack'>
+    <h3>{{pack.title}}</h3>
+    <table>
+      <tr>
+        <td>Логотип</td>
+        <td>{{pack.logotype ? '+' : '-'}}</td>
+      </tr>
+      <tr>
+        <td>Галерея</td>
+        <td>{{pack.gallery ? '+' : '-'}}</td>
+      </tr>
+      <tr>
+        <td>Полное описание</td>
+        <td>{{pack.description_field ? '+' : '-'}}</td>
+      </tr>
+      <tr>
+        <td>Краткое описание</td>
+        <td>{{pack.small_comment ? '+' : '-'}}</td>
+      </tr>
+      <tr>
+        <td>Расценки</td>
+        <td>{{pack.price_list ? '+' : '-'}}</td>
+      </tr>
+      <tr>
+        <td>Брендинг</td>
+        <td>{{pack.brand ? '+' : '-'}}</td>
+      </tr>
+    </table>
+    <div class='calculate_price'>
+      <input type='range' v-model='duration' min=1 max=12 step=1 />
+      <strong>{{total_price}}</strong>
+    </div>
+    <div class='payment'>
+      <a :href='link'>Купить</a>
+    </div>
+  </div>
+</script>

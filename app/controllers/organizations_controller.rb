@@ -23,6 +23,10 @@ class OrganizationsController < ApplicationController
     render text: @organization.phone
   end
 
+  def service_packs
+    render json: ServicePack.all, status: 200
+  end
+
   private
 
   def find_category
