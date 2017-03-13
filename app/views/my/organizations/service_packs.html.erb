@@ -1,5 +1,6 @@
 <div class='row'>
   <div class='col-xs-12'>
+    <h3><%= link_to 'К организации', organization_path(@organization)  %></h3>
     <h2>Пакеты услуг</h2>
     <div class='payment_sevice_pack' id='vue-service_packs'>
       <div
@@ -8,7 +9,6 @@
         :pack='pack'>
       </div>
     </div>
-    <h3><%= link_to 'К организации', organization_path(@organization)  %></h3>
   </div>
 </div>
 
