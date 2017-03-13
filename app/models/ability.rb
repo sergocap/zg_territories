@@ -14,6 +14,7 @@ class Ability
       end
       can :new, Organization
     else
+      can :create, Payment
       can [:show, :index], Organization, :city_id => city.id if city
       can [:service_packs, :show_phone, :welcome], Organization
     end

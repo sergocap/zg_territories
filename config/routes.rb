@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'payments/create', to: 'payments#create'
+
   resources :organization_managers do
     get 'confirm_manager_role', on: :member
     get 'transfer_main_role', on: :member
@@ -41,4 +43,10 @@ Rails.application.routes.draw do
   get 'organizations/service_packs'
   get 'categories/get_by_id'
   get 'categories/get_hierarch_list_items'
+
+  scope 'robokassa' do
+    get 'paid'    => 'robokassa#paid',    :as => :robokassa_paid
+    get 'success' => 'robokassa#success', :as => :robokassa_success
+    get 'fail'    => 'robokassa#fail',    :as => :robokassa_fail
+  end
 end

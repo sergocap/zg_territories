@@ -6,7 +6,8 @@ function init_vue_service_packs() {
     },
     data: function() {
       return {
-        duration: 6
+        duration: 6,
+        organization_id: $('#storage').data('organization-id')
       }
     },
     computed: {
@@ -21,7 +22,12 @@ function init_vue_service_packs() {
           return this.pack.price_for_year
       },
       link: function() {
-        return 'payment_service_pack?duration=' + this.duration + '&amount=' +  this.total_price
+        return '/payments/create?' +
+          '&amount=' +  this.total_price +
+          '&organization_id=' + this.organization_id +
+          '&paymentable_type=ServicePack' +
+          '&paymentable_id=' + this.pack.id +
+          '&details=' + 'Покупка пакета на ' + this.duration + ' месяцев.'
       }
     }
   });

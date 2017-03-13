@@ -2,6 +2,7 @@
   <div class='col-xs-12'>
     <h3><%= link_to 'К организации', organization_path(@organization)  %></h3>
     <h2>Пакеты услуг</h2>
+    <input type='hidden' id='storage' data-organization-id='<%= @organization.id %>'>
     <div class='payment_sevice_pack' id='vue-service_packs'>
       <div
         is='pack_template'
