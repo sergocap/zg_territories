@@ -7,5 +7,16 @@
   <%= link_to 'Статистика', statistics_my_organization_path(@organization) %>
   <%= link_to 'Управление', managing_my_organization_path(@organization) %>
   <%= link_to 'Пакеты услуг', service_packs_my_organization_path(@organization) %>
+  <% if @organization.service_packs.any? %>
+    <p>У вас есть следующие пакеты услуг:</p>
+    <% @organization.service_packs.each do |service_pack| %>
+      <strong><%= service_pack.title %></strong>
+      <p>Осталось дней: <%= service_pack.left_days(@organization.id) %></p>
+    <% end %>
+    <p><strong>Доступны следующие услуги:</strong>
+      <%= @organization.permit_services.map {|service|
+        t('activerecord.attributes.service_pack.' + service.to_s) }.join(', ') %>
+    </p>
+  <% end %>
 </div>
 

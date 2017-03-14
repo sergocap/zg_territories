@@ -5,6 +5,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.belongs_to :organization
       t.string     :state
       t.float      :amount
+      t.integer    :duration
       t.string     :details
       t.uuid       :user_id
 

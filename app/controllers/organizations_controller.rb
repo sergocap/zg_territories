@@ -24,7 +24,14 @@ class OrganizationsController < ApplicationController
   end
 
   def service_packs
-    render json: ServicePack.all, status: 200
+    infos = ServicePack.all.map {|pack|
+      osp = pack.organization_service_packs.where(:organization_id => params[:organization_id]).first
+      {
+        id: pack.id,
+        paymented: osp.present?
+      }
+    }
+    render json: { service_packs: ServicePack.all, infos: infos }, status: 200
   end
 
   private

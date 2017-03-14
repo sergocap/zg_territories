@@ -10,6 +10,6 @@ class PaymentsController < ApplicationController
   end
 
   def payment_params
-    params.permit([:paymentable_type, :organization_id, :paymentable_id, :amount, :details])
+    params.permit([:duration, :paymentable_type, :organization_id, :paymentable_id, :amount, :details])
   end
 end

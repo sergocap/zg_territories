@@ -7,7 +7,8 @@
       <div
         is='pack_template'
         v-for='pack in service_packs'
-        :pack='pack'>
+        :pack='pack'
+        :info='get_info(pack.id)'>
       </div>
     </div>
   </div>
@@ -42,12 +43,17 @@
         <td>{{pack.brand ? '+' : '-'}}</td>
       </tr>
     </table>
+
     <div class='calculate_price'>
       <input type='range' v-model='duration' min=1 max=12 step=1 />
       <strong>{{total_price}}</strong>
     </div>
-    <div class='payment'>
+
+    <div class='payment' v-if='!info.paymented'>
       <a :href='link'>Купить</a>
+    </div>
+    <div v-else>
+      Куплено
     </div>
   </div>
 </script>

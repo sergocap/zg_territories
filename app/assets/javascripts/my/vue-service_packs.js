@@ -2,7 +2,8 @@ function init_vue_service_packs() {
   Vue.component('pack_template', {
     template: '#one_pack',
     props: {
-      pack: Object
+      pack: Object,
+      info: Object
     },
     data: function() {
       return {
@@ -27,7 +28,8 @@ function init_vue_service_packs() {
           '&organization_id=' + this.organization_id +
           '&paymentable_type=ServicePack' +
           '&paymentable_id=' + this.pack.id +
-          '&details=' + 'Покупка пакета на ' + this.duration + ' месяцев.'
+          '&duration=' + this.duration +
+          '&details=' + 'Покупка пакета ' + this.pack.title + ' на '+ this.duration + ' мес..'
       }
     }
   });
@@ -35,7 +37,18 @@ function init_vue_service_packs() {
   var service_packs = new Vue({
     el: '#vue-service_packs',
     data: {
-      service_packs: []
+      service_packs: [],
+      organization_id: $('#storage').data('organization-id'),
+      infos: []
+    },
+
+    methods: {
+      get_info: function(pack_id) {
+        var res = this.infos.filter(function(value) {
+          return value.id == pack_id
+        })
+        return res[0];
+      }
     },
 
     mounted: function() {
@@ -43,11 +56,14 @@ function init_vue_service_packs() {
       $.ajax({
         method: 'GET',
         url: '/organizations/service_packs.json',
+        data: {
+          organization_id: this.organization_id
+        },
         success: function(res) {
-          that.service_packs = res;
+          that.service_packs = res.service_packs;
+          that.infos = res.infos;
         }
       })
-
     }
   })
 }

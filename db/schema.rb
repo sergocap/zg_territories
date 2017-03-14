@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 20170313053305) do
   create_table "organization_service_packs", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "service_pack_id"
-    t.string   "duration"
-    t.integer  "price"
+    t.integer  "duration"
+    t.float    "price"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["organization_id"], name: "index_organization_service_packs_on_organization_id", using: :btree
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20170313053305) do
     t.integer  "organization_id"
     t.string   "state"
     t.float    "amount"
+    t.integer  "duration"
     t.string   "details"
     t.uuid     "user_id"
     t.datetime "created_at",       null: false
@@ -199,9 +200,9 @@ ActiveRecord::Schema.define(version: 20170313053305) do
     t.string   "title"
     t.string   "description"
     t.string   "tag"
-    t.integer  "price_for_month"
-    t.integer  "price_for_six_months"
-    t.integer  "price_for_year"
+    t.float    "price_for_month"
+    t.float    "price_for_six_months"
+    t.float    "price_for_year"
     t.boolean  "logotype"
     t.boolean  "gallery"
     t.boolean  "description_field"

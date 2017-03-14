@@ -22,6 +22,14 @@ class Organization < ApplicationRecord
   delegate :latitude, :longitude, :to => :address, :allow_nil => true
   after_initialize :set_initial_status
 
+  def can_service?(service)
+    permit_services.include? service
+  end
+
+  def permit_services
+    service_packs.map {|pack| pack.has_services }.flatten.uniq
+  end
+
   def add_statistic(kind = 'show')
     statistics.create(:kind => kind)
   end

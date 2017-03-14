@@ -3,8 +3,8 @@ class CreateOrganizationServicePacks < ActiveRecord::Migration[5.0]
     create_table :organization_service_packs do |t|
       t.belongs_to  :organization
       t.belongs_to  :service_pack
-      t.string      :duration
-      t.integer     :price
+      t.integer     :duration
+      t.float       :price
 
       t.timestamps
     end

@@ -4,9 +4,9 @@ class CreateServicePacks < ActiveRecord::Migration[5.0]
       t.string   :title
       t.string   :description
       t.string   :tag
-      t.integer  :price_for_month
-      t.integer  :price_for_six_months
-      t.integer  :price_for_year
+      t.float    :price_for_month
+      t.float    :price_for_six_months
+      t.float    :price_for_year
       t.boolean  :logotype
       t.boolean  :gallery
       t.boolean  :description_field
