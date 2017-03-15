@@ -12,6 +12,9 @@ class Ability
       can [:show, :edit, :update, :statistics], Organization do |organization|
         organization.manager? user
       end
+      cannot [:logotype], Organization do |organization|
+        !organization.can_service?(:logotype)
+      end
       can :new, Organization
     else
       can :create, Payment

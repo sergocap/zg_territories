@@ -3,7 +3,13 @@
     <h3><%= link_to 'К организации', organization_path(@organization)  %></h3>
     <h1>Логотип</h1>
     <%= simple_form_for [:my, @organization] do |f| %>
-      <%= f.input :logotype, label: false %>
+      <div class='js-image_upload_wrapper'>
+        <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
+        <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
+        <%= image_tag (@organization.logotype.exists? ? @organization.logotype.url : ''),
+          class: 'js-image_preview' %>
+      </div>
+      <br>
       <%= f.submit 'Сохранить', class: 'btn btn-success' %>
       <%= link_to 'Отмена', :back %>
     <% end %>
