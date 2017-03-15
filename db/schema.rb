@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315103856) do
+ActiveRecord::Schema.define(version: 20170315140329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,18 @@ ActiveRecord::Schema.define(version: 20170315103856) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  end
+
+  create_table "gallery_images", force: :cascade do |t|
+    t.string   "element_file_name"
+    t.string   "element_content_type"
+    t.integer  "element_file_size"
+    t.datetime "element_updated_at"
+    t.string   "description"
+    t.integer  "organization_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["organization_id"], name: "index_gallery_images_on_organization_id", using: :btree
   end
 
   create_table "hierarch_list_items", force: :cascade do |t|

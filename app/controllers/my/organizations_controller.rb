@@ -84,7 +84,8 @@ class My::OrganizationsController < ApplicationController
                            :category_id,
                            list_item_ids: []],
          address_attributes: [:city_id, :longitude, :latitude,
-                              :street, :house, :id, :office]
+                              :street, :house, :id, :office],
+         gallery_images_attributes: [:element, :description, :_destroy, :id]
     ])
   end
 

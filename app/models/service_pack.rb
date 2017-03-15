@@ -10,9 +10,13 @@ class ServicePack < ApplicationRecord
 
   def has_services
     arr = []
-    [:logotype, :gallery, :price_list, :brand, :description_field, :small_comment].each do |service|
+    ServicePack.service_list.each do |service|
       self.send(service) ? arr << service : []
     end
     arr
+  end
+
+  def self.service_list
+    [:logotype, :gallery, :price_list, :brand, :description_field, :small_comment]
   end
 end

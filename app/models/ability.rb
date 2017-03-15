@@ -12,9 +12,13 @@ class Ability
       can [:show, :edit, :update, :statistics], Organization do |organization|
         organization.manager? user
       end
-      cannot [:logotype], Organization do |organization|
-        !organization.can_service?(:logotype)
+
+      ServicePack.service_list.each do |item|
+        cannot item, Organization do |organization|
+          !organization.can_service?(item)
+        end
       end
+
       can :new, Organization
     else
       can :create, Payment

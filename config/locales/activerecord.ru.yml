@@ -71,4 +71,8 @@ ru:
         price_list: Расценки
         brand: Брендинг
 
+      gallery_image:
+        element: Изображение
+        description: Описание
+
 

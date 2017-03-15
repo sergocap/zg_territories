@@ -48,6 +48,12 @@
       <% end %>
     <% end %>
 
+    <% if @organization.can_service?(:gallery) && @organization.gallery_images.any? %>
+      <% @organization.gallery_images.each do |image| %>
+        <%= image_tag image.element.url, height: '100px' %>
+      <% end %>
+    <% end %>
+
     <% unless @organization.parent.nil? %>
       <h3>Родительская организация
         <%= link_to @organization.parent.title, organization_path(@organization.parent) %>
