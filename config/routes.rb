@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :organizations do
         get 'managers_for_organization', on: :member
         get 'change_state', on: :member
+        get 'logotype', on: :member
         get 'statistics', on: :member
         get 'service_packs', on: :member
         get 'managing', on: :member

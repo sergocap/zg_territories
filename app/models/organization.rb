@@ -17,6 +17,9 @@ class Organization < ApplicationRecord
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'Неверный email'
   validates_presence_of :schedules, :message => 'У заведения должно быть хотя бы одно расписание'
   validate :check_necessarily
+  has_attached_file :logotype, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/missing.jpg"
+  validates_attachment_content_type :logotype, content_type: /\Aimage\/.*\z/
+
   include SettingsStateMachine
 
   delegate :latitude, :longitude, :to => :address, :allow_nil => true
@@ -24,6 +27,10 @@ class Organization < ApplicationRecord
 
   def can_service?(service)
     permit_services.include? service
+  end
+
+  def permitted_logotype_url
+    can_service?(:logotype) ? logotype.url : '/images/missing.jpg'
   end
 
   def permit_services

@@ -14,8 +14,9 @@
       <p>Осталось дней: <%= service_pack.left_days(@organization.id) %></p>
     <% end %>
     <p><strong>Доступны следующие услуги:</strong>
-      <%= @organization.permit_services.map {|service|
-        t('activerecord.attributes.service_pack.' + service.to_s) }.join(', ') %>
+      <% @organization.permit_services.each do |service| %>
+        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.friendly_id, 'my/organizations', @organization.id.to_s, service.to_s].join('/') %>
+      <% end %>
     </p>
   <% end %>
 </div>

@@ -3,7 +3,7 @@ class Payment < ApplicationRecord
   belongs_to :organization
   extend Enumerize
   enumerize :state, in: [:pending, :approved, :canceled], default: :pending
-  validates_presence_of :amount, :user_id, :paymentable, :organization
+  validates_presence_of :amount, :user_id, :organization_id
 
   def user
     User.find_by id: user_id

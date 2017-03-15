@@ -1,8 +1,19 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 <div class='row organization_show'>
+  <h1><%= @organization.title %></h1>
+  <div class='col-xs-2'>
+    <%= image_tag @organization.permitted_logotype_url, width: '100%' %>
+  </div>
   <div class='col-xs-6'>
+    <% if @organization.address.present? %>
+      <div class='js-map_wrapper map_show_mode'>
+        <div class='map-coordinates'
+          data-latitude='<%= @organization.latitude %>'
+          data-longitude='<%= @organization.longitude %>'></div>
+        <div id='map'></div>
+      </div><br>
+    <% end %>
 
-    <h1><%= @organization.title %></h1>
     <p><strong>Адрес:</strong> <%= @organization.address %></p>
     <p><strong>Владелец:</strong> <%= @organization.user.fullname %></p>
 
@@ -51,20 +62,12 @@
       </h3>
     <% end %>
   </div>
-  <div class='col-xs-6'>
+  <div class='col-xs-4'>
     <% if @organization.owner?(current_user) %>
       <%= render partial: 'owners_panel' %>
     <% end %>
     <% if @organization.manager?(current_user) %>
       <%= render partial: 'managers_panel' %>
-    <% end %>
-    <% if @organization.address.present? %>
-      <div class='js-map_wrapper map_show_mode'>
-        <div class='map-coordinates'
-          data-latitude='<%= @organization.latitude %>'
-          data-longitude='<%= @organization.longitude %>'></div>
-        <div id='map'></div>
-      </div>
     <% end %>
   </div>
 </div>
