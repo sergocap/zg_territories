@@ -69,7 +69,7 @@ class My::OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(
-      [:user_id, :category_id, :logotype, :title, :email, :phone, :city_id, :parent_id,
+      [:user_id, :description, :bootsy_image_gallery_id, :category_id, :logotype, :title, :email, :phone, :city_id, :parent_id,
          schedules_attributes: [:id, :from, :to, :monday, :tuesday,
                                 :wednesday, :thursday, :friday,
                                 :saturday, :sunday, :free,
@@ -85,7 +85,7 @@ class My::OrganizationsController < ApplicationController
                            list_item_ids: []],
          address_attributes: [:city_id, :longitude, :latitude,
                               :street, :house, :id, :office],
-         gallery_images_attributes: [:element, :description, :_destroy, :id]
+         gallery_images_attributes: [:element, :description, :_destroy, :id],
     ])
   end
 

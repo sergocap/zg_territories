@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   root 'organizations#welcome'
   namespace :manage do
     root 'organizations#index'
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
         get 'change_state', on: :member
         get 'logotype', on: :member
         get 'gallery', on: :member
+        get 'description_field', on: :member
         get 'statistics', on: :member
         get 'service_packs', on: :member
         get 'managing', on: :member

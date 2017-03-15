@@ -23,6 +23,7 @@ class Organization < ApplicationRecord
   validates_attachment_content_type :logotype, content_type: /\Aimage\/.*\z/
 
   include SettingsStateMachine
+  include Bootsy::Container
 
   delegate :latitude, :longitude, :to => :address, :allow_nil => true
   after_initialize :set_initial_status

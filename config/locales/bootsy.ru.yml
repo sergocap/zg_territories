@@ -1,0 +1,36 @@
+ru:
+  bootsy:
+    action:
+      refresh: Обновить
+      destroy: Удалить
+      close: Закрыть
+      load: Загрузка
+      or: или
+      upload: Загрузить новое изображение
+      submit_upload: Сохранить
+      enter_image_url: URL изображения ...
+    image_gallery: Галерея изображений
+    image:
+      s: Изображение
+      p: Изображения
+      size: Размер
+      large: Большой
+      medium: Средний
+      small: Маленький
+      original: Оригинал
+      new: Новое изображение
+      confirm:
+        destroy: Вы уверены?
+      position:
+        left: Лево
+        right: Право
+        inline: В линию
+    no_images_uploaded: Нет изображений
+    js:
+      alert_unsaved: Несохранйнные изменения
+  errors:
+    messages:
+      carrierwave_processing_error: Нельзя изменить размеры.
+      carrierwave_integrity_error: Нет изоюражения.
+      carrierwave_download_error: Не удаётся загрузить картинку.
+      extension_whitelist_error: "Нельзя загрузить файлы такого типа: %{extension}, допустимые форматы: %{allowed_types}"
