@@ -50,13 +50,13 @@ class Payment < ApplicationRecord
   end
 
   def invoiceID
-    0
+    id
   end
 
   def attach_service_pack
-    OrganizationSerivePack.create(:price => amount,
-                                  :duration => duration,
-                                  :organization_id => organization_id,
-                                  :service_pack => paymentable_id)
+    OrganizationServicePack.create(:price => amount.to_f,
+                                   :duration => duration.to_i,
+                                   :organization_id => organization_id.to_i,
+                                   :service_pack_id => paymentable_id.to_i)
   end
 end

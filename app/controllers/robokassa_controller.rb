@@ -6,6 +6,7 @@ class RobokassaController < ApplicationController
 
   def paid
     if @notification.acknowledge
+      @payment.approve!
       render :text => @notification.success_response
     else
       head :bad_request
@@ -17,11 +18,11 @@ class RobokassaController < ApplicationController
       @payment.approve!
     end
 
-    redirect_to @payment.paymentable
+    redirect_to root_path
   end
 
   def fail
-    redirect_to @payment.paymentable
+    redirect_to root_path
   end
 
   private
