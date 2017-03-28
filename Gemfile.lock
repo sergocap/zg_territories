@@ -12,20 +12,20 @@ GIT
 
 GIT
   remote: https://github.com/sergocap/zg_auth_client
-  revision: 349fd43ed6a769df414a3ce813a4faab5b3404b8
+  revision: 46f2097299d5d03ee8a2b50b62d25453431cf35d
   specs:
     zg_auth_client (0.0.5)
       activesupport
-      config
+      configliere
       daemons
       rails
 
 GIT
   remote: https://github.com/sergocap/zg_header
-  revision: 7de5507408377fb84fe8a9d4f27de482aaf268bb
+  revision: 117540c4cd1a0ce04fbf5ae1d1cc2b60af78f498
   specs:
     zg_header (0.1.0)
-      config
+      configliere
 
 GIT
   remote: https://github.com/sergocap/zg_redis_user_connector
@@ -38,50 +38,53 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (5.0.1)
-      actionpack (= 5.0.1)
-      nio4r (~> 1.2)
+    actioncable (5.0.2)
+      actionpack (= 5.0.2)
+      nio4r (>= 1.2, < 3.0)
       websocket-driver (~> 0.6.1)
-    actionmailer (5.0.1)
-      actionpack (= 5.0.1)
-      actionview (= 5.0.1)
-      activejob (= 5.0.1)
+    actionmailer (5.0.2)
+      actionpack (= 5.0.2)
+      actionview (= 5.0.2)
+      activejob (= 5.0.2)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 2.0)
-    actionpack (5.0.1)
-      actionview (= 5.0.1)
-      activesupport (= 5.0.1)
+    actionpack (5.0.2)
+      actionview (= 5.0.2)
+      activesupport (= 5.0.2)
       rack (~> 2.0)
       rack-test (~> 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.0.1)
-      activesupport (= 5.0.1)
+    actionview (5.0.2)
+      activesupport (= 5.0.2)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+      rails-html-sanitizer (~> 1.0, >= 1.0.3)
     active_utils (3.3.0)
       activesupport (>= 3.2, < 5.1.0)
       i18n
-    activejob (5.0.1)
-      activesupport (= 5.0.1)
+    activejob (5.0.2)
+      activesupport (= 5.0.2)
       globalid (>= 0.3.6)
-    activemodel (5.0.1)
-      activesupport (= 5.0.1)
-    activerecord (5.0.1)
-      activemodel (= 5.0.1)
-      activesupport (= 5.0.1)
+    activemodel (5.0.2)
+      activesupport (= 5.0.2)
+    activerecord (5.0.2)
+      activemodel (= 5.0.2)
+      activesupport (= 5.0.2)
       arel (~> 7.0)
-    activesupport (5.0.1)
+    activesupport (5.0.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    airbrake (5.6.1)
+      airbrake-ruby (~> 1.6)
+    airbrake-ruby (1.8.0)
     ancestry (2.2.2)
       activerecord (>= 3.0.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.2)
+    autoprefixer-rails (6.7.7.1)
       execjs
     awesome_print (1.7.0)
     bootstrap-sass (3.3.7)
@@ -100,6 +103,7 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     chartkick (2.2.3)
+    chronic (0.10.2)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -111,19 +115,18 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    config (1.4.0)
-      activesupport (>= 3.0)
-      deep_merge (~> 1.1.1)
+    configliere (0.4.18)
+      highline (>= 1.5.2)
+      multi_json (>= 1.1)
     daemons (1.2.4)
     debug_inspector (0.0.2)
-    deep_merge (1.1.1)
-    domain_name (0.5.20161129)
+    domain_name (0.5.20170223)
       unf (>= 0.0.5, < 1.0.0)
     enumerize (2.0.1)
       activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.7.0)
-    ffi (1.9.17)
+    ffi (1.9.18)
     friendly_id (5.2.0)
       activerecord (>= 4.0.0)
     globalid (0.3.7)
@@ -144,7 +147,7 @@ GEM
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
-    hashie (3.5.1)
+    hashie (3.5.5)
     highline (1.7.8)
     hiredis (0.6.1)
     html2haml (2.1.0)
@@ -160,10 +163,10 @@ GEM
       has_scope (~> 0.6)
       railties (>= 3.2, < 5.1)
       responders
-    jbuilder (2.6.1)
-      activesupport (>= 3.0.0, < 5.1)
+    jbuilder (2.6.3)
+      activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
-    jquery-rails (4.2.2)
+    jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -180,6 +183,7 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
+    kgio (2.11.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -192,7 +196,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
-    mini_magick (4.6.1)
+    mini_magick (4.7.0)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     money (6.8.2)
@@ -201,9 +205,15 @@ GEM
     multi_json (1.12.1)
     nested_form (0.3.2)
     netrc (0.11.0)
-    nio4r (1.2.1)
-    nokogiri (1.7.0.1)
+    nio4r (2.0.0)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    openteam-commons (0.3.3.5)
+      airbrake (~> 5.6.1)
+      configliere
+      rails
+      unicorn
+      whenever
     options (2.3.2)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -211,38 +221,39 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
-    pg (0.19.0)
+    pg (0.20.0)
     pr_geohash (1.0.0)
     progress_bar (1.1.0)
       highline (~> 1.6)
       options (~> 2.3.0)
-    puma (3.7.0)
+    puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (5.0.1)
-      actioncable (= 5.0.1)
-      actionmailer (= 5.0.1)
-      actionpack (= 5.0.1)
-      actionview (= 5.0.1)
-      activejob (= 5.0.1)
-      activemodel (= 5.0.1)
-      activerecord (= 5.0.1)
-      activesupport (= 5.0.1)
+    rails (5.0.2)
+      actioncable (= 5.0.2)
+      actionmailer (= 5.0.2)
+      actionpack (= 5.0.2)
+      actionview (= 5.0.2)
+      activejob (= 5.0.2)
+      activemodel (= 5.0.2)
+      activerecord (= 5.0.2)
+      activesupport (= 5.0.2)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 5.0.1)
+      railties (= 5.0.2)
       sprockets-rails (>= 2.0.0)
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    railties (5.0.1)
-      actionpack (= 5.0.1)
-      activesupport (= 5.0.1)
+    railties (5.0.2)
+      actionpack (= 5.0.2)
+      activesupport (= 5.0.2)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.18.0)
     rake (12.0.0)
     ranked-model (0.4.0)
       activerecord (>= 3.1.12)
@@ -255,7 +266,7 @@ GEM
       redis (~> 3)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
-    rest-client (2.0.0)
+    rest-client (2.0.1)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -300,18 +311,21 @@ GEM
     sunspot_solr (2.2.7)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    tilt (2.0.7)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.0.4)
+    uglifier (3.1.10)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
-    vuejs-rails (2.1.10)
+    unicorn (5.2.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
+    vuejs-rails (2.2.1)
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -320,6 +334,8 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -335,7 +351,6 @@ DEPENDENCIES
   cancan
   chartkick
   coffee-rails (~> 4.2)
-  config
   enumerize
   friendly_id
   glyphicons-rails
@@ -348,6 +363,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   nested_form
+  openteam-commons
   paperclip
   pg
   progress_bar
@@ -374,4 +390,4 @@ DEPENDENCIES
   zg_redis_user_connector!
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

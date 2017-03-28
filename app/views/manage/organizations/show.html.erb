@@ -6,7 +6,12 @@
 
     <hr>
     <% @organization.values.each do |value| %>
-      <%= render partial: "common/values/#{value.property.kind}", locals: {:value => value} %>
+      <% if value.get.present? %>
+        <p>
+          <strong><%= value.property.title %>:</strong>
+          <span><%= value.get %></span>
+        </p>
+      <% end %>
     <% end %>
 
     <% unless @organization.parent.nil? %>

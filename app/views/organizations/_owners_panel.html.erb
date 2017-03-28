@@ -15,7 +15,7 @@
     <% end %>
     <p><strong>Доступны следующие услуги:</strong>
       <% @organization.permit_services.each do |service| %>
-        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.friendly_id, 'my/organizations', @organization.id.to_s, service.to_s].join('/') %>
+        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.slug, 'my/organizations', @organization.id.to_s, service.to_s].join('/') %>
       <% end %>
     </p>
   <% end %>

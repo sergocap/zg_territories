@@ -1,6 +1,5 @@
 class Organization < ApplicationRecord
   belongs_to :category
-  belongs_to :city
   has_many :statistics, :dependent => :destroy
   has_many :values, :dependent => :destroy
   has_many :schedules, :dependent => :destroy
@@ -66,6 +65,10 @@ class Organization < ApplicationRecord
 
   def user
     User.find_by id: user_id
+  end
+
+  def city
+    MainCity.find_by :id, city_id
   end
 
   def managers

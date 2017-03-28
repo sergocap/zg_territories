@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315145448) do
+ActiveRecord::Schema.define(version: 20170328082724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,15 +73,6 @@ ActiveRecord::Schema.define(version: 20170315145448) do
     t.datetime "updated_at",                             null: false
     t.index ["category_id"], name: "index_category_properties_on_category_id", using: :btree
     t.index ["property_id"], name: "index_category_properties_on_property_id", using: :btree
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string   "title"
-    t.string   "slug"
-    t.integer  "time_zone_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["time_zone_id"], name: "index_cities_on_time_zone_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -250,12 +241,6 @@ ActiveRecord::Schema.define(version: 20170315145448) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["organization_id"], name: "index_statistics_on_organization_id", using: :btree
-  end
-
-  create_table "time_zones", force: :cascade do |t|
-    t.string   "info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "values", force: :cascade do |t|

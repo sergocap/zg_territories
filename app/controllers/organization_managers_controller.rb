@@ -31,7 +31,7 @@ class OrganizationManagersController < ApplicationController
     OrganizationManager.create(state: 'confirm',
                                user_id: old_user.id,
                                organization_id: @organization.id)
-    redirect_to organization_path(@organization, city_slug: @organization.city.friendly_id)
+    redirect_to organization_path(@organization, city_slug: @organization.city.slug)
   end
 
   def destroy
@@ -43,6 +43,6 @@ class OrganizationManagersController < ApplicationController
   def confirm_manager_role
     organization_manager = OrganizationManager.find(params[:id])
     organization_manager.update_attribute(:state, 'confirmed')
-    redirect_to organization_path(organization_manager.organization_id, city_slug: organization_manager.organization.city.friendly_id)
+    redirect_to organization_path(organization_manager.organization_id, city_slug: organization_manager.organization.city.slug)
   end
 end
