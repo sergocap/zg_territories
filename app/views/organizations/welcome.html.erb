@@ -1,4 +1,4 @@
 Выберите город
 <% @cities.each do |city| %>
-  <%= link_to city, Settings.app.main_page + city.friendly_id %>
+  <%= link_to city.title, Settings.app.main_page + city.slug %>
 <% end %>

@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_city
-    @current_city ||= City.where(slug: params['city_slug']).first
+    @current_city ||= MainCities.instance.find_by(:slug, params['city_slug'])
   end
 
   def default_url_options options={}
-    options.merge!(:city_slug => @current_city.friendly_id) if @current_city
+    options.merge!(:city_slug => @current_city.slug) if @current_city.any?
     options
   end
 

@@ -5,7 +5,6 @@ class My::OrganizationsController < ApplicationController
   before_action :find_categories, only: [:new, :create]
   before_action :find_category,   only: [:edit]
   before_filter :build_nested_objects, :only => [:edit, :new, :create]
-  before_action :scope_cities, only: [:edit, :new]
 
   def show
      show! do |format|
@@ -61,10 +60,6 @@ class My::OrganizationsController < ApplicationController
 
   def find_category
     @category = @organization.category
-  end
-
-  def scope_cities
-    @cities = City.all
   end
 
   def organization_params

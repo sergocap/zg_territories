@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
   before_action :find_category
 
   def welcome
-    @cities = City.all
+    @cities = MainCities.instance.all
   end
 
   def index
