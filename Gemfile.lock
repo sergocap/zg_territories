@@ -22,7 +22,7 @@ GIT
 
 GIT
   remote: https://github.com/sergocap/zg_header
-  revision: 117540c4cd1a0ce04fbf5ae1d1cc2b60af78f498
+  revision: 7a5be92c2010b6b01aa37cbd1834e3def052dbae
   specs:
     zg_header (0.1.0)
       configliere

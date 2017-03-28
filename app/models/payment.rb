@@ -42,11 +42,11 @@ class Payment < ApplicationRecord
   end
 
   def robokassa_login
-    Settings['robokassa']['login']
+    Settings['robokassa.login']
   end
 
   def pass1
-    Settings['robokassa']['secret_1']
+    Settings['robokassa.secret_1']
   end
 
   def invoiceID

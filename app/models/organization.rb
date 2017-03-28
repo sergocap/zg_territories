@@ -68,7 +68,7 @@ class Organization < ApplicationRecord
   end
 
   def city
-    MainCity.find_by :id, city_id
+    MainCities.instance.find_by :id, city_id
   end
 
   def managers

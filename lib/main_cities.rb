@@ -9,7 +9,7 @@ class MainCities
   end
 
   def update_datas
-    @datas = JSON.parse RestClient.get("#{Settings['profile']['url']}/api/main_cities")
+    @datas = JSON.parse RestClient.get(Settings['profile.api_main_cities'])
   end
 
   def all

@@ -5,6 +5,14 @@ class OrganizationsController < ApplicationController
   before_action :find_category
 
   def welcome
+    if result_slug = current_user.try(:main_city_slug)
+    else
+      city_id = ApiWithProfile.main_city_id_by_ip(request.remote_ip)['id']
+      city = MainCities.instance.find_by :id, city_id
+      result_slug = city.slug
+    end
+
+    redirect_to organizations_path(city_slug: result_slug)
     @cities = MainCities.instance.all
   end
 

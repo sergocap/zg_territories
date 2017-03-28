@@ -1,6 +1,6 @@
 module ApiWithProfile
   def self.get_users_id_by(key, value)
-    JSON.parse RestClient.get Settings['profile']['api'] + '/get_users_id_by', { params: { key: key, value: value } }
+    JSON.parse RestClient.get Settings['profile.api_get_users_id_by'], { params: { key: key, value: value } }
   end
 
   def self.send_mail_about_state(new_state, organization, message = nil)
@@ -46,7 +46,11 @@ module ApiWithProfile
 
 
   def self.send_mail(user_id, subject, body)
-    RestClient.get Settings['profile']['api'] + '/send_mail', { params: { user_id: user_id, subject: subject, body: body } }
+    RestClient.get Settings['profile.api_send_mail'], { params: { user_id: user_id, subject: subject, body: body } }
+  end
+
+  def self.main_city_id_by_ip(ip)
+    JSON.parse RestClient.get(Settings['profile.api_main_city_id_by_ip'], { params: { ip: ip } })
   end
 
   private
@@ -55,7 +59,7 @@ module ApiWithProfile
     action_view.class_eval do
        include Rails.application.routes.url_helpers
         def default_url_options
-          { :host => Settings['app']['host'] }
+          { :host => Settings['app.host'] }
         end
     end
     action_view
