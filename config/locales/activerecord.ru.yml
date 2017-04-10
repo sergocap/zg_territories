@@ -15,6 +15,7 @@ ru:
         office: Офис
         longitude: Долгота
         latitude: Ширина
+        area_coordinates: Координаты полигона
 
       category:
         <<: *commons

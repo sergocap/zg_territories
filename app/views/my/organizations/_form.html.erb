@@ -21,13 +21,6 @@
         <%= f.simple_fields_for :address %>
       </div>
 
-      <div class='js-schedules_fields <%= check_init_schedule %>'>
-          <h2>Расписание работы</h2>
-          <%= f.simple_fields_for :schedules %>
-          <%= f.link_to_add 'Добавить расписание', :schedules, class: 'js-new_schedule' %>
-          <%= f.error :schedules, style: 'color:#a94442' %>
-      </div>
-
       <%= f.input :city_id, as: :hidden,
         input_html: { value: @current_city.id } %>
 

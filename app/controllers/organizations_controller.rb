@@ -3,6 +3,7 @@ class OrganizationsController < ApplicationController
   inherit_resources
 
   before_action :find_category
+  layout :resolve_layout
 
   def welcome
     if result_slug = current_user.try(:main_city_slug)
@@ -43,6 +44,15 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+  def resolve_layout
+    case action_name
+    when 'index'
+      'map'
+    else
+      'application'
+    end
+  end
 
   def find_category
     @category = Category.find(params[:category]) if params[:category]

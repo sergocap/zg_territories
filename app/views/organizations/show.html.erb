@@ -29,16 +29,6 @@
       </p>
     <% end %>
 
-    <% if @organization.schedules.any? %>
-      <p>
-        <strong>Расписание:</strong>
-        <% @organization.schedules.each do |schedule| %>
-          <p><%= schedule.get_mode %></p>
-        <% end %>
-      </p>
-    <% end %>
-    <hr>
-
     <% @organization.values.each do |value| %>
       <% if value.get.present? %>
         <p>

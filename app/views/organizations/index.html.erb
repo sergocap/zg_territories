@@ -1,5 +1,11 @@
-<div class='organizations_main row'>
-  <div class='col-xs-8'>
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
+<div class='js-index_map_container'>
+  <div id='map'></div>
+</div>
+
+<div class='work_on_map_left_panel organizations_main'>
+    <%= render partial: 'layouts/categories_header' unless @current_city.empty? %>
+    <%= link_to 'Мои огранизации', my_organizations_path if current_user && @current_city.any? %>
     <%= link_to 'Добавить организацию', new_my_organization_path, class: 'btn btn-success' %>
     <h3>Организации</h3>
 
@@ -18,6 +24,5 @@
       </div>
     <% end %>
     <%= paginate @organizations %>
-  </div>
   <%= render partial: 'filter', locals: { category: @category } %>
 </div>
