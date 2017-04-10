@@ -1,11 +1,11 @@
-@init_index_map = ->
+@init_areas_map = ->
   ymaps.ready ->
     map = $('#map').draw_map()
 
   $.fn.draw_map = () ->
     $map = $(this)
-    latitude = $('.city_storage').data('latitude')
-    longitude = $('.city_storage').data('longitude')
+    latitude = $('.common_storage').data('latitude')
+    longitude = $('.common_storage').data('longitude')
     storages = $('.organization_storage')
     area_coordinates = []
     area_infos = []
@@ -41,12 +41,10 @@
         },
         fillColor: '#00FF00'
         strokeColor: '#0000FF'
-        opacity: 0.5
-        strokeWidth: 1
+        opacity: 0.7
+        strokeWidth: 0.1
         strokeStyle: 'shortdash')
 
-      map.geoObjects.add(myGeoObject);
+      map.geoObjects.add(myGeoObject)
 
     map
-
-

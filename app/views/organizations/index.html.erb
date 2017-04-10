@@ -1,6 +1,8 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
-<div class='city_storage' data-latitude='<%= @current_city.latitude %>' data-longitude='<%= @current_city.longitude %>'></div>
-<div class='js-index_map_container'>
+<div class='common_storage'
+  data-latitude='<%= @current_city.latitude %>'
+  data-longitude='<%= @current_city.longitude %>'></div>
+<div class='js-areas_map_container'>
   <div id='map'></div>
 </div>
 

@@ -9,5 +9,5 @@ $ ->
   init_slider() if $('.js-slider').length
   init_show_phone() if $('.js-show_phone').length
   init_organization_map() if $('.js-map_wrapper').length
-  init_index_map() if $('.js-index_map_container').length
+  init_areas_map() if $('.js-areas_map_container').length
   true

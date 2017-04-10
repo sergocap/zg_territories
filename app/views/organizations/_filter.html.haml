@@ -1,4 +1,4 @@
-.col-xs-4.filter
+.col-xs-10.filter
   %h4 Фильтр
   - hierarch_counter = 0
   = simple_form_for :search, url: organizations_path(category: category.try(:id)), method: :get do |f|
@@ -28,6 +28,7 @@
                 = render partial: 'organizations/filter_fields/standart_inputs', locals: {:f => f, :property => property, :params => params}
 
     = f.submit 'Фильтровать', class: 'btn btn-default'
-    = link_to 'Сбросить фильтр', organizations_path(category: category.try(:id))
+    %p
+      = link_to 'Сбросить фильтр', organizations_path(category: category.try(:id))
 
 
