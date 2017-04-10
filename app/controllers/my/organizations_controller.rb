@@ -65,11 +65,6 @@ class My::OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(
       [:user_id, :description, :bootsy_image_gallery_id, :category_id, :logotype, :title, :email, :phone, :city_id, :parent_id,
-         schedules_attributes: [:id, :from, :to, :monday, :tuesday,
-                                :wednesday, :thursday, :friday,
-                                :saturday, :sunday, :free,
-                                :comment, :_destroy,
-                                breaks_attributes: [:id, :from, :to, :_destroy]],
          values_attributes: [:string_value, :integer_value, :float_value,
                            :property_id, :id,
                            :boolean_value,
@@ -78,14 +73,13 @@ class My::OrganizationsController < ApplicationController
                            :root_hierarch_list_item_id,
                            :category_id,
                            list_item_ids: []],
-         address_attributes: [:city_id, :longitude, :latitude,
+         address_attributes: [:area_coordinates, :city_id, :longitude, :latitude,
                               :street, :house, :id, :office],
          gallery_images_attributes: [:element, :description, :_destroy, :id],
     ])
   end
 
   def build_nested_objects
-    @organization.schedules.any? || @organization.schedules.build
     @organization.address.present? || @organization.build_address
   end
 end

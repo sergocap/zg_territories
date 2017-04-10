@@ -10,7 +10,7 @@
 
           - if collection_for_filter(property.kind).any? && !property.show_on_filter_as.empty?
             %li
-              %h4= property
+              %p= property
               - if property.show_on_filter_as == 'range'
                 = render partial: 'organizations/filter_fields/range_inputs', locals: {:f => f, :property => property, :params => params}
               - if property.show_on_filter_as == 'range_for_numeric'
