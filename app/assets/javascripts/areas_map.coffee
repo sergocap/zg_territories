@@ -28,9 +28,6 @@
       right: 5
 
     for area, index in area_coordinates
-      geoObject = new ymaps.GeoObject
-        geometry:
-            type: 'Polygon'
       myGeoObject = new (ymaps.GeoObject)({
         geometry:
           type: 'Polygon'
@@ -46,5 +43,6 @@
         strokeStyle: 'shortdash')
 
       map.geoObjects.add(myGeoObject)
+
 
     map

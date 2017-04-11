@@ -63,6 +63,35 @@
     map.geoObjects.add(placemark)
 
     if $('.map_show_mode').length == 0
+
+      draw_polygon = () ->
+        area_coordinates = []
+        index = 0
+        map.geoObjects.each (obj) ->
+          if (obj.properties.get('id') == 'areamark')
+            area_coordinates[index] = obj.geometry.getCoordinates()
+            index += 1
+
+          if (obj.properties.get('id') == 'polygon')
+            map.geoObjects.remove obj
+
+        myGeoObject = new (ymaps.GeoObject)({
+          geometry:
+            type: 'Polygon'
+            coordinates: [area_coordinates,[]]
+            fillRule: 'nonZero'
+          properties:
+            id: 'polygon'
+          },
+          fillColor: '#00FF00'
+          strokeColor: '#0000FF'
+          opacity: 0.7
+          strokeWidth: 0.1
+          strokeStyle: 'shortdash')
+
+        map.geoObjects.add(myGeoObject)
+        true
+
       placemark.events.add 'dragend', (event) ->
         coordinates = placemark.geometry.getCoordinates()
         latitude_field.val (coordinates[0] + '').substring(0, 9)
@@ -70,12 +99,41 @@
         true
 
       map.events.add 'click', (event) ->
+        type_input = $('input[name=type_input_for_map]:checked')
         coordinates = event.get('coordPosition')
-        latitude_field.val (coordinates[0] + '').substring(0, 9)
-        longitude_field.val (coordinates[1] + '').substring(0, 9)
-        map.geoObjects.each (geoObject) ->
-          if (geoObject.properties.get('id') == 'placemark')
-            geoObject.geometry.setCoordinates [coordinates[0], coordinates[1]]
-          true
+        lat = (coordinates[0] + '').substring(0, 9)
+        lon = (coordinates[1] + '').substring(0, 9)
+        if type_input.val() == 'placemark'
+          latitude_field.val lat
+          longitude_field.val lon
+          map.geoObjects.each (geoObject) ->
+            if (geoObject.properties.get('id') == 'placemark')
+              geoObject.geometry.setCoordinates [coordinates[0], coordinates[1]]
+            true
+        else if type_input.val() == 'areamark'
+          areamark = new ymaps.GeoObject
+            geometry:
+              type: 'Point'
+              coordinates: [lat, lon]
+            properties:
+              id: 'areamark'
+          ,
+            draggable: true
+            iconImageHref: '/assets/areamark.png'
+            iconImageOffset: [-15, -40]
+            iconImageSize: [37, 42]
+
+          areamark.events.add 'click', (event) ->
+            map.geoObjects.remove areamark
+            draw_polygon()
+            true
+
+          areamark.events.add 'dragend', (event) ->
+            draw_polygon()
+            true
+
+          map.geoObjects.add(areamark)
+          draw_polygon()
+
         true
     map
