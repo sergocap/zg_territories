@@ -15,6 +15,11 @@
   <label><input type='radio' name='type_input_for_map' value="areamark"> Поставить метку для выбора области</label><br>
 </div>
 
+<div class='organization_storage'
+  data-infos='<%= @organization.title %>'
+  data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
+</div>
+
 <script type='text/x-template' id='map-template'>
   <div class='js-map_wrapper'>
     <div id='map'></div>
