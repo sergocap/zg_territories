@@ -6,12 +6,19 @@
   </div>
   <div class='col-xs-6'>
     <% if @organization.address.present? %>
-      <div class='js-map_wrapper map_show_mode'>
-        <div class='map-coordinates'
-          data-latitude='<%= @organization.latitude %>'
-          data-longitude='<%= @organization.longitude %>'></div>
+      <div class='common_storage'
+        data-latitude='<%= @organization.address.latitude %>'
+        data-longitude='<%= @organization.address.longitude %>'>
+      </div>
+      <div class='organization_storage'
+        data-infos='<%= @organization.title %>'
+        data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
+      </div>
+
+      <div class='js-areas_map_container'>
         <div id='map'></div>
-      </div><br>
+      </div>
+      <br>
     <% end %>
 
     <p><strong>Адрес:</strong> <%= @organization.address %></p>
