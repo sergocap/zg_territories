@@ -1,4 +1,18 @@
 module ApplicationHelper
+  def meta_field
+    @meta_field ||= MetaField.find_by_path request.path
+  end
+
+  def meta_field_item(item)
+    content = meta_field.send(item)
+    "<meta name='#{ item }' content='#{ content }' />".html_safe
+  end
+
+  def og_meta_field_item(item)
+    content = meta_field.send("og_#{ item }")
+    "<meta property='og:#{ item }' content='#{ content }' />".html_safe
+  end
+
   def collection_for_filter(kind)
     {
       'string' => [],
