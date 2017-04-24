@@ -28,6 +28,7 @@ class Organization < ApplicationRecord
 
   def can_service?(service)
     permit_services.include? service
+    true #загрушка для территорий
   end
 
   def permitted_logotype_url
@@ -36,6 +37,7 @@ class Organization < ApplicationRecord
 
   def permit_services
     service_packs.map {|pack| pack.has_services }.flatten.uniq
+    [:logotype, :gallery, :description_field]
   end
 
   def add_statistic(kind = 'show')

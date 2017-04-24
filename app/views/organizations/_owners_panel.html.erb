@@ -6,18 +6,10 @@
   <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>
   <%= link_to 'Статистика', statistics_my_organization_path(@organization) %>
   <%= link_to 'Управление', managing_my_organization_path(@organization) %>
-  <%= link_to 'Пакеты услуг', service_packs_my_organization_path(@organization) %>
-  <% if @organization.service_packs.any? %>
-    <p>У вас есть следующие пакеты услуг:</p>
-    <% @organization.service_packs.each do |service_pack| %>
-      <strong><%= service_pack.title %></strong>
-      <p>Осталось дней: <%= service_pack.left_days(@organization.id) %></p>
-    <% end %>
-    <p><strong>Доступны следующие услуги:</strong>
+    <p><strong>Дополнения:</strong>
       <% @organization.permit_services.each do |service| %>
         <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.slug, 'my/organizations', @organization.id.to_s, service.to_s].join('/') %>
       <% end %>
     </p>
-  <% end %>
 </div>
 
