@@ -44,6 +44,19 @@ module ApiWithProfile
     send_mail(user.id, subject, body)
   end
 
+  def self.send_mail_about_resource_request_state(user, organization, resource_request)
+    action_view = get_action_view
+
+    body = action_view.render partial: 'common/render_mails/about_resource_request_state',
+      locals: { :organization => organization, :resource_request => resource_request,
+                :user => user}, layout: false
+
+    subject = '[ZnaiGorod] Ответ на заявку о владении ресурса'
+
+    send_mail(user.id, subject, body)
+
+  end
+
 
   def self.send_mail(user_id, subject, body)
     RestClient.get Settings['profile.api_send_mail'], { params: { user_id: user_id, subject: subject, body: body } }

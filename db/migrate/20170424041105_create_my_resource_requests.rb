@@ -5,6 +5,7 @@ class CreateMyResourceRequests < ActiveRecord::Migration[5.0]
       t.string      :phone
       t.string      :email
       t.belongs_to  :organization
+      t.string      :status
       t.timestamps
     end
   end

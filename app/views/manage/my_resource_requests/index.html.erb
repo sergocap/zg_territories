@@ -1,0 +1,16 @@
+<div class='row'>
+  <div class='col-xs-10'>
+    <h3>Заявки</h3>
+    <table width='50%'>
+      <% @my_resource_requests.each do |request| %>
+        <tr>
+          <td><%= request.user.fullname %></td>
+          <td><%= request.organization.title %></td>
+          <td><%= request.created_at.to_date %></td>
+          <td><%= link_to 'Просмотреть', manage_my_resource_request_path(request) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

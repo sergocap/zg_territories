@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170424041105) do
     t.string   "phone"
     t.string   "email"
     t.integer  "organization_id"
+    t.string   "status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["organization_id"], name: "index_my_resource_requests_on_organization_id", using: :btree

@@ -1,0 +1,8 @@
+<h3>Заявка на владение</h3>
+<p><strong>Пользователь: </strong><%= @user.fullname %></p>
+<p><strong>Ресурс: </strong><%= link_to @organization.title, organization_path(@organization.city.slug, @organization) %></p>
+<p><strong>Телефон: </strong><%= resource.phone %></p>
+<p><strong>Email: </strong><%= resource.email %></p>
+<%= link_to 'Разрешить', allow_manage_my_resource_request_path(resource), class: 'btn btn-success' %>
+<%= link_to 'Отказать', disallow_manage_my_resource_request_path(resource), class: 'btn btn-danger' %>
+<%= link_to 'Отмена', manage_my_resource_requests_path %>

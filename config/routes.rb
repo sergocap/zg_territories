@@ -16,6 +16,11 @@ Rails.application.routes.draw do
         resources :properties
       end
     end
+
+    resources :my_resource_requests do
+      get 'allow', on: :member
+      get 'disallow', on: :member
+    end
   end
 
   scope '/:city_slug' do
