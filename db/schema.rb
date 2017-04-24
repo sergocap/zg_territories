@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410080538) do
+ActiveRecord::Schema.define(version: 20170424041105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(version: 20170410080538) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["property_id"], name: "index_list_items_on_property_id", using: :btree
+  end
+
+  create_table "my_resource_requests", force: :cascade do |t|
+    t.uuid     "user_id"
+    t.string   "phone"
+    t.string   "email"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_my_resource_requests_on_organization_id", using: :btree
   end
 
   create_table "organization_managers", force: :cascade do |t|

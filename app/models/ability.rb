@@ -24,6 +24,7 @@ class Ability
       can :create, Payment
       can [:show, :index], Organization, :city_id => city.id if city
       can [:service_packs, :show_phone, :welcome], Organization
+      can [:new, :create], MyResourceRequest if user.present?
     end
   end
 end

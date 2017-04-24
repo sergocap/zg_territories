@@ -22,6 +22,7 @@
     <% end %>
 
     <p><strong>Адрес:</strong> <%= @organization.address %></p>
+    <%= link_to 'Моя организация', new_organization_my_resource_request_path(@organization) %>
     <p><strong>Владелец:</strong> <%= @organization.user.fullname %></p>
 
     <% if @organization.email.present? %>

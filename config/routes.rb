@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   scope '/:city_slug' do
     root 'organizations#index'
-    resources :organizations, only: [:welcome, :index, :show]
+    resources :organizations, only: [:welcome, :index, :show] do
+      resources :my_resource_requests, only: [:new, :create]
+    end
 
     namespace :my do
       resources :organizations do

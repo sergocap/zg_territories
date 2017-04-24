@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class='col-xs-6'>
+    <h4>Заполните заявку</h4>
+    <%= simple_form_for [@organization, @my_resource_request] do |f| %>
+      <%= f.input :organization_id, input_html: { value: @organization.id } %>
+      <%= f.input :user_id, input_html: { value: @current_user.id }  %>
+      <%= f.input :phone %>
+      <%= f.input :email %>
+      <%= f.submit 'Готово' %>
+    <% end %>
+  </div>
+</div>
+

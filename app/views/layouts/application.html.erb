@@ -11,9 +11,9 @@
 
   <body>
     <%= render partial: 'zg_header/zg_header' %>
-    <%= render partial: 'layouts/categories_header' unless @current_city.empty? %>
+    <%= render partial: 'layouts/categories_header' if @current_city.present? %>
     <div class='container'>
-      <%= link_to 'Мои огранизации', my_organizations_path if current_user && @current_city.any? %>
+      <%= link_to 'Мои огранизации', my_organizations_path if current_user && @current_city.present? %>
       <%= yield %>
     </div>
     <%= render partial: 'layouts/footer' %>

@@ -1,0 +1,2 @@
+class MyResourceRequest < ApplicationRecord
+end
