@@ -22,6 +22,8 @@ class Organization < ApplicationRecord
 
   include SettingsStateMachine
   include Bootsy::Container
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
 
   delegate :latitude, :longitude, :to => :address, :allow_nil => true
   after_initialize :set_initial_status
