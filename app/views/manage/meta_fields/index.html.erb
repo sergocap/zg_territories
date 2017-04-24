@@ -1,0 +1,17 @@
+<div class='row'>
+  <div class='col-xs-10'>
+    <h3>Мета-описания страниц</h3>
+    <table width='50%'>
+      <% @meta_fields.each do |meta| %>
+        <tr>
+          <td><%= meta.path %></td>
+          <td><%= link_to 'Редактировать', edit_manage_meta_field_path(meta) %></td>
+          <td><%= link_to 'Просмотреть', manage_meta_field_path(meta) %></td>
+          <td><%= link_to 'Удалить', manage_meta_field_path(meta), method: 'delete', data: { confirm: 'Вы уверены?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to 'Добавить мета-описание', new_manage_meta_field_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+

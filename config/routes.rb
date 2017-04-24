@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get 'allow', on: :member
       get 'disallow', on: :member
     end
+
+    resources :meta_fields
   end
 
   scope '/:city_slug' do

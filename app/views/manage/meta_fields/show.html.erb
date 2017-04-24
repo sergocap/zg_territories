@@ -1,0 +1,48 @@
+<div class='show'>
+  <h1><%= resource.path %></h1>
+  <%= link_to 'Редактировать мета', edit_manage_meta_field_path(resource) %>
+  <%= link_to 'Перейти к списку', manage_meta_fields_path %>
+
+  <div class='attribute'>
+    <strong>Title</strong>
+    <span><%= resource.title %></span>
+  </div>
+
+  <div class='attribute'>
+    <strong>H1</strong>
+    <span><%= resource.header %></span>
+  </div>
+
+  <div class='attribute'>
+    <strong>Keywords</strong>
+    <span><%= resource.keywords %></span>
+  </div>
+
+  <div class='attribute'>
+    <strong>Description</strong>
+    <span><%= resource.description %></span>
+  </div>
+
+  <div class='attribute'>
+    <strong>OG title</strong>
+    <span><%= resource.og_title %></span>
+  </div>
+
+  <div class='attribute'>
+    <strong>OG description</strong>
+    <span><%= resource.og_description %></span>
+  </div>
+
+  <div class='snapshot'>
+    <strong>OG image</strong>
+    <%= content_tag(:p, image_tag(resource.og_image.url)) if resource.og_image.present? %>
+  </div>
+
+  <div class='attribute'>
+    <strong>Introduction</strong>
+  </div>
+
+  <div class="introduction">
+    <%= resource.introduction.html_safe %>
+  </div>
+</div>

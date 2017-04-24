@@ -1,0 +1,13 @@
+<%= simple_form_for [:manage, @meta_field] do |f| %>
+  <%= f.input :path, as: :string %>
+  <%= f.input :title, as: :string %>
+  <%= f.input :header, as: :string %>
+  <%= f.input :keywords %>
+  <%= f.input :description %>
+  <%= f.input :og_title, as: :string %>
+  <%= f.input :og_description %>
+  <%= f.input :og_image %>
+  <%= f.bootsy_area :introduction, rows: 20, cols: 100, 'data-bootsy-locale': :ru %>
+  <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+  <%= link_to 'Отмена', manage_meta_fields_path %>
+<% end %>

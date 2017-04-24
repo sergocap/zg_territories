@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424054233) do
+ActiveRecord::Schema.define(version: 20170424074815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,23 @@ ActiveRecord::Schema.define(version: 20170424054233) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["property_id"], name: "index_list_items_on_property_id", using: :btree
+  end
+
+  create_table "meta_fields", force: :cascade do |t|
+    t.text     "path"
+    t.text     "title"
+    t.text     "header"
+    t.text     "keywords"
+    t.text     "description"
+    t.text     "introduction"
+    t.text     "og_title"
+    t.text     "og_description"
+    t.string   "og_image_file_name"
+    t.string   "og_image_content_type"
+    t.integer  "og_image_file_size"
+    t.datetime "og_image_updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "my_resource_requests", force: :cascade do |t|
