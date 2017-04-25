@@ -59,6 +59,7 @@ class Value < ApplicationRecord
       when 'string'
         string_value
       when 'link'
+        return '' unless string_value.present?
         "<a target='blank' href=\"#{string_value}\">#{string_value.truncate(50)}</a>".html_safe
       end
     when :float
