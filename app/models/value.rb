@@ -7,8 +7,12 @@ class Value < ApplicationRecord
   has_many :list_items, through: :list_item_values
 
   def displayed?
+    category_property.show_on_public
+  end
+
+  def category_property
     CategoryProperty.where(:property_id => property.id,
-                           :category_id => organization.category.id).first.show_on_public
+                           :category_id => organization.category.id).first
   end
 
   searchable do
@@ -51,7 +55,12 @@ class Value < ApplicationRecord
     when :boolean
       boolean_value ? 'Есть' : 'Нет'
     when :string
-      string_value
+      case category_property.show_as
+      when 'string'
+        string_value
+      when 'link'
+        "<a target='blank' href=\"#{string_value}\">#{string_value.truncate(50)}</a>".html_safe
+      end
     when :float
       float_value
     when :integer

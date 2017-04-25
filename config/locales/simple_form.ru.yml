@@ -12,6 +12,7 @@ ru:
           select: Одиночный выбор (Выпадающий список)
           boolean: Логическое значение
           string: Строка
+          link: Ссылка
           numeric: Число
           hierarch_limited_list: Иерархичный список
 

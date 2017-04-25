@@ -32,7 +32,7 @@ module ApplicationHelper
 
   def collection_for_show_as(kind)
     {
-      'string' => [:string],
+      'string' => [:string, :link],
       'limited_list' => [:radio_buttons, :select],
       'unlimited_list' => [:check_boxes],
       'hierarch_limited_list' => [:hierarch_limited_list],
