@@ -6,6 +6,10 @@ class Value < ApplicationRecord
   has_many :list_item_values, dependent: :destroy
   has_many :list_items, through: :list_item_values
 
+  def displayed?
+    CategoryProperty.where(:property_id => property.id,
+                           :category_id => organization.category.id).first.show_on_public
+  end
 
   searchable do
     integer :list_item_ids, multiple: true do

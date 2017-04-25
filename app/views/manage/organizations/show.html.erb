@@ -14,6 +14,22 @@
       <% end %>
     <% end %>
 
+    <% if @organization.can_service?(:gallery) && @organization.gallery_images.any? %>
+      <div>
+        <p><strong>Галерея</strong></p>
+        <% @organization.gallery_images.each do |image| %>
+          <%= image_tag image.element.url, height: '100px' %>
+        <% end %>
+      </div><br>
+    <% end %>
+
+    <% if @organization.can_service?(:description_field) && @organization.description.present? %>
+      <div>
+        <strong>Описание</strong>
+        <p><%= @organization.description.html_safe %></p>
+      </div>
+    <% end %>
+
     <% unless @organization.parent.nil? %>
       <h3>Родительская организация
         <%= link_to @organization.parent.title, organization_path(@organization.parent) %>

@@ -38,7 +38,7 @@
     <% end %>
 
     <% @organization.values.each do |value| %>
-      <% if value.get.present? %>
+      <% if value.get.present? && value.displayed? %>
         <p>
           <strong><%= value.property.title %>:</strong>
           <span><%= value.get %></span>
