@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ЗГ Территории</title>
-    <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= yield :yandex_map_scripts %>
-    <% if meta_field.present? %>
-      <%= meta_field_item('keywords') %>
-      <%= meta_field_item('title') %>
-      <%= meta_field_item('header') %>
-      <%= meta_field_item('description') %>
-      <%= meta_field_item('introduction') %>
-      <%= og_meta_field_item('title') %>
-      <%= og_meta_field_item('description') %>
-      <%= og_meta_field_item('image') %>
-    <% end %>
+    <%= render partial: 'layouts/meta_description' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>

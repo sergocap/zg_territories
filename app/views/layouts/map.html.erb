@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ЗГ Территории</title>
-    <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= yield :yandex_map_scripts %>
+    <%= render partial: 'layouts/meta_description' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body class='index_map'>

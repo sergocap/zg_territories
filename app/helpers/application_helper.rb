@@ -1,15 +1,20 @@
 module ApplicationHelper
   def meta_field
-    @meta_field ||= MetaField.find_by_path request.path
+    @meta_field ||= MetaField.where(path: request.path).first
   end
 
   def meta_field_item(item)
-    content = meta_field.send(item)
+    content = meta_field.try(:send, item) || Settings['meta_field'][item]
     "<meta name='#{ item }' content='#{ content }' />".html_safe
   end
 
+  def meta_title
+    content = meta_field.try(:title) || Settings['meta_field']['title']
+    "<title>#{ content }</title>".html_safe
+  end
+
   def og_meta_field_item(item)
-    content = meta_field.send("og_#{ item }")
+    content = meta_field.try(:send, "og_#{ item }") || Settings['og_meta_field'][item]
     "<meta property='og:#{ item }' content='#{ content }' />".html_safe
   end
 
