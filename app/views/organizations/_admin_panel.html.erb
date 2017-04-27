@@ -2,7 +2,7 @@
   <%= link_to 'Редактировать', edit_manage_organization_path(@organization) %>
     <p><strong>Дополнения:</strong>
       <% @organization.permit_services.each do |service| %>
-        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.slug, 'manage/organizations', @organization.id.to_s, service.to_s].join('/') %>
+        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/manage/organizations', @organization.id.to_s, service.to_s].join('/') %>
       <% end %>
     </p>
 </div>

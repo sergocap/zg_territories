@@ -25,6 +25,10 @@ class Manage::OrganizationsController < Manage::ApplicationController
      end
   end
 
+  def update
+    update! { organization_path(@organization, city_slug: @organization.city.slug) }
+  end
+
   private
   def find_category
     @category = @organization.category

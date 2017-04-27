@@ -21,9 +21,6 @@
         <%= f.simple_fields_for :address %>
       </div>
 
-      <%= f.input :city_id, as: :hidden,
-        input_html: { value: @current_city.id } %>
-
       <%= f.input :parent_id, as: :hidden,
         input_html: { value: params[:parent_id] } %>
 

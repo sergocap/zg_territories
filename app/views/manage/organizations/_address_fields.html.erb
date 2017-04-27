@@ -1,8 +1,8 @@
 <div>
   <h2>Адрес</h2>
-  <%= f.input :city_id, as: :hidden, input_html: { value: (@organization.city_id || @current_city.id) } %>
-  <%= f.input :city_title, as: :hidden, input_html: { value: @current_city.full_address } %>
-  <h4><%= @current_city.full_address %></h4>
+  <%= f.input :city_id, as: :hidden, input_html: { value: (@organization.city_id) } %>
+  <%= f.input :city_title, as: :hidden, input_html: { value: @organization.city.full_address } %>
+  <h4><%= @organization.city.full_address %></h4>
   <%= f.input :street %>
   <%= f.input :house %>
   <%= f.input :office %>
