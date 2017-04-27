@@ -1,0 +1,26 @@
+<%= f.input :from %>
+<%= f.input :to %>
+<div class='days'>
+  <%= f.input :monday %>
+  <%= f.input :tuesday %>
+  <%= f.input :wednesday %>
+  <%= f.input :thursday %>
+  <%= f.input :friday %>
+  <%= f.input :saturday, input_html: { class: 'js-ignore_init' } %>
+  <%= f.input :sunday, input_html: { class: 'js-ignore_init' } %>
+</div>
+<%= f.input :free %>
+<%= f.simple_fields_for :breaks do |b| %>
+  <div class='break_fields'>
+    <label>Перерыв</label>
+    <%= b.input :from %>
+    <%= b.input :to %>
+    <div><%= b.link_to_remove 'Удалить перерыв' %></div>
+  </div>
+<% end  %>
+<%= f.link_to_add 'Добавить перерыв', :breaks %>
+<div>
+  <label>Комментарий</label>
+  <%= f.input :comment, as: :text, label: false %>
+</div>
+<%= f.link_to_remove 'Удалить расписание' %>

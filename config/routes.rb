@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   namespace :manage do
     root 'organizations#index'
     resources :organizations do
+      get 'logotype', on: :member
+      get 'gallery', on: :member
+      get 'description_field', on: :member
+      get 'statistics', on: :member
       get 'change_state', on: :member
     end
 

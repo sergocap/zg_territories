@@ -1,0 +1,17 @@
+<div class='row'>
+  <div class='col-xs-10'>
+    <h3><%= link_to 'К организации', manage_organization_path(@organization)  %></h3>
+    <h1>Полное описание</h1>
+    <%= simple_form_for [:manage, @organization] do |f| %>
+      <%= f.bootsy_area :description,
+        label: false,
+        rows: 20,
+        cols: 110,
+        'data-bootsy-locale': :ru %>
+      <div>
+        <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+        <%= link_to 'Отмена', :back %>
+      </div>
+    <% end %>
+  </div>
+</div>

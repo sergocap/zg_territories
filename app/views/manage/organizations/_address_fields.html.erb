@@ -1,0 +1,27 @@
+<div>
+  <h2>Адрес</h2>
+  <%= f.input :city_id, as: :hidden, input_html: { value: (@organization.city_id || @current_city.id) } %>
+  <%= f.input :city_title, as: :hidden, input_html: { value: @current_city.full_address } %>
+  <h4><%= @current_city.full_address %></h4>
+  <%= f.input :street %>
+  <%= f.input :house %>
+  <%= f.input :office %>
+  <%= f.input :longitude %>
+  <%= f.input :latitude %>
+  <%= f.input :area_coordinates %>
+  <div is='map-template'>
+  </div>
+  <label><input type='radio' name='type_input_for_map' value="placemark" checked> Поставить метку</label><br>
+  <label><input type='radio' name='type_input_for_map' value="areamark"> Поставить метку для выбора области</label><br>
+</div>
+
+<div class='organization_storage'
+  data-infos='<%= @organization.title %>'
+  data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
+</div>
+
+<script type='text/x-template' id='map-template'>
+  <div class='js-map_wrapper'>
+    <div id='map'></div>
+  </div>
+</script>
