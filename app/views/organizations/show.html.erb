@@ -77,7 +77,7 @@
     <% end %>
   </div>
   <div class='col-xs-4'>
-    <% if @organization.owner?(current_user) %>
+    <% if (current_user.present? && current_user.has_permission?(role: 'admin')) || @organization.owner?(current_user) %>
       <%= render partial: 'owners_panel' %>
     <% end %>
     <% if @organization.manager?(current_user) %>
