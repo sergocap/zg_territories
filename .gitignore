@@ -33,3 +33,4 @@ config/environments/*.local.yml
 /solr/*
 /public/system/*
 /public/uploads/*
+/public/assets/*
