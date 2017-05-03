@@ -60,6 +60,8 @@
       iconImageOffset: [-15, -40]
       iconImageSize: [37, 42]
 
+    map.controls.add('typeSelector');
+
     map.geoObjects.add(placemark)
     for p in area_coordinates[0]
       draw_areamark(map, p[0], p[1])

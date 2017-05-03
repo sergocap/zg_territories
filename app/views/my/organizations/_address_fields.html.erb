@@ -1,6 +1,6 @@
 <div>
   <h2>Расположение</h2>
-  <h4><%= @current_city.full_address %></h4>
+  <h4><%= @current_city.country_region_address %></h4>
   <%= f.input :city_title, as: :hidden, input_html: { value: @current_city.full_address } %>
   <%= f.input :longitude, as: :hidden %>
   <%= f.input :latitude, as: :hidden %>
