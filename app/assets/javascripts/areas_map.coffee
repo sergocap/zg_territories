@@ -24,8 +24,10 @@
       minZoom: 12
 
     map.controls.add 'zoomControl',
+      left: 5
       top: 5
-      right: 5
+
+    map.controls.add('typeSelector');
 
     for area, index in area_coordinates
       myGeoObject = new (ymaps.GeoObject)({
@@ -37,10 +39,10 @@
           balloonContent: area_infos[index]
         },
         fillColor: '#4611a7'
-        strokeColor: '#0000FF'
-        opacity: 0.7
-        strokeWidth: 0.1
-        strokeStyle: 'shortdash')
+        strokeColor: '#FFF'
+        opacity: 0.8
+        strokeWidth: 1
+        strokeStyle: 'solid')
 
       map.geoObjects.add(myGeoObject)
 

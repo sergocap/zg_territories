@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
-
+    <%= render partial: 'layouts/meta_description' %>
     <link href="/assets/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="/assets/elegant-fonts.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="/assets/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="/assets/style.css" type="text/css">
+    <link rel="stylesheet" href="/assets/maps.css" type="text/css">
 
     <title>Locations - Directory Listing HTML Template</title>
 
@@ -256,6 +257,10 @@
                                     <h2>Описание</h2>
                                     <p><%= @organization.description.html_safe %></p>
                                 </section>
+                                <section>
+                                    <h2>Репост</h2>
+                                    <div class="social-share"></div>
+                                </section>
                             </section>
                         </div>
                         <!--end col-md-6-->
@@ -309,10 +314,6 @@
                                       </p>
                                     <% end %>
                                   <% end %>
-                            </section>
-                            <section>
-                                <h2>Репост</h2>
-                                <div class="social-share"></div>
                             </section>
                         </div>
                         <!--end col-md-3-->
