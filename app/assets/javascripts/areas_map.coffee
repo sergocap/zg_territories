@@ -36,13 +36,12 @@
         properties:
           balloonContent: area_infos[index]
         },
-        fillColor: '#00FF00'
+        fillColor: '#4611a7'
         strokeColor: '#0000FF'
         opacity: 0.7
         strokeWidth: 0.1
         strokeStyle: 'shortdash')
 
       map.geoObjects.add(myGeoObject)
-
 
     map

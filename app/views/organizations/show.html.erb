@@ -262,8 +262,22 @@
                         <div class="col-md-4 col-sm-12">
                             <section>
                                 <div class="detail-sidebar">
+
                                     <section class="shadow">
-                                        <div class="map height-250px" id="map-detail"></div>
+                                      <% if @organization.address.present? %>
+                                        <div class='common_storage'
+                                          data-latitude='<%= @organization.latitude %>'
+                                          data-longitude='<%= @organization.longitude %>'>
+                                        </div>
+                                        <div class='organization_storage'
+                                          data-infos='<%= @organization.title %>'
+                                          data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
+                                        </div>
+
+                                        <div class='js-areas_map_container'>
+                                          <div class='map map_show_mode height-250px' id='map'></div>
+                                        </div>
+                                      <% end %>
                                         <!--end map-->
                                         <div class="content">
                                             <div class="vertical-aligned-elements">
@@ -297,7 +311,7 @@
                                   <% end %>
                             </section>
                             <section>
-                                <h2>Social Share</h2>
+                                <h2>Репост</h2>
                                 <div class="social-share"></div>
                             </section>
                         </div>
@@ -480,25 +494,18 @@
 <!--end page-wrapper-->
 <a href="#" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
+<%= javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 <script type="text/javascript" src="/assets/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-<script type="text/javascript" src="/assets/richmarker-compiled.js"></script>
 <script type="text/javascript" src="/assets/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/assets/jquery.nouislider.all.min.js"></script>
 <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/assets/custom.js"></script>
-<script type="text/javascript" src="/assets/maps.js"></script>
-
+<script type="text/javascript" src="/assets/areas_map.js"></script>
 <script>
-    rating(".visitor-rating");
-    var _latitude = <%= @organization.address.latitude %>;
-    var _longitude = <%= @organization.address.longitude %>;
-    var element = "map-detail";
-    simpleMap(_latitude,_longitude, element);
+  init_areas_map()
 </script>
-
 </body>
 
