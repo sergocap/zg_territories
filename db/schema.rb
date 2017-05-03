@@ -10,18 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424074815) do
+ActiveRecord::Schema.define(version: 20170503095043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "city_id"
-    t.string   "street"
-    t.string   "house"
-    t.string   "region"
-    t.string   "office"
     t.string   "longitude"
     t.string   "latitude"
     t.integer  "organization_id"
@@ -184,8 +179,6 @@ ActiveRecord::Schema.define(version: 20170424074815) do
     t.integer  "category_id"
     t.integer  "city_id"
     t.string   "state"
-    t.string   "email"
-    t.string   "phone"
     t.string   "logotype_file_name"
     t.string   "logotype_content_type"
     t.integer  "logotype_file_size"

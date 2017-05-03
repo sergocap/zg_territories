@@ -255,7 +255,11 @@
                             <section>
                                 <section style='overflow:hidden'>
                                     <h2>Описание</h2>
-                                    <p><%= @organization.description.html_safe %></p>
+                                    <% if @organization.description.present? %>
+                                      <p><%= @organization.description.html_safe %></p>
+                                    <% else %>
+                                      <p>Описание отсутствует</p>
+                                    <% end %>
                                 </section>
                                 <section>
                                     <h2>Репост</h2>
@@ -289,10 +293,10 @@
                                             </div>
                                             <address>
                                                 <figure><i class="fa fa-map-marker"></i><%= @organization.city.country_region_address %></figure>
-                                                <% if @organization.email.present? %>
+                                                <% if false && @organization.email.present? %>
                                                   <figure><i class="fa fa-envelope"></i><%= mail_to @organization.email %></figure>
                                                 <% end %>
-                                                <% if @organization.phone.present? %>
+                                                <% if false && @organization.phone.present? %>
                                                   <figure><i class="fa fa-phone"></i><%= @organization.phone %></figure>
                                                 <% end %>
                                                 <% if false %>

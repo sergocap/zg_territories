@@ -55,6 +55,7 @@ class Value < ApplicationRecord
     when :boolean
       boolean_value ? 'Есть' : 'Нет'
     when :string
+      return string_value unless self.persisted?
       case category_property.show_as
       when 'string'
         string_value

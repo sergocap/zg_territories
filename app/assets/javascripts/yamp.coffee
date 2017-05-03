@@ -1,8 +1,6 @@
 @init_organization_map = () ->
   ymaps.ready ->
     if $('.map_show_mode').length == 0
-      street_field = $('#organization_address_attributes_street')
-      house_field = $('#organization_address_attributes_house')
       latitude_field = $('#organization_address_attributes_latitude')
       longitude_field = $('#organization_address_attributes_longitude')
       city_val = $('#organization_address_attributes_city_title').val()
@@ -10,10 +8,6 @@
       map = $('#map').draw_organization_map()
       if longitude_field.val() == ''
         $(map).set_map_coordinates(city_val)
-
-      $('#organization_address_attributes_house, #organization_address_attributes_street').keyup ->
-        return false if street_field.val() == '' || house_field.val() == '' || city_val == ''
-        $(map).set_map_coordinates([city_val, street_field.val(), house_field.val()].join(','))
     else
       map = $('#map').draw_organization_map()
 

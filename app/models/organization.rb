@@ -15,7 +15,6 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :address,   :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title
   validates_presence_of :category, :message => 'Укажите категорию'
-  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'Неверный email'
   validate :check_necessarily
   has_attached_file :logotype, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/missing.jpg"
   validates_attachment_content_type :logotype, content_type: /\Aimage\/.*\z/

@@ -64,7 +64,7 @@ class My::OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(
-      [:user_id, :description, :bootsy_image_gallery_id, :category_id, :logotype, :title, :email, :phone, :city_id, :parent_id,
+      [:user_id, :description, :bootsy_image_gallery_id, :category_id, :logotype, :title, :city_id, :parent_id,
          values_attributes: [:string_value, :integer_value, :float_value,
                            :property_id, :id,
                            :boolean_value,
@@ -73,8 +73,7 @@ class My::OrganizationsController < ApplicationController
                            :root_hierarch_list_item_id,
                            :category_id,
                            list_item_ids: []],
-         address_attributes: [:area_coordinates, :city_id, :longitude, :latitude,
-                              :street, :house, :id, :office],
+         address_attributes: [:area_coordinates, :longitude, :latitude],
          gallery_images_attributes: [:element, :description, :_destroy, :id],
     ])
   end
