@@ -1,0 +1,26 @@
+/* line 3, /home/s/new_zg/zg_territories/app/assets/stylesheets/maps.sass */
+.index_map .js-areas_map_container #map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+/* line 8, /home/s/new_zg/zg_territories/app/assets/stylesheets/maps.sass */
+.index_map .work_on_map_left_panel {
+  position: absolute;
+  padding: 10px;
+  width: 24%;
+  display: inline-block;
+  background: white;
+  box-shadow: 1px 1px 20px;
+}
+
+/* line 18, /home/s/new_zg/zg_territories/app/assets/stylesheets/maps.sass */
+.organization_show .js-areas_map_container #map {
+  width: 100%;
+  height: 300px;
+}
+
+/* line 22, /home/s/new_zg/zg_territories/app/assets/stylesheets/maps.sass */
+.ymaps-copyrights-pane {
+  display: none !important;
+}
