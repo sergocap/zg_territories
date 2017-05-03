@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503095043) do
+ActiveRecord::Schema.define(version: 20170503100802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 20170503095043) do
     t.index ["property_id"], name: "index_category_properties_on_property_id", using: :btree
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "value"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_emails_on_organization_id", using: :btree
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -102,6 +110,15 @@ ActiveRecord::Schema.define(version: 20170503095043) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["property_id"], name: "index_hierarch_list_items_on_property_id", using: :btree
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "title"
+    t.string   "href"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_links_on_organization_id", using: :btree
   end
 
   create_table "list_item_values", force: :cascade do |t|
@@ -212,6 +229,14 @@ ActiveRecord::Schema.define(version: 20170503095043) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", using: :btree
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "value"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_phones_on_organization_id", using: :btree
   end
 
   create_table "properties", force: :cascade do |t|

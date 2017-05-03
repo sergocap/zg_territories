@@ -8,6 +8,16 @@ ru:
         phone: Телефон
         email: Email
 
+      phone:
+        value: Телефон
+
+      email:
+        value: Email
+
+      link:
+        <<: *commons
+        href: Ссылка
+
       address:
         city_id: Город
         street: Улица

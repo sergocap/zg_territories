@@ -2,6 +2,9 @@ class Organization < ApplicationRecord
   belongs_to :category
   has_many :statistics, :dependent => :destroy
   has_many :values, :dependent => :destroy
+  has_many :phones, :dependent => :destroy
+  has_many :emails, :dependent => :destroy
+  has_many :links,  :dependent => :destroy
   has_many :schedules, :dependent => :destroy
   has_many :children, class_name: 'Organization', foreign_key: 'parent_id'
   has_many :organization_managers,  :dependent => :destroy
@@ -13,6 +16,9 @@ class Organization < ApplicationRecord
   accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :gallery_images, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :address,   :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :phones,    :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :emails,    :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :links,    :reject_if => :all_blank, :allow_destroy => true
   validates_presence_of :title
   validates_presence_of :category, :message => 'Укажите категорию'
   validate :check_necessarily

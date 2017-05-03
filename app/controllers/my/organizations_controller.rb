@@ -74,11 +74,17 @@ class My::OrganizationsController < ApplicationController
                            :category_id,
                            list_item_ids: []],
          address_attributes: [:area_coordinates, :longitude, :latitude],
+         phones_attributes: [:value, :id, :_destroy],
+         emails_attributes: [:value, :id, :_destroy],
+         links_attributes: [:title, :href, :id, :_destroy],
          gallery_images_attributes: [:element, :description, :_destroy, :id],
     ])
   end
 
   def build_nested_objects
     @organization.address.present? || @organization.build_address
+    @organization.phones.present? ||  @organization.phones.build
+    @organization.emails.present? ||  @organization.emails.build
+    @organization.links.present? ||    @organization.links.build
   end
 end

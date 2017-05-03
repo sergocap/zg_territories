@@ -293,14 +293,24 @@
                                             </div>
                                             <address>
                                                 <figure><i class="fa fa-map-marker"></i><%= @organization.city.country_region_address %></figure>
-                                                <% if false && @organization.email.present? %>
-                                                  <figure><i class="fa fa-envelope"></i><%= mail_to @organization.email %></figure>
+                                                <% if @organization.emails.present? %>
+                                                  <figure><i class="fa fa-envelope"></i>
+                                                    <% @organization.emails.each do |email| %>
+                                                      <%= mail_to email.value %>
+                                                    <% end %>
+                                                  </figure>
                                                 <% end %>
-                                                <% if false && @organization.phone.present? %>
-                                                  <figure><i class="fa fa-phone"></i><%= @organization.phone %></figure>
+                                                <% if @organization.phones.present? %>
+                                                  <figure><i class="fa fa-phone"></i>
+                                                    <%= @organization.phones.map(&:value).join(', ') %>
+                                                  </figure>
                                                 <% end %>
-                                                <% if false %>
-                                                  <figure><i class="fa fa-globe"></i>wikilink</figure>
+                                                <% if @organization.links.present? %>
+                                                  <figure><i class="fa fa-globe"></i>
+                                                    <% @organization.links.each do |link| %>
+                                                      <%= link_to link.title, link.href, target: 'blank' %>
+                                                    <% end %>
+                                                  </figure>
                                                 <% end %>
                                             </address>
                                         </div>
