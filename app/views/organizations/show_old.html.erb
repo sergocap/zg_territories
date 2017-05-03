@@ -1,0 +1,90 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
+<div class='row organization_show'>
+  <h1><%= @organization.title %></h1>
+  <div class='col-xs-2'>
+    <%= image_tag @organization.permitted_logotype_url, width: '100%' %>
+  </div>
+  <div class='col-xs-6'>
+    <% if @organization.address.present? %>
+      <div class='common_storage'
+        data-latitude='<%= @organization.address.latitude %>'
+        data-longitude='<%= @organization.address.longitude %>'>
+      </div>
+      <div class='organization_storage'
+        data-infos='<%= @organization.title %>'
+        data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
+      </div>
+
+      <div class='js-areas_map_container'>
+        <div id='map'></div>
+      </div>
+      <br>
+    <% end %>
+
+    <p><strong>Адрес:</strong> <%= @organization.address %></p>
+    <%= link_to 'Моя организация', new_organization_my_resource_request_path(@organization) %>
+    <p><strong>Владелец:</strong> <%= @organization.user.fullname %></p>
+
+    <% if @organization.email.present? %>
+      <p><strong>email:</strong> <%= @organization.email %></p>
+    <% end %>
+
+    <% if @organization.phone.present? %>
+      <p>
+        <strong>Телефон:</strong>
+        <span class='js-phone'><%= @organization.phone.truncate(5) %></span>
+        <%= link_to 'Показать телефон', 'javascript:void()', class: 'js-show_phone', 'data-id': @organization.id, rel: :nofollow %>
+      </p>
+    <% end %>
+
+    <% @organization.values.each do |value| %>
+      <% if value.get.present? && value.displayed? %>
+        <p>
+          <strong><%= value.property.title %>:</strong>
+          <span><%= value.get %></span>
+        </p>
+      <% end %>
+    <% end %>
+
+    <% if @organization.can_service?(:gallery) && @organization.gallery_images.any? %>
+      <div>
+        <p><strong>Галерея</strong></p>
+        <% @organization.gallery_images.each do |image| %>
+          <%= image_tag image.element.url, height: '100px' %>
+        <% end %>
+      </div><br>
+    <% end %>
+
+    <% if @organization.can_service?(:description_field) && @organization.description.present? %>
+      <div>
+        <strong>Описание</strong>
+        <p><%= @organization.description.html_safe %></p>
+      </div>
+    <% end %>
+
+    <% unless @organization.parent.nil? %>
+      <h3>Родительская организация
+        <%= link_to @organization.parent.title, organization_path(@organization.parent) %>
+      </h3>
+    <% end %>
+
+    <% if @organization.children.any? %>
+      <h3>Дочерние организации
+        <% @organization.children.each do |child| %>
+          <%= link_to child.title, organization_path(child) %>
+        <% end %>
+      </h3>
+    <% end %>
+  </div>
+  <div class='col-xs-4'>
+    <% if @organization.owner?(current_user) %>
+      <%= render partial: 'owners_panel' %>
+    <% end %>
+    <% if current_user.present? && current_user.has_permission?(role: 'admin') %>
+      <%= render partial: 'admin_panel' %>
+    <% end %>
+    <% if @organization.manager?(current_user) %>
+      <%= render partial: 'managers_panel' %>
+    <% end %>
+  </div>
+</div>

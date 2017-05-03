@@ -47,8 +47,8 @@ class OrganizationsController < ApplicationController
 
   def resolve_layout
     case action_name
-    when 'index'
-      'map'
+    when 'index', 'show'
+      false
     else
       'application'
     end
