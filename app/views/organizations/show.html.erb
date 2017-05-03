@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
     <%= render partial: 'layouts/meta_description' %>
-    <link href="/assets/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href="/assets/elegant-fonts.css" rel="stylesheet" type="text/css">
+    <%= stylesheet_link_tag 'font-awesome' %>
+    <%= stylesheet_link_tag 'elegant-fonts.css' %>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/assets/css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="/assets/jquery.nouislider.min.css" type="text/css">
-    <link rel="stylesheet" href="/assets/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" href="/assets/style.css" type="text/css">
-    <link rel="stylesheet" href="/assets/maps.css" type="text/css">
+    <%= stylesheet_link_tag 'css/bootstrap.css' %>
+    <%= stylesheet_link_tag 'jquery.nouislider.min.css' %>
+    <%= stylesheet_link_tag 'owl.carousel.css' %>
+    <%= stylesheet_link_tag 'style.css' %>
+    <%= stylesheet_link_tag 'maps.css' %>
 </head>
 
 <body class="subpage-detail">
@@ -21,7 +21,7 @@
     <header id="page-header">
         <nav>
             <div class="left">
-                <a href="index.html" class="brand"><img src="/assets/logo.png" alt=""></a>
+              <a href="index.html" class="brand"><img src=<%= asset_path "logo.png" %> alt=""></a>
             </div>
             <!--end left-->
             <div class="right">
@@ -128,7 +128,7 @@
                                                                 <a href="#" class="btn btn-default btn-framed">Submit Your Listing</a>
                                                             </div>
                                                         </div>
-                                                        <div class="bg-transfer"><img src="/assets/items/10.jpg" alt=""></div>
+                                                        <div class="bg-transfer"><img src=<%= asset_path "items/10.jpg" %> alt=""></div>
                                                     </div>
                                                 </div>
                                                 <!--end col-md-3-->
@@ -391,7 +391,7 @@
                                     </div>
                                     <!--end description-->
                                     <div class="image bg-transfer">
-                                        <img src="/assets/items/1.jpg" alt="">
+                                      <img src=<%= asset_path "items/1.jpg" %> alt="">
                                     </div>
                                     <!--end image-->
                                 </a>
@@ -413,7 +413,7 @@
                                     </div>
                                     <!--end description-->
                                     <div class="image bg-transfer">
-                                        <img src="/assets/items/2.jpg" alt="">
+                                      <img src=<%= asset_path "items/2.jpg" %> alt="">
                                     </div>
                                     <!--end image-->
                                 </a>
@@ -438,7 +438,7 @@
                                     </div>
                                     <!--end description-->
                                     <div class="image bg-transfer">
-                                        <img src="/assets/items/3.jpg" alt="">
+                                        <img src=<%= asset_path "items/3.jpg" %> alt="">
                                     </div>
                                     <!--end image-->
                                 </a>
@@ -479,7 +479,7 @@
                     </div>
                     <div class="background-wrapper">
                         <div class="bg-transfer opacity-50">
-                            <img src="/assets/footer-bg.png" alt="">
+                          <img src=<%= asset_path "footer-bg.png" %> alt="">
                         </div>
                     </div>
                     <!--end background-wrapper-->
@@ -505,16 +505,16 @@
 <!--end page-wrapper-->
 <a href="#" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
 
-<%= javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
-<script type="text/javascript" src="/assets/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/bootstrap-select.min.js"></script>
-<script type="text/javascript" src="/assets/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/assets/jquery.nouislider.all.min.js"></script>
-<script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
-<script type="text/javascript" src="/assets/custom.js"></script>
-<script type="text/javascript" src="/assets/areas_map.js"></script>
+<%= javascript_include_tag 'http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU' %>
+<%= javascript_include_tag 'jquery-2.2.1.min.js' %>
+<%= javascript_include_tag 'jquery-migrate-1.2.1.min.js' %>
+<%= javascript_include_tag 'js/bootstrap.min.js' %>
+<%= javascript_include_tag 'bootstrap-select.min.js' %>
+<%= javascript_include_tag 'jquery.validate.min.js' %>
+<%= javascript_include_tag 'jquery.nouislider.all.min.js' %>
+<%= javascript_include_tag 'owl.carousel.min.js' %>
+<%= javascript_include_tag 'custom.js' %>
+<%= javascript_include_tag 'areas_map.js' %>
 <script>
   init_areas_map()
 </script>

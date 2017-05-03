@@ -1,14 +1,10 @@
 <div>
-  <h2>Адрес</h2>
-  <%= f.input :city_id, as: :hidden, input_html: { value: (@organization.city_id) } %>
+  <h2>Расположение</h2>
+  <h4><%= @organization.city.country_region_address %></h4>
   <%= f.input :city_title, as: :hidden, input_html: { value: @organization.city.full_address } %>
-  <h4><%= @organization.city.full_address %></h4>
-  <%= f.input :street %>
-  <%= f.input :house %>
-  <%= f.input :office %>
-  <%= f.input :longitude %>
-  <%= f.input :latitude %>
-  <%= f.input :area_coordinates %>
+  <%= f.input :longitude, as: :hidden %>
+  <%= f.input :latitude, as: :hidden %>
+  <%= f.input :area_coordinates, as: :hidden %>
   <div is='map-template'>
   </div>
   <label><input type='radio' name='type_input_for_map' value="placemark" checked> Поставить метку</label><br>

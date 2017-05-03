@@ -14,8 +14,25 @@
       </div>
 
       <%= f.input :title %>
-      <%= f.input :email, as: :email %>
-      <%= f.input :phone %>
+
+      <%= f.simple_fields_for :phones do |p| %>
+        <%= p.input :value %>
+        <%= p.link_to_remove "Удалить телефон" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить телефон', :phones %>
+
+      <%= f.simple_fields_for :emails do |p| %>
+        <%= p.input :value %>
+        <%= p.link_to_remove "Удалить email" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить email', :emails %>
+
+      <%= f.simple_fields_for :links do |p| %>
+        <%= p.input :title %>
+        <%= p.input :href %>
+        <%= p.link_to_remove "Удалить ссылку" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить ссылку', :links %>
 
       <div class='js-address_fields'>
         <%= f.simple_fields_for :address %>

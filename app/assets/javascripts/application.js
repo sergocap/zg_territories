@@ -20,4 +20,8 @@
 //= require vue
 //= require bootstrap-slider
 //= require nested_form
-//= require_tree .
+//= require areas_map
+//= require yamp
+//= require main
+//= require my
+//= require manage/metadata

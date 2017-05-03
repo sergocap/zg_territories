@@ -363,7 +363,7 @@ form {
 
 .read-more + [data-readmore-toggle], .read-more[data-readmore] { min-width: auto !important; }
 
-select, select.form-control { @include border-radius(0px); -moz-appearance: inherit; -webkit-appearance: none; background-color: #fff; padding: 13px 9px; width: 100%; position: relative; background-image: url("/assets/carret-down.png"); background-repeat: no-repeat; background-position: 96% 50%;
+select, select.form-control { @include border-radius(0px); -moz-appearance: inherit; -webkit-appearance: none; background-color: #fff; padding: 13px 9px; width: 100%; position: relative; background-image: asset-url("carret-down.png"); background-repeat: no-repeat; background-position: 96% 50%;
   &:hover { cursor: pointer; }
 }
 /*
