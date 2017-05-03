@@ -21,7 +21,7 @@ $(document).ready(function($) {
         fixedNavigation(false);
     }
 
-    if( customizerEnabled == 1 ){
+    if( 0 ){
         $.getScript( "/assets/customizer.js", function( data, textStatus, jqxhr ) {
             loadColor("load_default_color");
         });
@@ -452,7 +452,7 @@ function socialShare(){
         $('head').append( $('<link rel="stylesheet" type="text/css">').attr('href', '/assets/jssocials-theme-minima.css') );
         $.getScript( "/assets/jssocials.min.js", function( data, textStatus, jqxhr ) {
             $(".social-share").jsSocials({
-                shares: ["twitter", "facebook", "googleplus", "linkedin", "pinterest"]
+                shares: ["twitter", "facebook", "googleplus"]
             });
         });
     }
