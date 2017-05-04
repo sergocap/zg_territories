@@ -51,7 +51,7 @@ class Value < ApplicationRecord
   end
 
   def get
-    return nil unless category_property
+    return nil unless (self.persisted? && category_property)
     case property.kind.to_sym
     when :boolean
       boolean_value ? 'Есть' : 'Нет'
