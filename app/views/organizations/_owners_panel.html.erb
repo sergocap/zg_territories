@@ -1,6 +1,10 @@
 <div class='owners_panel'>
   <div class='js-state_block'>
-    <%= render partial: 'my/organizations/state_manage' %>
+    <% if current_user.present? && current_user.has_permission?(role: 'admin') %>
+      <%= render partial: 'manage/organizations/state_manage' %>
+    <% else %>
+      <%= render partial: 'my/organizations/state_manage' %>
+    <% end %>
   </div>
   <%= link_to 'Редактировать', edit_my_organization_path(@organization) %>
   <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>

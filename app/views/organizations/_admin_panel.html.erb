@@ -1,4 +1,7 @@
 <div class='owners_panel'>
+  <div class='js-state_block'>
+    <%= render partial: 'manage/organizations/state_manage' %>
+  </div>
   <%= link_to 'Редактировать', edit_manage_organization_path(@organization) %>
     <p><strong>Дополнения:</strong>
       <% @organization.permit_services.each do |service| %>
