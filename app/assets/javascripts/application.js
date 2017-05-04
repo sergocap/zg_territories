@@ -22,6 +22,10 @@
 //= require nested_form
 //= require areas_map
 //= require yamp
+//= require hierarch_list_items
 //= require main
 //= require my
+//= require range_buttons
 //= require manage/metadata
+//= require image_upload
+//= require slider

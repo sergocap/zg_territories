@@ -11,7 +11,7 @@ class Value < ApplicationRecord
   end
 
   def category_property
-    CategoryProperty.where(:property_id => property.id,
+    @category_property ||= CategoryProperty.where(:property_id => property.id,
                            :category_id => organization.category.id).first
   end
 
@@ -51,6 +51,7 @@ class Value < ApplicationRecord
   end
 
   def get
+    return nil unless category_property
     case property.kind.to_sym
     when :boolean
       boolean_value ? 'Есть' : 'Нет'
