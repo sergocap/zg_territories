@@ -22,6 +22,7 @@ Rails.application.config.assets.precompile += %w(
                                                   js/bootstrap.min.js
                                                   bootstrap-select.min.js
                                                   jquery.validate.min.js
+                                                  jquery_ujs.js
                                                   owl.carousel.min.js
                                                   custom.js
                                                   areas_map.js

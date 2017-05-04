@@ -13,8 +13,8 @@
 //= require Chart.bundle
 //= require chartkick
 //= require jquery
-//= require bootstrap
 //= require jquery_ujs
+//= require bootstrap
 //= require bootsy
 //= require bootsy_ru
 //= require vue
