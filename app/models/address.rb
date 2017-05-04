@@ -2,9 +2,7 @@ class Address < ApplicationRecord
   belongs_to :organization
 
   def to_s
-    return "" if street.blank? && house.blank?
-    return "#{street.squish}" if house.blank?
-    return "#{street.squish}, #{house.squish}"
+    return "here is address"
   end
 
   #тут такие замуты с отображением координат полигона -

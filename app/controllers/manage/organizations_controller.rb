@@ -21,7 +21,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
   def show
      show! do |format|
-       format.html { redirect_to organization_path(@organization) }
+       format.html { redirect_to organization_path(@organization, city_slug: @organization.city.slug) }
      end
   end
 
