@@ -6,6 +6,8 @@ class My::OrganizationsController < ApplicationController
   before_action :find_category,   only: [:edit]
   before_filter :build_nested_objects, :only => [:edit, :new, :create]
 
+  layout :resolve_layout
+
   def show
      show! do |format|
        format.html { redirect_to organization_path(@organization) }
@@ -79,6 +81,15 @@ class My::OrganizationsController < ApplicationController
          links_attributes: [:title, :href, :id, :_destroy],
          gallery_images_attributes: [:element, :description, :_destroy, :id],
     ])
+  end
+
+  def resolve_layout
+    case action_name
+    when 'new', 'edit'
+      false
+    else
+      'application'
+    end
   end
 
   def build_nested_objects

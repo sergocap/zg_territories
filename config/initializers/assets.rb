@@ -9,22 +9,8 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
-                                                  font-awesome.css
-                                                  elegant-fonts.css
-                                                  css/bootstrap.css
-                                                  jquery.nouislider.min.css
-                                                  owl.carousel.css
+                                                  application_civil.js
+                                                  application_civil.css
                                                   style.css
-                                                  maps.css
-                                                  jquery.nouislider.all.min.js
-                                                  jquery-2.2.1.min.js
-                                                  jquery-migrate-1.2.1.min.js
-                                                  js/bootstrap.min.js
-                                                  bootstrap-select.min.js
-                                                  jquery.validate.min.js
-                                                  jquery_ujs.js
-                                                  owl.carousel.min.js
-                                                  custom.js
-                                                  areas_map.js
                                                 )
 

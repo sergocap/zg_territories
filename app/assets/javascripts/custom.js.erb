@@ -9,6 +9,21 @@ var originalNavigationCode;
 var navigationIsTouchingBrand;
 var responsiveNavigationTriggered = false;
 
+function init_icheck() {
+  if ($("input[type=checkbox]").length > 0) {
+    $("input").iCheck({
+      checkboxClass: 'icheckbox_square-purple',
+    });
+  }
+
+  if ($("input[type=radio]").length > 0) {
+    $("input").iCheck({
+      radioClass: 'iradio_square-purple'
+    });
+  }
+}
+
+
 $(document).ready(function($) {
     "use strict";
 
@@ -76,13 +91,18 @@ $(document).ready(function($) {
 
 //  iCheck -------------------------------------------------------------------------------------------------------------
 
-    if ($("input[type=checkbox]").length > 0) {
-        $("input").iCheck();
+    init_icheck();
+    if ($('form').length > 0) {
+      var target = $('form')[0];
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type == 'childList') init_icheck();
+        });
+      });
+      var config = { attributes: false, childList: true, characterData: true  };
+      observer.observe(target, config);
     }
 
-    if ($("input[type=radio]").length > 0) {
-        $("input").iCheck();
-    }
 
 //  Smooth Scroll ------------------------------------------------------------------------------------------------------
 

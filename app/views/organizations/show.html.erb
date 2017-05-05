@@ -6,14 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
     <%= render partial: 'layouts/meta_description' %>
-    <%= stylesheet_link_tag 'font-awesome' %>
-    <%= stylesheet_link_tag 'elegant-fonts.css' %>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag 'css/bootstrap.css' %>
-    <%= stylesheet_link_tag 'jquery.nouislider.min.css' %>
-    <%= stylesheet_link_tag 'owl.carousel.css' %>
-    <%= stylesheet_link_tag 'style.css' %>
-    <%= stylesheet_link_tag 'maps.css' %>
+    <%= stylesheet_link_tag 'application_civil' %>
+    <%= stylesheet_link_tag 'style' %>
 </head>
 
 <body class="subpage-detail">
@@ -515,18 +510,8 @@
 </div>
 <!--end page-wrapper-->
 <a href="#" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
-
 <%= javascript_include_tag 'http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU' %>
-<%= javascript_include_tag 'jquery-2.2.1.min.js' %>
-<%= javascript_include_tag 'jquery_ujs.js' %>
-<%= javascript_include_tag 'jquery-migrate-1.2.1.min.js' %>
-<%= javascript_include_tag 'js/bootstrap.min.js' %>
-<%= javascript_include_tag 'bootstrap-select.min.js' %>
-<%= javascript_include_tag 'jquery.validate.min.js' %>
-<%= javascript_include_tag 'jquery.nouislider.all.min.js' %>
-<%= javascript_include_tag 'owl.carousel.min.js' %>
-<%= javascript_include_tag 'custom.js' %>
-<%= javascript_include_tag 'areas_map.js' %>
+<%= javascript_include_tag 'application_civil.js' %>
 <script>
   init_areas_map()
 </script>
