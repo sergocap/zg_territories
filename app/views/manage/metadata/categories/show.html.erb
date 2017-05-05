@@ -9,9 +9,11 @@
 
 <h2>Поля:</h2>
 <% if @category.properties.any? %>
-  <table style='width:50%'>
+  <table style='width:50%' class='js-sortable-wrapper'
+    data-path="<%= update_row_order_property_manage_metadata_categories_path %>">
   <% @category.properties.each do |property| %>
-    <tr>
+    <tr class='js-sortable-item' data-id="<%= property.category_property(@category.id).id %>">
+      <td><span class='glyphicon glyphicon-resize-vertical js-handle-sortable sortable' aria-hidden='true'></span></td>
       <td><%= link_to property.title,
         edit_manage_metadata_category_property_path(@category, property) %>
       </td>

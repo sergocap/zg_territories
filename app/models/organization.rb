@@ -33,6 +33,10 @@ class Organization < ApplicationRecord
   delegate :latitude, :longitude, :to => :address, :allow_nil => true
   after_initialize :set_initial_status
 
+  def sort_values
+    self.values.sort_by {|x| category_property(x.property).row_order }
+  end
+
   def can_service?(service)
     permit_services.include? service
     true #загрушка для территорий

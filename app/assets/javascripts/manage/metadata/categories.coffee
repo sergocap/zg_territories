@@ -1,3 +1,32 @@
+@init_sortable_properties = ->
+  $('.js-sortable-wrapper').sortable
+    axis: 'y'
+    items: '.js-sortable-item'
+    handle: '.js-handle-sortable'
+
+    sort: (e, ui) ->
+      ui.item.addClass('active-item-shadow')
+    stop: (e, ui) ->
+      ui.item.removeClass('active-item-shadow')
+
+    update: (e, ui) ->
+      path = $('.js-sortable-wrapper').attr('data-path')
+      item_id = ui.item.data('id')
+      ui.item.effect('highlight', 1500)
+      position = ui.item.index()
+      console.log item_id
+      $.ajax
+        type: 'put'
+        url: path
+        dataType: 'json'
+        data: {
+          category_property_id: item_id
+          row_order: position
+        }
+      return
+    true
+  true
+
 @init_new_root_category = ->
   $('.js-new_root_category').on 'ajax:success', (evt, response) ->
     new_category_link = $(this)

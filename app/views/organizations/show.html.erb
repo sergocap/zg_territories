@@ -327,7 +327,7 @@
                             </section>
                             <section>
                                 <h2>Характеристики</h2>
-                                  <% @organization.values.each do |value| %>
+                                  <% @organization.sort_values.each do |value| %>
                                     <% if value.get.present? && value.displayed? %>
                                       <p>
                                         <strong><%= value.property.title %>:</strong>

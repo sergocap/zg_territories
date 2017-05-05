@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     namespace :metadata do
       root 'categories#index'
       resources :categories do
+        put  'update_row_order_property', on: :collection
         get 'parent_params', on: :member
         resources :properties
       end

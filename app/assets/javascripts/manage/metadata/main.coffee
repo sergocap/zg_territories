@@ -1,4 +1,5 @@
 $ ->
+  init_sortable_properties() if $('.js-sortable-wrapper').length
   if $('.tree_categories').length
     init_new_root_category()
     init_new_subcategory()

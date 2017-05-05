@@ -14,6 +14,7 @@
 //= require chartkick
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require bootsy
 //= require bootsy_ru

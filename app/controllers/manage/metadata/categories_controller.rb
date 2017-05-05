@@ -42,6 +42,11 @@ class Manage::Metadata::CategoriesController < Manage::ApplicationController
     @parent_properties = @category.ancestors.map(&:properties).flatten.uniq
   end
 
+  def update_row_order_property
+    CategoryProperty.find(params[:category_property_id]).update_attribute :row_order_position, params[:row_order]
+    render nothing: true and return
+  end
+
   private
 
   def find_category

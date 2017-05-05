@@ -14,4 +14,8 @@ class Property < ApplicationRecord
   enumerize :kind, in: [:string, :integer, :float, :boolean, :limited_list, :unlimited_list, :hierarch_limited_list], default: :string
 
   alias_attribute :to_s, :title
+
+  def category_property(category_id)
+    category_properties.where(:category_id => category_id).first
+  end
 end

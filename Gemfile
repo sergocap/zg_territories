@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'nested_form'
+gem 'non-stupid-digest-assets'
 gem 'openteam-commons'
 gem 'paperclip'
 gem 'pg'
@@ -59,5 +60,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-ui-bootstrap'
+  gem 'rails-assets-jquery-ui'
+end
+
+
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
