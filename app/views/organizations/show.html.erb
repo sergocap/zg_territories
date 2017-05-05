@@ -315,7 +315,7 @@
                                                 <% if @organization.links.present? %>
                                                   <figure><i class="fa fa-globe"></i>
                                                     <% @organization.links.each do |link| %>
-                                                      <%= link_to link.title, link.href, target: 'blank' %>
+                                                      <%= link_to (link.title.present? ? link.title : link.href), link.href, target: 'blank' %>
                                                     <% end %>
                                                   </figure>
                                                 <% end %>
