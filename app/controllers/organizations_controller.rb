@@ -22,7 +22,9 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    redirect_to '/404' if !@organization.published? && !@organization.owner?(current_user)
+    unless current_user.present? && current_user.has_permission?(role: 'admin')
+      redirect_to '/404' if !@organization.published? && !@organization.owner?(current_user)
+    end
     @organization.add_statistic
   end
 
