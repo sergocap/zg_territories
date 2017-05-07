@@ -264,6 +264,12 @@
                           <%= f.simple_fields_for :address %>
                         </div>
 
+                        <%= f.bootsy_area :description,
+                          label: false,
+                          rows: 20,
+                          cols: 110,
+                          'data-bootsy-locale': :ru %>
+
                         <%= f.input :city_id, as: :hidden,
                           input_html: { value: @current_city.id } %>
 
@@ -294,6 +300,21 @@
                           :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
                           :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
                         </div>
+
+
+                        <div class='js-image_upload_wrapper'>
+                          <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
+                          <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
+                          <%= image_tag (@organization.logotype.exists? ? @organization.logotype.url : ''),
+                            class: 'js-image_preview' %>
+                        </div>
+
+                        <%= f.simple_fields_for :gallery_images do |g| %>
+                          <%= g.input :element, label: false %>
+                          <%= g.input :description %>
+                          <%= g.link_to_remove 'Удалить' %>
+                        <% end %>
+                        <p><%= f.link_to_add 'Добавить изображение', :gallery_images %></p>
 
                         <%= f.submit 'Сохранить', class: 'btn btn-success' %>
                         <%= link_to 'Отмена', :back %>
@@ -358,5 +379,6 @@
 <script>
   init_vue_organization()
   init_organization_map()
+  init_image_upload()
 </script>
 </body>
