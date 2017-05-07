@@ -70,7 +70,7 @@ function init_vue_organization() {
         if(Number(parent_id) == 0 || isNaN(parent_id))
           return [];
         var that = this;
-        var result = [11];
+        var result = [];
         $.ajax({
           method: 'GET',
           async: false,

@@ -76,35 +76,33 @@ $(document).ready(function($) {
 
 //  iCheck -------------------------------------------------------------------------------------------------------------
 
-//  function init_icheck(node) {
-//    var skin_style = 'square';
-//    var skin_color = 'purple';
-//    if ($("input[type=checkbox]", node).length > 0 || $("input[type=radio]", node).length > 0) {
-//      $("input", node).iCheck({
-//        checkboxClass: 'icheckbox_' + skin_style + '-' + skin_color,
-//        radioClass: 'iradio_' + skin_style + '-' + skin_color
-//      });
-//    }
-//  }
-//
-//
-//  init_icheck();
-//  if ($('form').length > 0) {
-//    var target = $('form')[0];
-//    var observer = new MutationObserver(function(mutations) {
-//      mutations.forEach(function(mutation) {
-//        if (mutation.type == 'childList') {
-//          mutation.addedNodes.forEach(function(node) {
-//            if ($(node).hasClass('organization_dynamic_field'))
-//              init_icheck(node);
-//          });
-//        }
-//      });
-//    });
-//    var config = { attributes: false, childList: true, characterData: false };
-//    observer.observe(target, config);
-//  }
+    function init_icheck(node) {
+      var skin_style = 'square';
+      var skin_color = 'purple';
+      if ($("input[type=checkbox]", node).length > 0 || $("input[type=radio]", node).length > 0) {
+        $("input", node).icheck({
+          checkboxClass: 'icheckbox_' + skin_style + '-' + skin_color,
+          radioClass: 'iradio_' + skin_style + '-' + skin_color
+        });
+      }
+    }
 
+    init_icheck();
+    if ($('form').length > 0) {
+      var target = $('form')[0];
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type == 'childList') {
+            mutation.addedNodes.forEach(function(node) {
+              if ($(node).hasClass('organization_dynamic_field'))
+                init_icheck(node);
+            });
+          }
+        });
+      });
+      var config = { attributes: false, childList: true, characterData: false };
+      observer.observe(target, config);
+    }
 
 //  Smooth Scroll ------------------------------------------------------------------------------------------------------
 
