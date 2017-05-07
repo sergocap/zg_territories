@@ -10,15 +10,12 @@ var navigationIsTouchingBrand;
 var responsiveNavigationTriggered = false;
 
 function init_icheck() {
-  if ($("input[type=checkbox]").length > 0) {
+  var skin_style = 'square';
+  var skin_color = 'purple';
+  if ($("input[type=checkbox]").length > 0 || $("input[type=radio]").length > 0) {
     $("input").iCheck({
-      checkboxClass: 'icheckbox_square-purple',
-    });
-  }
-
-  if ($("input[type=radio]").length > 0) {
-    $("input").iCheck({
-      radioClass: 'iradio_square-purple'
+      checkboxClass: 'icheckbox_' + skin_style + '-' + skin_color,
+      radioClass: 'iradio_' + skin_style + '-' + skin_color
     });
   }
 }
