@@ -88,20 +88,22 @@ $(document).ready(function($) {
     }
 
     init_icheck();
-    if ($('form').length > 0) {
-      var target = $('form')[0];
-      var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.type == 'childList') {
-            mutation.addedNodes.forEach(function(node) {
-              if ($(node).hasClass('organization_dynamic_field'))
-                init_icheck(node);
-            });
-          }
+    if ($('fieldset').length > 0) {
+      var targets = $('fieldset');
+      targets.toArray().forEach(function(target){
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type == 'childList') {
+              mutation.addedNodes.forEach(function(node) {
+                if ($(node).hasClass('organization_dynamic_field'))
+                  init_icheck(node);
+              });
+            }
+          });
         });
+        var config = { attributes: false, childList: true, characterData: false };
+        observer.observe(target, config);
       });
-      var config = { attributes: false, childList: true, characterData: false };
-      observer.observe(target, config);
     }
 
 //  Smooth Scroll ------------------------------------------------------------------------------------------------------

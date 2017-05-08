@@ -5,13 +5,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
+    <%= render partial: 'layouts/meta_description' %>
 
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag 'application_civil.css' %>
     <%= stylesheet_link_tag 'style.css' %>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
-
-    <title>Locations - Directory Listing HTML Template</title>
-
 </head>
 
 <body>
@@ -215,60 +213,24 @@
     <div id="page-content">
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active">Contact</li>
+              <li><%= link_to 'Главная', organizations_path %></li>
+              <li class="active">Новая территория</li>
             </ol>
             <!--end breadcrumb-->
             <section class="page-title center">
-                <h1>Submit Listing</h1>
+                <h1>Новая территория</h1>
             </section>
             <!--end page-title-->
             <section>
                 <div class="row" id='vue-form_organization'>
                     <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
-                      <%= simple_nested_form_for [:my, @organization], html: { class: 'inputs-underline form' } do |f| %>
-                        <div id='store_organization' class='store' style='display:none'>
-                          <% if @organization.persisted? %>
-                            <%= @organization.pretty_values %>
-                          <% else %>
-                            <%= params['organization'] ? params['organization']['values_attributes'].to_json : '{}' %>
-                          <% end %>
-                        </div>
-                        <div id='store_organization_errors' class='store' style='display:none'>
-                          <%= @organization.errors.messages.to_json %>
-                        </div>
+                      <%= simple_nested_form_for [:my, @organization], html: { class: 'msform inputs-underline form' } do |f| %>
 
-                        <%= f.input :title, placeholder: 'Название' %>
-
-                        <%= f.simple_fields_for :phones do |p| %>
-                          <%= p.input :value, placeholder: 'Телефон' %>
-                          <%= p.link_to_remove "Удалить телефон" %>
-                        <% end %>
-                        <%= f.link_to_add 'Добавить телефон', :phones %>
-
-                        <%= f.simple_fields_for :emails do |p| %>
-                          <%= p.input :value, placeholder: 'Email' %>
-                          <%= p.link_to_remove "Удалить email" %>
-                        <% end %>
-                        <%= f.link_to_add 'Добавить email', :emails %>
-
-                        <%= f.simple_fields_for :links do |p| %>
-                          <%= p.input :title, placeholder: 'Название' %>
-                          <%= p.input :href, placeholder: 'Ссылка' %>
-                          <%= p.link_to_remove "Удалить ссылку" %>
-                        <% end %>
-                        <%= f.link_to_add 'Добавить ссылку', :links %>
-
-                        <div class='js-address_fields'>
-                          <%= f.simple_fields_for :address %>
-                        </div>
-
-                        <%= f.bootsy_area :description,
-                          label: false,
-                          rows: 20,
-                          cols: 110,
-                          'data-bootsy-locale': :ru %>
+                        <ul id="progressbar">
+                          <li class="active">Общая информация</li>
+                          <li>Категория</li>
+                          <li>Дополнения</li>
+                        </ul>
 
                         <%= f.input :city_id, as: :hidden,
                           input_html: { value: @current_city.id } %>
@@ -279,46 +241,105 @@
                         <%= f.input :parent_id, as: :hidden,
                           input_html: { value: params[:parent_id] } %>
 
-                        <%= f.input :category_id, as: :hidden %>
-
-                        <% unless @organization.persisted? %>
-                          <div class='categories_tree'><%= render partial: 'categories_tree', locals: { categories: @categories } %></div>
-                        <% else %>
-                          <div id='edit_mode'></div>
-                        <% end %>
-
-                        <h2>{{organization.category.title}}</h2>
-                        <h2><%= f.error :category, style: 'color:#a94442' %></h2>
-                        <div
-                          is='property-component'
-                          v-for='(value, index) in organization.values'
-                          :value='value'
-                          :index='index'
-                          :key='Math.random().toString(36).substring(7)'
-                          :category_property='get_category_property(value.property_id)'
-                          :list_items='get_list_items(value.property_id)'
-                          :edit_mode='edit_mode'
-                          :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
-                          :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
+                        <div id='store_organization' class='store' style='display:none'>
+                          <% if @organization.persisted? %>
+                            <%= @organization.pretty_values %>
+                          <% else %>
+                            <%= params['organization'] ? params['organization']['values_attributes'].to_json : '{}' %>
+                          <% end %>
                         </div>
 
-
-                        <div class='js-image_upload_wrapper'>
-                          <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
-                          <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
-                          <%= image_tag (@organization.logotype.exists? ? @organization.logotype.url : ''),
-                            class: 'js-image_preview' %>
+                        <div id='store_organization_errors' class='store' style='display:none'>
+                          <%= @organization.errors.messages.to_json %>
                         </div>
 
-                        <%= f.simple_fields_for :gallery_images do |g| %>
-                          <%= g.input :element, label: false %>
-                          <%= g.input :description %>
-                          <%= g.link_to_remove 'Удалить' %>
-                        <% end %>
-                        <p><%= f.link_to_add 'Добавить изображение', :gallery_images %></p>
+                        <fieldset>
+                            <%= f.input :title, placeholder: 'Название' %>
 
-                        <%= f.submit 'Сохранить', class: 'btn btn-success' %>
-                        <%= link_to 'Отмена', :back %>
+                            <%= f.simple_fields_for :phones do |p| %>
+                              <%= p.input :value, placeholder: 'Телефон' %>
+                              <%= p.link_to_remove "Удалить телефон" %>
+                            <% end %>
+                            <%= f.link_to_add 'Добавить телефон', :phones %>
+
+                            <%= f.simple_fields_for :emails do |p| %>
+                              <%= p.input :value, placeholder: 'Email' %>
+                              <%= p.link_to_remove "Удалить email" %>
+                            <% end %>
+                            <%= f.link_to_add 'Добавить email', :emails %>
+
+                            <%= f.simple_fields_for :links do |p| %>
+                              <%= p.input :title, placeholder: 'Название' %>
+                              <%= p.input :href, placeholder: 'Ссылка' %>
+                              <%= p.link_to_remove "Удалить ссылку" %>
+                            <% end %>
+                            <%= f.link_to_add 'Добавить ссылку', :links %>
+
+                            <div class='js-address_fields'>
+                              <%= f.simple_fields_for :address %>
+                            </div>
+
+                            <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
+                            <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+                            <%= link_to 'Отмена', :back %>
+                        </fieldset>
+
+                        <fieldset>
+                            <%= f.input :category_id, as: :hidden %>
+
+                            <% unless @organization.persisted? %>
+                              <div class='categories_tree'><%= render partial: 'categories_tree', locals: { categories: @categories } %></div>
+                            <% else %>
+                              <div id='edit_mode'></div>
+                            <% end %>
+
+                            <h2>{{organization.category.title}}</h2>
+                            <h2><%= f.error :category, style: 'color:#a94442' %></h2>
+                            <div
+                              is='property-component'
+                              v-for='(value, index) in organization.values'
+                              :value='value'
+                              :index='index'
+                              :key='Math.random().toString(36).substring(7)'
+                              :category_property='get_category_property(value.property_id)'
+                              :list_items='get_list_items(value.property_id)'
+                              :edit_mode='edit_mode'
+                              :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
+                              :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
+                            </div>
+                            <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
+                            <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
+                            <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+                            <%= link_to 'Отмена', :back %>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class='js-image_upload_wrapper'>
+                              <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
+                              <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
+                              <%= image_tag (@organization.logotype.exists? ? @organization.logotype.url : ''),
+                                class: 'js-image_preview' %>
+                            </div>
+
+                            <%= f.bootsy_area :description,
+                              label: false,
+                              rows: 20,
+                              cols: 110,
+                              'data-bootsy-locale': :ru %>
+
+                            <%= f.simple_fields_for :gallery_images do |g| %>
+                              <%= g.input :element, label: false %>
+                              <%= g.input :description %>
+                              <%= g.link_to_remove 'Удалить' %>
+                            <% end %>
+
+                            <p><%= f.link_to_add 'Добавить изображение', :gallery_images %></p>
+
+                            <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
+                            <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+                            <%= link_to 'Отмена', :back %>
+                        </fieldset>
+
 
                       <% end %>
 
@@ -381,5 +402,6 @@
   init_vue_organization()
   init_organization_map()
   init_image_upload()
+  init_stepped_form()
 </script>
 </body>

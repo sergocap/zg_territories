@@ -16,6 +16,7 @@
 //= require jquery.nouislider.all.min.js
 //= require jquery.validate.min.js
 //= require jquery_ujs.js
+//= require jquery-ui
 //= require js/bootstrap.min.js
 //= require bootstrap-slider.js
 //= require bootstrap-select.min.js
@@ -31,3 +32,4 @@
 //= require bootsy
 //= require bootsy_ru
 //= require image_upload.js
+//= require my/stepped_form.js
