@@ -294,6 +294,7 @@
                           v-for='(value, index) in organization.values'
                           :value='value'
                           :index='index'
+                          :key='Math.random().toString(36).substring(7)'
                           :category_property='get_category_property(value.property_id)'
                           :list_items='get_list_items(value.property_id)'
                           :edit_mode='edit_mode'
