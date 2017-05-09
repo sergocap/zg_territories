@@ -1,11 +1,13 @@
 /*custom font*/
 /*form styles*/
+.col_remove_nested {
+  margin-top: 45px
+}
+
 .msform fieldset {
   background: white;
   border: 0 none;
   border-radius: 0px;
-  box-shadow: 0 0 6px -2px rgba(0, 0, 0, 0.2);
-  padding: 20px 30px;
   box-sizing: border-box;
   margin: 0 10%;
 

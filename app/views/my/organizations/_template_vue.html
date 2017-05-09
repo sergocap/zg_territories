@@ -72,6 +72,7 @@
     <template v-if='value.property.kind === "limited_list" && category_property.show_as === "radio_buttons"'>
       <div
         :id='value.property.id + "_property"'
+        class='complex_property'
         v-for='item in list_items'
       >
         <input
@@ -90,7 +91,7 @@
         :name='"organization[values_attributes][" + index + "][list_item_ids][]"'
         :value='[]'>
       </input>
-      <div v-for='item in list_items' :id='value.property.id + "_property"'>
+      <div v-for='item in list_items' class='complex_property' :id='value.property.id + "_property"'>
         <input
           :name='"organization[values_attributes][" + index + "][list_item_ids][]"'
           type='checkbox'

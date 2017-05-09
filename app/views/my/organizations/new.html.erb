@@ -257,23 +257,57 @@
                             <%= f.input :title, placeholder: 'Название' %>
 
                             <%= f.simple_fields_for :phones do |p| %>
-                              <%= p.input :value, placeholder: 'Телефон' %>
-                              <%= p.link_to_remove "Удалить телефон" %>
+                              <div class='row'>
+                                <div class='col-xs-11'>
+                                  <%= p.input :value, placeholder: 'Телефон' %>
+                                </div>
+
+                                <div class='col-xs-1 col_remove_nested'>
+                                  <%= p.link_to_remove do %>
+                                    <span class='glyphicon glyphicon-remove'></span>
+                                  <% end %>
+                                </div>
+
+                              </div>
                             <% end %>
-                            <%= f.link_to_add 'Добавить телефон', :phones %>
 
                             <%= f.simple_fields_for :emails do |p| %>
-                              <%= p.input :value, placeholder: 'Email' %>
-                              <%= p.link_to_remove "Удалить email" %>
+                              <div class='row'>
+                                <div class='col-xs-11'>
+                                  <%= p.input :value, placeholder: 'Email' %>
+                                </div>
+                                <div class='col-xs-1 col_remove_nested'>
+                                  <%= p.link_to_remove do %>
+                                    <span class='glyphicon glyphicon-remove'></span>
+                                  <% end %>
+                                </div>
+
+                              </div>
                             <% end %>
-                            <%= f.link_to_add 'Добавить email', :emails %>
 
                             <%= f.simple_fields_for :links do |p| %>
-                              <%= p.input :title, placeholder: 'Название' %>
-                              <%= p.input :href, placeholder: 'Ссылка' %>
-                              <%= p.link_to_remove "Удалить ссылку" %>
+                              <div class='row'>
+                                <div class='col-xs-5'>
+                                  <%= p.input :title, label: 'Текст ссылки', placeholder: 'Текст ссылки' %>
+                                </div>
+                                <div class='col-xs-6'>
+                                    <%= p.input :href, placeholder: 'Ссылка' %>
+                                </div>
+                                <div class='col-xs-1 col_remove_nested'>
+                                  <%= p.link_to_remove do %>
+                                    <span class='glyphicon glyphicon-remove'></span>
+                                  <% end %>
+                                </div>
+                              </div>
                             <% end %>
-                            <%= f.link_to_add 'Добавить ссылку', :links %>
+
+                              <%= f.link_to_add 'Добавить телефон', :phones, class: 'hidden' %>
+                              <%= f.link_to_add 'Добавить email', :emails, class: 'hidden' %>
+                              <%= f.link_to_add 'Добавить ссылку', :links, class: 'hidden' %>
+
+                            <a @click="link_to_add_nested_fields('phones')" href='javascript:void(0)'>Добавить телефон</a>
+                            <a @click="link_to_add_nested_fields('emails')" href='javascript:void(0)'>Добавить email</a>
+                            <a @click="link_to_add_nested_fields('links')" href='javascript:void(0)'>Добавить ссылку</a>
 
                             <div class='js-address_fields'>
                               <%= f.simple_fields_for :address %>
@@ -285,13 +319,21 @@
                         </fieldset>
 
                         <fieldset>
-                            <%= f.input :category_id, as: :hidden %>
 
-                            <% unless @organization.persisted? %>
-                              <div class='categories_tree'><%= render partial: 'categories_tree', locals: { categories: @categories } %></div>
-                            <% else %>
-                              <div id='edit_mode'></div>
-                            <% end %>
+                          <% unless @organization.persisted? %>
+                            <div class="form-group">
+                              <label for="organization_category_id">Категория</label>
+                              <select @change='setCategory()' class="form-control selectpicker" name="organization_category_id" id="organization_category_id">
+                                <option value="" selected disabled>Категория</option>
+
+                                <%= @categories.each do |category| %>
+                                  <option value="<%= category.id %>"><%= category.title %></option>
+                                <% end %>
+                              </select>
+                            </div>
+                          <% else %>
+                            <div id='edit_mode'></div>
+                          <% end %>
 
                             <h2>{{organization.category.title}}</h2>
                             <h2><%= f.error :category, style: 'color:#a94442' %></h2>

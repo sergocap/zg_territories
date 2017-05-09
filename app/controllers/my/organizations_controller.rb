@@ -57,7 +57,7 @@ class My::OrganizationsController < ApplicationController
   private
 
   def find_categories
-    @categories = Category.roots
+    @categories = Category.select {|c| !c.children.present? }
   end
 
   def find_category

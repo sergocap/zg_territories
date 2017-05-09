@@ -29,7 +29,7 @@
 //= require yamp.js
 //= require custom.js
 //= require areas_map.js
-//= require bootsy
-//= require bootsy_ru
 //= require image_upload.js
 //= require my/stepped_form.js
+//= require bootsy
+//= require bootsy_ru

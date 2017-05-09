@@ -1,6 +1,6 @@
 <div>
-  <h2>Расположение</h2>
-  <h4><%= @current_city.country_region_address %></h4>
+  <br>
+  <h3>Расположение - <%= @current_city.country_region_address %></h3>
   <%= f.input :city_title, as: :hidden, input_html: { value: @current_city.full_address } %>
   <%= f.input :longitude, as: :hidden %>
   <%= f.input :latitude, as: :hidden %>
@@ -21,6 +21,6 @@
 
 <script type='text/x-template' id='map-template'>
   <div class='js-map_wrapper'>
-    <div id='map' class='height-200px shadow'></div>
+    <div id='map' class='shadow'></div>
   </div>
 </script>

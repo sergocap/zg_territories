@@ -128,7 +128,12 @@ function init_vue_organization() {
         return res;
       },
 
-      setCategory: function(id) {
+      link_to_add_nested_fields: function(association) {
+        $('.add_nested_fields[data-association=' + association + ']').click()
+      },
+
+      setCategory: function() {
+        var id = $('#organization_category_id').val();
         var that = this;
         $.ajax({
           method: 'GET',
