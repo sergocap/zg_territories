@@ -7,13 +7,5 @@
     <% end %>
   </div>
   <%= link_to 'Редактировать', edit_my_organization_path(@organization) %>
-  <%= link_to 'Добавить дочернюю', new_my_organization_path(parent_id: @organization.id) unless @organization.is_child?  %>
-  <%= link_to 'Статистика', statistics_my_organization_path(@organization) %>
-  <%= link_to 'Управление', managing_my_organization_path(@organization) %>
-    <p><strong>Дополнения:</strong>
-      <% @organization.permit_services.each do |service| %>
-        <%= link_to t('activerecord.attributes.service_pack.' + service.to_s), ['/' + @current_city.slug, 'my/organizations', @organization.id.to_s, service.to_s].join('/') %>
-      <% end %>
-    </p>
 </div>
 

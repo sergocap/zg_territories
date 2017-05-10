@@ -22,12 +22,18 @@ class My::OrganizationsController < ApplicationController
     create! do |format|
       format.html do
         if @organization.save
+          @organization.to_moderation! if params['commit'] == 'Сохранить и отравить на модерацию'
           redirect_to organization_path(@organization)
         else
           render :new
         end
       end
     end
+  end
+
+  def update
+    @organization.to_moderation! if params['commit'] == 'Сохранить и отравить на модерацию'
+    super
   end
 
   def change_state

@@ -6,6 +6,7 @@
         <li class="active">Общая информация</li>
         <li>Категория</li>
         <li>Дополнения</li>
+        <li>Публикация</li>
       </ul>
 
       <%= f.input :city_id, as: :hidden,
@@ -171,6 +172,26 @@
           </div>
         </div>
 
+        <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
+        <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
+        <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+        <%= link_to 'Отмена', :back %>
+      </fieldset>
+
+      <fieldset>
+        <h2>Публикация</h2>
+
+        <% if @organization.published? %>
+          <p>Опубликовано!</p>
+        <% elsif @organization.moderation? %>
+          <p>Проходит модерацию</p>
+        <% else %>
+          <p>Для публикации контента необходимо пройти модерацию.</p>
+          <div style='text-align:center'>
+            <%= f.submit 'Сохранить и отравить на модерацию', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        <br>
         <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
         <%= f.submit 'Сохранить', class: 'btn btn-success' %>
         <%= link_to 'Отмена', :back %>
