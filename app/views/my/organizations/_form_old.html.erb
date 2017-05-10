@@ -1,0 +1,222 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
+<div class='row' id='vue-form_organization'>
+  <div class='col-xs-7'>
+    <%= simple_nested_form_for [:my, @organization] do |f| %>
+      <div id='store_organization' class='store'>
+        <% if @organization.persisted? %>
+          <%= @organization.pretty_values %>
+        <% else %>
+          <%= params['organization'] ? params['organization']['values_attributes'].to_json : '{}' %>
+        <% end %>
+      </div>
+      <div id='store_organization_errors' class='store'>
+        <%= @organization.errors.messages.to_json %>
+      </div>
+
+      <%= f.input :title %>
+
+      <%= f.simple_fields_for :phones do |p| %>
+        <%= p.input :value %>
+        <%= p.link_to_remove "Удалить телефон" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить телефон', :phones %>
+
+      <%= f.simple_fields_for :emails do |p| %>
+        <%= p.input :value %>
+        <%= p.link_to_remove "Удалить email" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить email', :emails %>
+
+      <%= f.simple_fields_for :links do |p| %>
+        <%= p.input :title %>
+        <%= p.input :href %>
+        <%= p.link_to_remove "Удалить ссылку" %>
+      <% end %>
+      <%= f.link_to_add 'Добавить ссылку', :links %>
+
+      <div class='js-address_fields'>
+        <%= f.simple_fields_for :address %>
+      </div>
+
+      <%= f.input :city_id, as: :hidden,
+        input_html: { value: @current_city.id } %>
+
+      <%= f.input :user_id, as: :hidden,
+        input_html: { value: current_user.id } unless @organization.persisted? %>
+
+      <%= f.input :parent_id, as: :hidden,
+        input_html: { value: params[:parent_id] } %>
+
+      <%= f.input :category_id, as: :hidden %>
+
+      <% unless @organization.persisted? %>
+        <div class='categories_tree'><%= render partial: 'categories_tree', locals: { categories: @categories } %></div>
+      <% else %>
+        <div id='edit_mode'></div>
+      <% end %>
+
+      <h2>{{organization.category.title}}</h2>
+      <h2><%= f.error :category, style: 'color:#a94442' %></h2>
+      <div
+        is='property-component'
+        v-for='(value, index) in organization.values'
+        :value='value'
+        :index='index'
+        :category_property='get_category_property(value.property_id)'
+        :list_items='get_list_items(value.property_id)'
+        :edit_mode='edit_mode'
+        :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
+        :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
+      </div>
+
+      <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+      <%= link_to 'Отмена', :back %>
+
+    <% end %>
+  </div>
+</div>
+
+<script type='text/x-template' id='property-template'>
+  <div :class='{ has_error: value.errors, organization_dynamic_field: true }'>
+    <abbr v-if='category_property.necessarily' title='required'>*</abbr><label :for='value.property.id + "_property"'>{{value.property.title}}</label>
+
+    <input
+      :name='"organization[values_attributes][" + index + "][id]"'
+      class='form-control'
+      type='hidden'
+      v-if='edit_mode'
+      v-model='value.id'
+    >
+
+    <input
+      :name='"organization[values_attributes][" + index + "][property_id]"'
+      type='hidden'
+      class='form-control'
+      v-model='value.property_id'
+    >
+
+    <input
+      :id='value.property.id + "_property"'
+      :name='"organization[values_attributes][" + index + "][string_value]"'
+      class='form-control'
+      v-if='value.property.kind === "string"'
+      v-model='value.string_value'
+    >
+
+    <input
+      :id='value.property.id + "_property"'
+      :name='"organization[values_attributes][" + index + "][float_value]"'
+      class='form-control'
+      type='number'
+      step='0.001'
+      v-if='value.property.kind === "float"'
+      v-model='value.float_value'
+    >
+
+    <input
+      :id='value.property.id + "_property"'
+      :name='"organization[values_attributes][" + index + "][integer_value]"'
+      class='form-control'
+      type='number'
+      v-if='value.property.kind === "integer"'
+      v-model='value.integer_value'
+    >
+
+    <input
+      :id='value.property.id + "_property"'
+      :name='"organization[values_attributes][" + index + "][boolean_value]"'
+      class='boolean'
+      style='float:left;margin-right:5px'
+      type='checkbox'
+      v-if='value.property.kind === "boolean"'
+      v-model='value.boolean_value'
+    >
+
+    <select
+      :id='value.property.id + "_property"'
+      :name='"organization[values_attributes][" + index + "][list_item_id]"'
+      class='form-control select'
+      v-if='value.property.kind === "limited_list" && category_property.show_as === "select"'
+      v-model='value.list_item_id'
+    >
+      <option
+        v-for='item in list_items'
+        :value='item.id'>
+          {{item.title}}
+      </option>
+    </select>
+
+    <template v-if='value.property.kind === "limited_list" && category_property.show_as === "radio_buttons"'>
+      <div
+        :id='value.property.id + "_property"'
+        v-for='item in list_items'
+      >
+        <input
+          type='radio'
+          :value='item.id'
+          :checked='item.id == value.list_item_id'
+          :name='"organization[values_attributes][" + index + "][list_item_id]"'>
+            {{item.title}}
+      </div>
+    </template>
+
+
+    <template v-if='value.property.kind === "unlimited_list"'>
+      <input
+        type='hidden'
+        :name='"organization[values_attributes][" + index + "][list_item_ids][]"'
+        :value='[]'>
+      </input>
+      <div v-for='item in list_items' :id='value.property.id + "_property"'>
+        <input
+          :name='"organization[values_attributes][" + index + "][list_item_ids][]"'
+          type='checkbox'
+          :checked='value.list_item_ids.includes(item.id)'
+          :id='item.id + "_list_item"'
+          :value='item.id'
+          v-model='value.list_item_ids'>
+        </input>
+        <label :for='item.id + "_list_item"'>{{item.title}}</label>
+      </div>
+    </template>
+
+    <template v-if='value.property.kind === "hierarch_limited_list"'>
+      <select
+        class='form-control select'
+        :name='"organization[values_attributes][" + index + "][root_hierarch_list_item_id]"'
+        v-model='value.root_hierarch_list_item_id'
+        @change='set_hierarch_list_items(value.root_hierarch_list_item_id)'
+      >
+        <option
+          v-for='item in root_hierarch_list_items'
+          :value='item.id'
+        >
+          {{item.title}}
+        </option>
+      </select>
+      <br>
+
+      <select
+        :id='value.property.id + "_property"'
+        v-if='hierarch_list_items.length'
+        :name='"organization[values_attributes][" + index + "][hierarch_list_item_id]"'
+        class='form-control select'
+        v-model='value.hierarch_list_item_id'
+      >
+        <option
+          v-for='item in hierarch_list_items'
+          :value='item.id'>
+            {{item.title}}
+        </option>
+      </select>
+
+    </template>
+    <p
+      class='errors'
+      v-for='message in value.errors'
+    >
+      {{message}}
+    </p>
+
+  </div>
+</script>

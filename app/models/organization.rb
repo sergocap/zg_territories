@@ -11,10 +11,12 @@ class Organization < ApplicationRecord
   has_many :organization_service_packs,  :dependent => :destroy
   has_many :service_packs, :through => :organization_service_packs
   has_many :gallery_images, :dependent => :destroy
+  has_many :gallery_images_added, class_name: 'GalleryImage', foreign_key: 'organization_id', :dependent => :destroy
   has_one :address, :dependent => :destroy
   accepts_nested_attributes_for :values
   accepts_nested_attributes_for :schedules, reject_if: :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :gallery_images, reject_if: :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :gallery_images_added, reject_if: :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :address,   reject_if: :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :phones,    reject_if: proc { |attributes| attributes['value'].blank?  }, :allow_destroy => true
   accepts_nested_attributes_for :emails,    reject_if: proc { |attributes| attributes['value'].blank?  }, :allow_destroy => true

@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery-2.2.1.min.js
-//= require jQuery.MultiFile.min.js
 //= require jquery-migrate-1.2.1.min.js
+//= require jQuery.MultiFile.min.js
 //= require jquery.nouislider.all.min.js
 //= require jquery.validate.min.js
 //= require jquery_ujs.js

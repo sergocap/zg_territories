@@ -79,13 +79,14 @@ class My::OrganizationsController < ApplicationController
          phones_attributes: [:value, :id, :_destroy],
          emails_attributes: [:value, :id, :_destroy],
          links_attributes: [:title, :href, :id, :_destroy],
-         gallery_images_attributes: [:element, :description, :_destroy, :id],
+         gallery_images_attributes: [:_destroy, :id],
+         gallery_images_added_attributes: [:element, :id],
     ])
   end
 
   def resolve_layout
     case action_name
-    when 'new', 'edit'
+    when 'new', 'edit', 'create', 'update'
       false
     else
       'application'
