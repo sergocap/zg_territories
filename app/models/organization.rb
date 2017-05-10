@@ -13,12 +13,12 @@ class Organization < ApplicationRecord
   has_many :gallery_images, :dependent => :destroy
   has_one :address, :dependent => :destroy
   accepts_nested_attributes_for :values
-  accepts_nested_attributes_for :schedules, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :gallery_images, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :address,   :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :phones,    :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :emails,    :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :links,    :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :schedules, reject_if: :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :gallery_images, reject_if: :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :address,   reject_if: :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :phones,    reject_if: proc { |attributes| attributes['value'].blank?  }, :allow_destroy => true
+  accepts_nested_attributes_for :emails,    reject_if: proc { |attributes| attributes['value'].blank?  }, :allow_destroy => true
+  accepts_nested_attributes_for :links,     reject_if: proc { |attributes| attributes['href'].blank?  }, :allow_destroy => true
   validates_presence_of :title
   validates_presence_of :category, :message => 'Укажите категорию'
   validate :check_necessarily

@@ -18,6 +18,11 @@ module ApplicationHelper
     "<meta property='og:#{ item }' content='#{ content }' />".html_safe
   end
 
+  def complete_models(models)
+    models.select {|inst| inst.try(:value).present? ||
+                          inst.try(:href).present? }
+  end
+
   def collection_for_filter(kind)
     {
       'string' => [],

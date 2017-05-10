@@ -323,7 +323,7 @@
                           <% unless @organization.persisted? %>
                             <div class="form-group">
                               <label for="organization_category_id">Категория</label>
-                              <select @change='setCategory()' class="form-control selectpicker" name="[organization][category_id]" id="organization_category_id">
+                              <select @change='setCategory()' class="form-control selectpicker" name="organization[category_id]" id="organization_category_id">
                                 <option value="" selected disabled>Категория</option>
 
                                 <%= @categories.each do |category| %>
@@ -369,13 +369,13 @@
                               cols: 110,
                               'data-bootsy-locale': :ru %>
 
-                            <%= f.simple_fields_for :gallery_images do |g| %>
-                              <%= g.input :element, label: false %>
-                              <%= g.input :description %>
-                              <%= g.link_to_remove 'Удалить' %>
-                            <% end %>
+                            <h3>Галерея</h3>
+                            <div class="file-upload-previews"></div>
+                            <div class="file-upload">
+                              <input type="file" name="organization[gallery_images_attributes][][element]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+                              <span>Нажмите или перетащите файлы сюда</span>
+                            </div>
 
-                            <p><%= f.link_to_add 'Добавить изображение', :gallery_images %></p>
 
                             <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
                             <%= f.submit 'Сохранить', class: 'btn btn-success' %>

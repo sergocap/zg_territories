@@ -295,19 +295,19 @@
                                             </div>
                                             <address>
                                                 <figure><i class="fa fa-map-marker"></i><%= @organization.city.country_region_address %></figure>
-                                                <% if @organization.emails.present? %>
+                                                <% if complete_models(@organization.emails).present? %>
                                                   <figure><i class="fa fa-envelope"></i>
                                                     <% @organization.emails.each do |email| %>
                                                       <%= mail_to email.value %>
                                                     <% end %>
                                                   </figure>
                                                 <% end %>
-                                                <% if @organization.phones.present? %>
+                                                <% if complete_models(@organization.phones).present? %>
                                                   <figure><i class="fa fa-phone"></i>
                                                     <%= @organization.phones.map(&:value).join(', ') %>
                                                   </figure>
                                                 <% end %>
-                                                <% if @organization.links.present? %>
+                                                <% if complete_models(@organization.links).present? %>
                                                   <figure><i class="fa fa-globe"></i>
                                                     <% @organization.links.each do |link| %>
                                                       <%= link_to (link.title.present? ? link.title : link.href), link.href, target: 'blank' %>
