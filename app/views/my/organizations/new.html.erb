@@ -323,7 +323,7 @@
                           <% unless @organization.persisted? %>
                             <div class="form-group">
                               <label for="organization_category_id">Категория</label>
-                              <select @change='setCategory()' class="form-control selectpicker" name="organization_category_id" id="organization_category_id">
+                              <select @change='setCategory()' class="form-control selectpicker" name="[organization][category_id]" id="organization_category_id">
                                 <option value="" selected disabled>Категория</option>
 
                                 <%= @categories.each do |category| %>
