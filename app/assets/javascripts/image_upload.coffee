@@ -8,6 +8,7 @@
     if file.type.split('/')[0] == 'image'
       reader = new FileReader()
       reader.onload = (e) ->
+        preview.css('max-height', '200px')
         preview.attr('src', e.target.result)
       reader.readAsDataURL(file)
     else
