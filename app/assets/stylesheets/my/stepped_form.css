@@ -1,5 +1,15 @@
 /*custom font*/
 /*form styles*/
+.modal .modal-content { padding: 20px !important }
+.modal-content .modal-title { margin-bottom: 10px }
+.modal-footer { text-align: left; }
+.modal-footer input#image_remote_image_file_url {
+  height: 30px;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+.modal-footer .input-group .input-group-btn { display: flex; }
+.modal-footer .bootsy-upload-spacer { display: block; }
 .col_remove_nested {
   margin-top: 45px
 }

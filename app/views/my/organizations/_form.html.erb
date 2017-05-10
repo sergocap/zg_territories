@@ -30,6 +30,7 @@
       </div>
 
       <fieldset>
+        <h2>Общая информация</h2>
         <%= f.input :title, placeholder: 'Название' %>
 
         <%= f.simple_fields_for :phones do |p| %>
@@ -95,6 +96,7 @@
       </fieldset>
 
       <fieldset>
+        <h2>Категория</h2>
 
         <% unless @organization.persisted? %>
           <div class="form-group">
@@ -133,6 +135,8 @@
       </fieldset>
 
       <fieldset>
+        <h2>Дополнения</h2>
+        <h3>Постер</h3>
         <div class='js-image_upload_wrapper'>
           <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
           <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
@@ -157,13 +161,13 @@
           <span>Нажмите или перетащите файлы сюда</span>
         </div>
 
+        <h3>Описание</h3>
         <div class='row'>
           <div class='col-xs-12'>
             <%= f.input :description,
               label: false,
               as: :bootsy,
-              rows: 40,
-              input_html: { 'data-bootsy-locale': :ru } %>
+              input_html: { style: 'height: 400px', 'data-bootsy-locale': :ru } %>
           </div>
         </div>
 
