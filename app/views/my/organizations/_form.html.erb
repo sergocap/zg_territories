@@ -48,6 +48,7 @@
 
           </div>
         <% end %>
+        <%= f.link_to_add 'Добавить телефон', :phones %>
 
         <%= f.simple_fields_for :emails do |p| %>
           <div class='row'>
@@ -62,6 +63,7 @@
 
           </div>
         <% end %>
+        <%= f.link_to_add 'Добавить email', :emails %>
 
         <%= f.simple_fields_for :links do |p| %>
           <div class='row'>
@@ -78,14 +80,14 @@
             </div>
           </div>
         <% end %>
+        <%= f.link_to_add 'Добавить ссылку', :links %>
 
-        <%= f.link_to_add 'Добавить телефон', :phones, class: 'hidden' %>
-        <%= f.link_to_add 'Добавить email', :emails, class: 'hidden' %>
-        <%= f.link_to_add 'Добавить ссылку', :links, class: 'hidden' %>
 
+        <!--
         <a @click="link_to_add_nested_fields('phones')" href='javascript:void(0)'>Добавить телефон</a>
         <a @click="link_to_add_nested_fields('emails')" href='javascript:void(0)'>Добавить email</a>
         <a @click="link_to_add_nested_fields('links')" href='javascript:void(0)'>Добавить ссылку</a>
+        -->
 
         <div class='js-address_fields'>
           <%= f.simple_fields_for :address %>
