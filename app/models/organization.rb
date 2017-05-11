@@ -26,6 +26,7 @@ class Organization < ApplicationRecord
   validate :check_necessarily
   has_attached_file :logotype, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/missing.jpg"
   validates_attachment_content_type :logotype, content_type: /\Aimage\/.*\z/
+  before_validation { logotype.clear if @delete_image }
 
   include SettingsStateMachine
   include Bootsy::Container
@@ -42,6 +43,14 @@ class Organization < ApplicationRecord
   def can_service?(service)
     permit_services.include? service
     true #загрушка для территорий
+  end
+
+  def delete_image
+    @delete_image ||= false
+  end
+
+  def delete_image=(value)
+    @delete_image  = !value.to_i.zero?
   end
 
   def permitted_logotype_url

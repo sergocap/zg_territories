@@ -131,21 +131,26 @@
           :root_hierarch_list_items='get_root_hierarch_list_items(value.property_id)'
           :hierarch_list_items_init='get_hierarch_list_items(value.root_hierarch_list_item_id)'>
         </div>
-        <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
         <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
+        <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
         <%= f.submit 'Сохранить', class: 'btn btn-success' %>
         <%= link_to 'Отмена', :back %>
       </fieldset>
 
       <fieldset>
         <h2>Дополнения</h2>
-        <h3>Постер</h3>
+        <h3>Главная фотография</h3>
         <div class='js-image_upload_wrapper'>
           <button type='button' class='btn btn-default js-image_button'>Загрузить картинку</button>
           <%= f.input :logotype, label: false, input_html: { class: 'js-image_input', style: 'display:none' } %>
           <%= image_tag (@organization.logotype.exists? ? @organization.logotype.url : ''),
             class: 'js-image_preview', style: 'max-height: 200px' %>
+          <button type='button'
+            style=<%= @organization.logotype.exists? ? 'display:inline-block' : 'display:none' %>
+            class='btn btn-default js-reset_main_photo'>Удалить</button>
+          <%= f.input :delete_image, as: :hidden, input_html: { id: 'delete_image_input' } %>
         </div>
+        <br>
 
         <h3>Галерея</h3>
         <div class="file-uploaded-images">
@@ -174,8 +179,8 @@
           </div>
         </div>
 
-        <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
         <input type="button" name="previous" class="previous btn btn-default" value="Предыдущий шаг" />
+        <input type="button" name="next" class="next btn btn-success" value="Следующий шаг" />
         <%= f.submit 'Сохранить', class: 'btn btn-success' %>
         <%= link_to 'Отмена', :back %>
       </fieldset>
