@@ -1,23 +1,26 @@
 <div>
-  <h2>Расположение</h2>
-  <h4><%= @organization.city.country_region_address %></h4>
-  <%= f.input :city_title, as: :hidden, input_html: { value: @organization.city.full_address } %>
+  <br>
+  <h3>Расположение - <%= @current_city.country_region_address %></h3>
+  <%= f.input :city_title, as: :hidden, input_html: { value: @current_city.full_address } %>
   <%= f.input :longitude, as: :hidden %>
   <%= f.input :latitude, as: :hidden %>
   <%= f.input :area_coordinates, as: :hidden %>
   <div is='map-template'>
   </div>
-  <label><input type='radio' name='type_input_for_map' value="placemark" checked> Поставить метку</label><br>
-  <label><input type='radio' name='type_input_for_map' value="areamark"> Поставить метку для выбора области</label><br>
+  <div class='form-group'>
+    <label><input type='radio' name='type_input_for_map' value="placemark" checked>Выбрать местоположение</label>
+    <label><input type='radio' name='type_input_for_map' value="areamark">Поставить метку для выбора области</label><br>
+  </div>
 </div>
 
 <div class='organization_storage'
   data-infos='<%= @organization.title %>'
   data-area-coordinates='<%= @organization.address.pretty_area_coordinates %>'>
 </div>
+<br>
 
 <script type='text/x-template' id='map-template'>
   <div class='js-map_wrapper'>
-    <div id='map'></div>
+    <div id='map' class='shadow'></div>
   </div>
 </script>

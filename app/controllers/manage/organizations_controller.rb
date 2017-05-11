@@ -3,6 +3,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
   inherit_resources
   before_action :find_category,   only: [:edit]
   before_filter :build_nested_objects, :only => [:edit]
+  layout :resolve_layout
 
   def index
     @organizations = Searchers::ManageOrganizationSearcher.new(search_params).search
@@ -18,6 +19,16 @@ class Manage::OrganizationsController < Manage::ApplicationController
       format.js
     end
   end
+
+  def resolve_layout
+    case action_name
+    when 'edit', 'update'
+      false
+    else
+      'manage'
+    end
+  end
+
 
   def show
      show! do |format|
@@ -49,7 +60,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
          phones_attributes: [:value, :id, :_destroy],
          emails_attributes: [:value, :id, :_destroy],
          links_attributes: [:title, :href, :id, :_destroy],
-         gallery_images_attributes: [:element, :description, :_destroy, :id],
+         gallery_images_attributes: [:_destroy, :id],
+         gallery_images_added_attributes: [:element, :id],
     ])
   end
 

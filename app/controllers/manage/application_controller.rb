@@ -6,6 +6,10 @@ class Manage::ApplicationController < ActionController::Base
     redirect_to root_path, flash: { denied: 'Недостаточно прав для выполнения операции' }
   end
 
+  def current_city
+    @current_city ||= MainCities.instance.find_by(:slug, params['city_slug'])
+  end
+
   private
 
   def namespace
@@ -13,6 +17,7 @@ class Manage::ApplicationController < ActionController::Base
   end
 
   def current_ability
+    current_city
     @current_ability ||= Ability.new(current_user, namespace)
   end
 end

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, flash: { denied: 'Недостаточно прав для выполнения операции' } and return if current_user.present?
+    redirect_to(root_path, flash: { denied: 'Недостаточно прав для выполнения операции' }) and return if current_user.present?
     redirect_to sign_in_url_with_redirect_path
   end
 
